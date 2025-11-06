@@ -65,12 +65,13 @@ layer_1/tile_data = PackedInt32Array(-8, 131072, 1, -7, 131072, 1, -6, 131072, 1
 
 [node name="Mossy" parent="." instance=ExtResource("2_yqjtg")]
 position = Vector2(1184, 144)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 
 [node name="Player" parent="." instance=ExtResource("3_lnu2h")]
-position = Vector2(-247, -37)
-scale = Vector2(1.5, 1.5)
+position = Vector2(-251, -1)
+scale = Vector2(2, 2)
 collision_layer = 2
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-8.666666, 6)
+position = Vector2(-7.9999943, -20)
+zoom = Vector2(1.5, 1.5)
