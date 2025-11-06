@@ -1,7 +1,7 @@
 [gd_scene load_steps=40 format=3 uid="uid://bew4d6ojw3kyv"]
 
 [ext_resource type="Texture2D" uid="uid://csh5wod3txei7" path="res://assets/sprites/kansen.png" id="1_3vyb7"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://dj12myodc1eds" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(19, 32)
@@ -300,4 +300,4 @@ shape = SubResource("RectangleShape2D_3vyb7")
 sprite_frames = SubResource("SpriteFrames_g2els")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.027875671
+frame_progress = 0.087844186
