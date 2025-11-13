@@ -32,27 +32,27 @@ region = Rect2(240, 134, 37, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
 atlas = ExtResource("1_3vyb7")
-region = Rect2(0, 0, 48, 48)
+region = Rect2(7, 15, 17, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
 atlas = ExtResource("1_3vyb7")
-region = Rect2(48, 0, 48, 48)
+region = Rect2(55, 15, 17, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
 atlas = ExtResource("1_3vyb7")
-region = Rect2(96, 0, 48, 48)
+region = Rect2(97, 14, 24, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
 atlas = ExtResource("1_3vyb7")
-region = Rect2(144, 0, 48, 48)
+region = Rect2(151, 17, 21, 31)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
 atlas = ExtResource("1_3vyb7")
-region = Rect2(192, 0, 48, 48)
+region = Rect2(199, 20, 32, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fulsm"]
 atlas = ExtResource("1_3vyb7")
-region = Rect2(240, 0, 48, 48)
+region = Rect2(247, 16, 22, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
 atlas = ExtResource("1_3vyb7")
@@ -316,4 +316,4 @@ position = Vector2(-10, 8)
 sprite_frames = SubResource("SpriteFrames_g2els")
 animation = &"FirstAttack"
 autoplay = "Idle"
-frame_progress = 0.17488536
+frame_progress = 0.17613764
