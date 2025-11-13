@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bew4d6ojw3kyv"]
+[gd_scene load_steps=40 format=3 uid="uid://bew4d6ojw3kyv"]
 
 [ext_resource type="Texture2D" uid="uid://csh5wod3txei7" path="res://assets/sprites/kansen.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dj12myodc1eds" path="res://scripts/player.gd" id="1_g2els"]
@@ -84,25 +84,17 @@ region = Rect2(192, 192, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
-region = Rect2(0, 240, 48, 48)
+region = Rect2(96, 240, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
 atlas = ExtResource("1_3vyb7")
-region = Rect2(48, 240, 48, 48)
+region = Rect2(144, 240, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
 atlas = ExtResource("1_3vyb7")
-region = Rect2(96, 240, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
-atlas = ExtResource("1_3vyb7")
-region = Rect2(144, 240, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hax0n"]
-atlas = ExtResource("1_3vyb7")
 region = Rect2(192, 240, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("1_3vyb7")
 region = Rect2(240, 240, 48, 48)
 
@@ -200,7 +192,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"FirstAttack",
-"speed": 12.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -214,7 +206,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"GetDamage",
-"speed": 7.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -245,16 +237,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ur7pv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hax0n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t4otl")
 }],
 "loop": false,
 "name": &"Jump",
-"speed": 7.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -314,13 +300,5 @@ shape = SubResource("RectangleShape2D_3vyb7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_g2els")
-animation = &"Jump"
+animation = &"Idle"
 autoplay = "Idle"
-frame = 5
-frame_progress = 1.0
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
-one_shot = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
