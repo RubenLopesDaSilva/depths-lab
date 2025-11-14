@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ed55dwci8sid"]
+[gd_scene load_steps=11 format=3 uid="uid://ed55dwci8sid"]
 
 [ext_resource type="Script" uid="uid://bh2cl8tpy22ed" path="res://scripts/mossy.gd" id="1_6yx7a"]
 [ext_resource type="Texture2D" uid="uid://b5hgyi4x6p1pj" path="res://assets/sprites/mossy.png" id="1_jwljl"]
+[ext_resource type="PackedScene" uid="uid://bvneyxmv0e6x0" path="res://scenes/killzone.tscn" id="3_hiyx0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6yx7a"]
 atlas = ExtResource("1_jwljl")
@@ -46,23 +47,18 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nyyru"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hiyx0"]
 size = Vector2(21, 40)
 
 [node name="Mossy" type="Node2D"]
+z_index = 3
 script = ExtResource("1_6yx7a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_0twwu")
 autoplay = "default"
-frame_progress = 0.06346614
-
-[node name="Killzone" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(-0.5, -20)
-shape = SubResource("RectangleShape2D_nyyru")
+frame_progress = 0.63566697
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
@@ -71,3 +67,10 @@ target_position = Vector2(-17, 0)
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(0, -20)
 target_position = Vector2(16, 0)
+
+[node name="Killzone" parent="." instance=ExtResource("3_hiyx0")]
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-0.5, -20)
+shape = SubResource("RectangleShape2D_hiyx0")
