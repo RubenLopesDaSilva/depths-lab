@@ -68,7 +68,17 @@ func take_damage(damage: int) -> bool:
 	return false
 
 func SetAnimation(animation: String) -> void:
-	next_animation = animation;
+	if(animation == "Death"):
+		next_animation = animation;
+		
+	elif(animation == "Damage"):
+		next_animation = animation;
+	
+	if(animated_sprite.animation_finished):
+		next_animation = animation;
+
+func PlayAnimation() -> void:
+	pass
 
 func Attack()-> void:
 	SetAnimation("FirstAttack")
