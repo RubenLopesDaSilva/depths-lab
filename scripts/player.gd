@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			next_animation = "Jump"
 			velocity.y = JUMP_VELOCITY
-	# Add the gravity.
+
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	animated_sprite.play(next_animation)
 	move_and_slide()
 	
 func Death() -> void:
@@ -55,16 +55,23 @@ func Death() -> void:
 	await  animated_sprite.animation_finished
 	dying = false
 
-func take_damage() -> void:
+func take_damage(damage: int) -> bool:
 	if not taking_damage:
-		next_animation = "GetDamage"
-		animated_sprite.play("GetDamage")
-		health -= 20;
-		taking_damage = true
-		timer.start()
+		health -= damage;
+		if (health <= 0):
+			Death()
+			return true
+		else:
+			SetAnimation("GetDamage")
+			taking_damage = true
+			timer.start()
+	return false
+
+func SetAnimation(animation: String) -> void:
+	next_animation = animation;
 
 func Attack()-> void:
-	animated_sprite.play("FirstAttack")
+	SetAnimation("FirstAttack")
 
 func _on_timer_timeout() -> void:
 	taking_damage = false;
