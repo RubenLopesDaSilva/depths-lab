@@ -80,6 +80,9 @@ func SetAnimation(animation: String) -> void:
 func PlayAnimation() -> void:
 	pass
 
+func PlayAnimation:
+	pass
+
 func Attack()-> void:
 	SetAnimation("FirstAttack")
 
