@@ -79,6 +79,10 @@ func SetAnimation(animation: String) -> void:
 
 func PlayAnimation() -> void:
 	pass
+>>>>>>>>> Temporary merge branch 2
+
+func PlayAnimation:
+	pass
 
 func Attack()-> void:
 	SetAnimation("FirstAttack")
