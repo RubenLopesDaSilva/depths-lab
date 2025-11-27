@@ -78,6 +78,7 @@ func SetAnimation(animation: String) -> void:
 		next_animation = animation;
 
 func PlayAnimation() -> void:
+	
 	pass
 
 func Attack()-> void:
