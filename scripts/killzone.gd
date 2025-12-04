@@ -10,4 +10,5 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 
 func _on_timer_timeout() -> void:
 	#Engine.time_scale = 1.0
-	get_tree().reload_current_scene();
+	GameManager.restart()
+	#get_tree().reload_current_scene();

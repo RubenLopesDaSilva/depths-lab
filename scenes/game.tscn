@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdtwgxyy3f0f4"]
+[gd_scene load_steps=7 format=3 uid="uid://cdtwgxyy3f0f4"]
 
-[ext_resource type="Script" uid="uid://0qalj8is0q7s" path="res://scripts/game.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://ed55dwci8sid" path="res://scenes/mossy.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bew4d6ojw3kyv" path="res://scenes/player.tscn" id="3_lnu2h"]
@@ -65,7 +64,6 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
 [node name="Game" type="Node2D"]
-script = ExtResource("1_iywne")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_as_relative = false
