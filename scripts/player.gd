@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
-var next_animation = "idle"
+var next_animation = "Idle"
 var dying = false;
 var taking_damage = false;
 var health = 100;
