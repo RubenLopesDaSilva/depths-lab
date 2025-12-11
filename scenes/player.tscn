@@ -302,9 +302,8 @@ shape = SubResource("RectangleShape2D_3vyb7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-11, -16)
 sprite_frames = SubResource("SpriteFrames_g2els")
-animation = &"Idle"
+animation = &"Jump"
 autoplay = "Idle"
-frame_progress = 0.34169692
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5

@@ -52,20 +52,19 @@ func _physics_process(delta: float) -> void:
 func Death() -> void:
 	dying = true;
 	animated_sprite.play("Death");
+	GameManager.dying()
 	await  animated_sprite.animation_finished
 	dying = false
 
-func take_damage(damage: int) -> bool:
+func take_damage(damage: int) -> void:
 	if not taking_damage:
 		health -= damage;
 		if (health <= 0):
 			Death()
-			return true
 		else:
 			SetAnimation("GetDamage")
 			taking_damage = true
 			timer.start()
-	return false
 
 func SetAnimation(animation: String) -> void:
 	if(animation == "Death"):
