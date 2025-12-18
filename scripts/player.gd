@@ -7,26 +7,13 @@ var next_animation = "Idle"
 var dying = false;
 var taking_damage = false;
 var health = 100;
+var direction = 0;
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
 
 func _physics_process(delta: float) -> void:
-	var direction := Input.get_axis("move_left", "move_right")
-	if not dying:
-		if (Input.is_action_just_pressed("attack")):
-			next_animation = "Attack"
-			Attack()
-			await animated_sprite.animation_finished
-			next_animation = "Idle"
-			
-		if animated_sprite.animation == "GetDamage":
-			direction = 0
-			await animated_sprite.animation_finished
-			next_animation = "Idle"
-		
-		if Input.is_action_just_pressed("jump") and is_on_floor():
-			next_animation = "Jump"
-			velocity.y = JUMP_VELOCITY
+	setDirection()
+	setAction()
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -49,24 +36,22 @@ func _physics_process(delta: float) -> void:
 	animated_sprite.play(next_animation)
 	move_and_slide()
 	
-func Death() -> void:
-	dying = true;
-	animated_sprite.play("Death");
-	GameManager.dying()
-	await  animated_sprite.animation_finished
-	dying = false
+func setAction() -> void:
+	if (Input.is_action_just_pressed("attack")):
+		attack()	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		next_animation = "Jump"
+		velocity.y = JUMP_VELOCITY
+		
+func setDirection() -> void:
+	if animated_sprite.animation == "GetDamage":
+		direction = 0
+		await animated_sprite.animation_finished
+		next_animation = "Idle"
+	else:
+		direction = Input.get_axis("move_left", "move_right")
 
-func take_damage(damage: int) -> void:
-	if not taking_damage:
-		health -= damage;
-		if (health <= 0):
-			Death()
-		else:
-			SetAnimation("GetDamage")
-			taking_damage = true
-			timer.start()
-
-func SetAnimation(animation: String) -> void:
+func setAnimation(animation: String) -> void:
 	if(animation == "Death"):
 		next_animation = animation;
 		
@@ -75,13 +60,30 @@ func SetAnimation(animation: String) -> void:
 	
 	if(animated_sprite.animation_finished):
 		next_animation = animation;
+		
+func takeDamage(damage: int) -> void:
+	if not taking_damage:
+		health -= damage;
+		if (health <= 0):
+			death()
+		else:
+			setAnimation("GetDamage")
+			taking_damage = true
+			timer.start()
 
-func PlayAnimation() -> void:
+func playAnimation() -> void:
 	
 	pass
 
-func Attack()-> void:
-	SetAnimation("FirstAttack")
+func attack()-> void:
+	setAnimation("FirstAttack")
 
+func death() -> void:
+	dying = true;
+	animated_sprite.play("Death");
+	GameManager.dying()
+	await  animated_sprite.animation_finished
+	dying = false
+	
 func _on_timer_timeout() -> void:
 	taking_damage = false;
