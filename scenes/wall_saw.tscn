@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cufc131q1h5eg"]
+
+[ext_resource type="Texture2D" uid="uid://bb2pp1dubujcx" path="res://assets/sprites/level_0_killzone.png" id="1_yq5yq"]
+[ext_resource type="PackedScene" uid="uid://bvneyxmv0e6x0" path="res://scenes/killzone.tscn" id="2_eib87"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eib87"]
+radius = 46.238514
+
+[node name="wallSaw" type="Sprite2D"]
+position = Vector2(-23, -46)
+texture = ExtResource("1_yq5yq")
+region_enabled = true
+region_rect = Rect2(1, 99, 47, 92)
+
+[node name="Killzone" parent="." instance=ExtResource("2_eib87")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(23, 0)
+shape = SubResource("CircleShape2D_eib87")

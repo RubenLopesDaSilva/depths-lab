@@ -1,6 +1,7 @@
 extends Node2D
 
 const SPEED = 80;
+var health = 3;
 
 var direction = 1;
 @onready var ray_cast_right: RayCast2D = $RayCastRight
@@ -16,3 +17,9 @@ func _process(delta):
 		animated_sprite.flip_h = false;
 	
 	position.x += direction * SPEED * delta;
+
+func takeDamage():
+	pass;
+
+func Death():
+	pass;
