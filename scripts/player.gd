@@ -3,76 +3,74 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
-var next_animation = "idle"
+var next_animation = "Idle"
 var is_dead = false;
 var i_frames = false;
 var health = 100;
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var timer: Timer = $Timer
-
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var timer: Timer = $Iframes
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _physics_process(delta: float) -> void:
 	if(is_dead):
 		return;
-		
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("move_left", "move_right")
 	
-	if (Input.is_action_just_pressed("Attack")):
-		next_animation = "Attack"
-		Attack()
-		await animated_sprite.animation_finished
-		next_animation = "Idle"
-		
-	if animated_sprite.animation == "GetDamage":
+	Attack()
+		 
+	if animation_player.current_animation == "GetDamage":
 		direction = 0
-		await animated_sprite.animation_finished
+		await animation_player.animation_finished
 		next_animation = "Idle"
 		
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	
-	# Handle jump.
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		next_animation = "Jump"
-		velocity.y = JUMP_VELOCITY
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	
+	player_jump(delta)
 	
 	if direction > 0:
-		animated_sprite.flip_h = false
+		animated_sprite.flip_h = false;
 		
 	if direction < 0:
-		animated_sprite.flip_h = true
+		animated_sprite.flip_h = true;
 		
-	if (is_on_floor() and next_animation != "Attack"):
+	if (is_on_floor() and next_animation != "Attack" and next_animation != "Death"):
 		if direction == 0:
-			animated_sprite.play("Idle")
+			animation_player.play("Idle");
 		else:
-			animated_sprite.play("Walk")
+			animation_player.play("Walk");
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * SPEED;
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, SPEED);
 
 	move_and_slide()
 	
 func Death() -> void:
 	is_dead = true;
-	animated_sprite.play("Death");
+	next_animation = "Death";
+	animation_player.play("Death");
+	await animation_player.animation_finished;
+	
 
 func take_damage() -> void:
 	if not i_frames:
-		next_animation = "GetDamage"
-		animated_sprite.play("GetDamage")
+		next_animation = "GetDamage";
+		animation_player.play("GetDamage");
 		health -= 20;
-		i_frames = true
-		timer.start()
+		i_frames = true;
+		timer.start();
 
 func Attack()-> void:
-	animated_sprite.play("FirstAttack")
+	if Input.is_action_just_pressed("Attack"):
+		next_animation = "Attack";
+		animation_player.play("FirstAttack");
+		await animation_player.animation_finished;
+		next_animation = "Idle";
 
 func _on_timer_timeout() -> void:
 	i_frames = false;
+
+func player_jump(delta):
+	if Input.is_action_just_pressed("Jump"):
+		next_animation = 'Jump'
+		velocity.y = JUMP_VELOCITY
+	if not is_on_floor() and next_animation == 'Jump':
+		velocity += get_gravity() * delta

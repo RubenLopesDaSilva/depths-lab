@@ -6,9 +6,9 @@ func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, 
 	body.take_damage();
 	print(body.health)
 	if(body.health == 0):
-		body.Death();
+		await body.Death();
 		Engine.time_scale = 0.5
-		timer.start()
+		timer.start();
 
 
 func _on_timer_timeout() -> void:
