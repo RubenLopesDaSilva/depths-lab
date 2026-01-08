@@ -25,23 +25,6 @@ func _physics_process(delta: float) -> void:
 		next_animation = "Idle"
 		
 	player_jump(delta)
-
-var dying = false;
-var taking_damage = false;
-var health = 100;
-var direction = 0;
-var state = State.Idle
-
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var timer: Timer = $Timer
-
-func _physics_process(delta: float) -> void:
-	setDirection()
-	setAction()
-
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
 	
 	if direction > 0:
 		animated_sprite.flip_h = false;
@@ -57,7 +40,6 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = direction * SPEED;
 	else:
-
 		velocity.x = move_toward(velocity.x, 0, SPEED);
 
 	move_and_slide()
@@ -151,6 +133,3 @@ func player_jump(delta):
 		velocity.y = JUMP_VELOCITY
 	if not is_on_floor() and next_animation == 'Jump':
 		velocity += get_gravity() * delta
-
-	taking_damage = false;
-

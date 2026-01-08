@@ -95,6 +95,17 @@ region = Rect2(102, 256, 19, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
 atlas = ExtResource("1_3vyb7")
+<<<<<<< HEAD
+=======
+region = Rect2(150, 247, 19, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke2ow"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(197, 252, 19, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
+atlas = ExtResource("1_3vyb7")
+>>>>>>> 57072ad (Update 08.01 10:27)
 region = Rect2(250, 259, 19, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
