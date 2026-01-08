@@ -8,37 +8,35 @@ var next_animation = "Idle"
 var is_dead = false;
 var i_frames = false;
 var health = 100;
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var timer: Timer = $Iframes
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-
-func _physics_process(delta: float) -> void:
-	if(is_dead):
-		return;
-	var direction := Input.get_axis("move_left", "move_right")
-	
-	Attack()
-		 
-	if animation_player.current_animation == "GetDamage":
-		direction = 0
-		await animation_player.animation_finished
-		next_animation = "Idle"
-		
-	player_jump(delta)
-
 var dying = false;
 var taking_damage = false;
-var health = 100;
 var direction = 0;
 var state = State.Idle
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var timer: Timer = $Timer
+@onready var timer: Timer = $Iframes
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+#func _physics_process(delta: float) -> void:
+	#if(is_dead):
+		#return;
+		#
+	#var direction := Input.get_axis("move_left", "move_right")
+	#
+	#Attack()
+		 #
+	#if animation_player.current_animation == "GetDamage":
+		#direction = 0
+		#await animation_player.animation_finished
+		#next_animation = "Idle"
+		#
+	#player_jump(delta)
 
 func _physics_process(delta: float) -> void:
 	setDirection()
 	setAction()
-
+	
+	setAnimation()
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -54,12 +52,13 @@ func _physics_process(delta: float) -> void:
 			animation_player.play("Idle");
 		else:
 			animation_player.play("Walk");
+	Move()
+	
+func Move() -> void:
 	if direction:
 		velocity.x = direction * SPEED;
 	else:
-
 		velocity.x = move_toward(velocity.x, 0, SPEED);
-
 	move_and_slide()
 	
 func Death() -> void:
@@ -91,7 +90,7 @@ func Attack()-> void:
 func setAction() -> void:
 	if (Input.is_action_just_pressed("attack")):
 		attack()	
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		next_animation = "Jump"
 		velocity.y = JUMP_VELOCITY
 		
@@ -142,7 +141,6 @@ func death() -> void:
 	dying = false
 	
 func _on_timer_timeout() -> void:
-
 	i_frames = false;
 
 func player_jump(delta):
@@ -153,4 +151,3 @@ func player_jump(delta):
 		velocity += get_gravity() * delta
 
 	taking_damage = false;
-
