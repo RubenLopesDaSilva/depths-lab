@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+enum State { Idle, Attack, Damage, Death }
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
@@ -8,6 +9,8 @@ var dying = false;
 var taking_damage = false;
 var health = 100;
 var direction = 0;
+var state = State.Idle
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
 
@@ -51,15 +54,18 @@ func setDirection() -> void:
 	else:
 		direction = Input.get_axis("move_left", "move_right")
 
-func setAnimation(animation: String) -> void:
-	if(animation == "Death"):
-		next_animation = animation;
-		
-	elif(animation == "Damage"):
-		next_animation = animation;
+func setState(value: State):
+	state = value
 	
-	if(animated_sprite.animation_finished):
-		next_animation = animation;
+func setAnimation() -> void:
+	if(state == State.Death):
+		next_animation = "Death";
+		
+	elif(state == State.Damage):
+		next_animation = "Damage";
+	
+	#if(animated_sprite.animation_finished):
+		#next_animation = animation;
 		
 func takeDamage(damage: int) -> void:
 	if not taking_damage:
@@ -67,7 +73,7 @@ func takeDamage(damage: int) -> void:
 		if (health <= 0):
 			death()
 		else:
-			setAnimation("GetDamage")
+			setState(State.Damage)
 			taking_damage = true
 			timer.start()
 
@@ -76,7 +82,7 @@ func playAnimation() -> void:
 	pass
 
 func attack()-> void:
-	setAnimation("FirstAttack")
+	setState(State.Attack)
 
 func death() -> void:
 	dying = true;
