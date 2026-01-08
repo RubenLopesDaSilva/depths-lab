@@ -9,4 +9,6 @@ script = ExtResource("1_xlapc")
 [node name="Timer" type="Timer" parent="."]
 
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="." to="." method="_on_body_shape_exited"]
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

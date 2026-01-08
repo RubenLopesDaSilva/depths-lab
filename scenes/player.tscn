@@ -1,5 +1,4 @@
 [gd_scene load_steps=51 format=3 uid="uid://bew4d6ojw3kyv"]
-
 [ext_resource type="Texture2D" uid="uid://csh5wod3txei7" path="res://assets/sprites/kansen.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dj12myodc1eds" path="res://scripts/player.gd" id="1_g2els"]
 
@@ -94,15 +93,7 @@ region = Rect2(58, 257, 16, 31)
 atlas = ExtResource("1_3vyb7")
 region = Rect2(102, 256, 19, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l71n6"]
-atlas = ExtResource("1_3vyb7")
-region = Rect2(150, 247, 19, 37)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ke2ow"]
-atlas = ExtResource("1_3vyb7")
-region = Rect2(197, 252, 19, 33)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
 atlas = ExtResource("1_3vyb7")
 region = Rect2(250, 259, 19, 29)
 
@@ -125,10 +116,6 @@ region = Rect2(151, 65, 26, 31)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jc3p3"]
 atlas = ExtResource("1_3vyb7")
 region = Rect2(199, 68, 25, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
-atlas = ExtResource("1_3vyb7")
-region = Rect2(247, 64, 17, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
 atlas = ExtResource("1_3vyb7")
