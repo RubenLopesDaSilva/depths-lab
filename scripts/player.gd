@@ -37,28 +37,33 @@ func _physics_process(delta: float) -> void:
 	setAction()
 	
 	setAnimation()
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	
+	
 
+	Move(delta)
+	
+func Move(delta: float) -> void:
 	
 	if direction > 0:
 		animated_sprite.flip_h = false;
 		
 	if direction < 0:
 		animated_sprite.flip_h = true;
-		
-	if (is_on_floor() and next_animation != "Attack" and next_animation != "Death"):
+	
+	if (is_on_floor()):
 		if direction == 0:
 			animation_player.play("Idle");
 		else:
 			animation_player.play("Walk");
-	Move()
-	
-func Move() -> void:
+		
 	if direction:
 		velocity.x = direction * SPEED;
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED);
+		
+	if not is_on_floor():
+		velocity.y += get_gravity().y * delta
+		
 	move_and_slide()
 	
 func Death() -> void:
@@ -67,7 +72,6 @@ func Death() -> void:
 	animation_player.play("Death");
 	await animation_player.animation_finished;
 	
-
 func take_damage() -> void:
 	if not i_frames:
 		next_animation = "GetDamage";
@@ -75,7 +79,7 @@ func take_damage() -> void:
 		health -= 20;
 		i_frames = true;
 		timer.start();
-
+	
 func Attack()-> void:
 	if Input.is_action_just_pressed("Attack"):
 		next_animation = "Attack";
@@ -93,7 +97,7 @@ func setAction() -> void:
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		next_animation = "Jump"
 		velocity.y = JUMP_VELOCITY
-		
+	
 func setDirection() -> void:
 	if animated_sprite.animation == "GetDamage":
 		direction = 0
@@ -114,7 +118,7 @@ func setAnimation() -> void:
 	
 	#if(animated_sprite.animation_finished):
 		#next_animation = animation;
-		
+	
 func takeDamage(damage: int) -> void:
 	if not taking_damage:
 		health -= damage;
@@ -124,15 +128,14 @@ func takeDamage(damage: int) -> void:
 			setState(State.Damage)
 			taking_damage = true
 			timer.start()
-
+	
 func playAnimation() -> void:
 	
 	pass
-
+	
 func attack()-> void:
 	setState(State.Attack)
-
-
+	
 func death() -> void:
 	dying = true;
 	animated_sprite.play("Death");
@@ -142,7 +145,7 @@ func death() -> void:
 	
 func _on_timer_timeout() -> void:
 	i_frames = false;
-
+	
 func player_jump(delta):
 	if Input.is_action_just_pressed("Jump"):
 		next_animation = 'Jump'
