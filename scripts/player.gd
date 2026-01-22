@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-enum State { Idle, Attack, Damage, Death }
+enum State { Idle, Attack, Jump, Damage, Death }
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
@@ -33,22 +33,41 @@ var state = State.Idle
 	#player_jump(delta)
 
 func _physics_process(delta: float) -> void:
-	setDirection()
-	setAction()
+	update_direction()
+	update_sprite()
+	handle_actions()
+	update_animation()
+	apply_movement(delta)
 	
-	setAnimation()
+func update_direction() -> void:
+	if animated_sprite.animation != "GetDamage":
+		direction = Input.get_axis("move_left", "move_right")
 	
-	
-
-	Move(delta)
-	
-func Move(delta: float) -> void:
-	
+func update_sprite() -> void:
 	if direction > 0:
 		animated_sprite.flip_h = false;
 		
 	if direction < 0:
-		animated_sprite.flip_h = true;
+		animated_sprite.flip_h = true;	
+	
+func handle_actions() -> void:
+	if (Input.is_action_just_pressed("attack")):
+		attack()	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		setState(State.Jump)
+		velocity.y = JUMP_VELOCITY
+	
+func update_animation() -> void:
+	if(state == State.Death):
+		next_animation = "Death";
+		
+	elif(state == State.Damage):
+		next_animation = "Damage";
+	
+	#if(animated_sprite.animation_finished):
+		#next_animation = animation;	
+	
+func apply_movement(delta: float) -> void:
 	
 	if (is_on_floor()):
 		if direction == 0:
@@ -65,6 +84,13 @@ func Move(delta: float) -> void:
 		velocity.y += get_gravity().y * delta
 		
 	move_and_slide()
+	
+func setState(value: State):
+	state = value
+	
+func playAnimation() -> void:
+	
+	pass
 	
 func Death() -> void:
 	is_dead = true;
@@ -91,34 +117,6 @@ func Attack()-> void:
 	animated_sprite.play(next_animation)
 	move_and_slide()
 	
-func setAction() -> void:
-	if (Input.is_action_just_pressed("attack")):
-		attack()	
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		next_animation = "Jump"
-		velocity.y = JUMP_VELOCITY
-	
-func setDirection() -> void:
-	if animated_sprite.animation == "GetDamage":
-		direction = 0
-		await animated_sprite.animation_finished
-		next_animation = "Idle"
-	else:
-		direction = Input.get_axis("move_left", "move_right")
-
-func setState(value: State):
-	state = value
-	
-func setAnimation() -> void:
-	if(state == State.Death):
-		next_animation = "Death";
-		
-	elif(state == State.Damage):
-		next_animation = "Damage";
-	
-	#if(animated_sprite.animation_finished):
-		#next_animation = animation;
-	
 func takeDamage(damage: int) -> void:
 	if not taking_damage:
 		health -= damage;
@@ -128,10 +126,6 @@ func takeDamage(damage: int) -> void:
 			setState(State.Damage)
 			taking_damage = true
 			timer.start()
-	
-func playAnimation() -> void:
-	
-	pass
 	
 func attack()-> void:
 	setState(State.Attack)
