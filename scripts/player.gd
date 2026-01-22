@@ -1,17 +1,18 @@
 extends CharacterBody2D
 
-enum State { Idle, Attack, Jump, Damage, Death }
+enum State { IDLE, WALK, RUN, ATTACK, JUMP, DAMAGE, DEATH }
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
 var next_animation = "Idle"
-var is_dead = false;
+#var is_dead = false;
 var i_frames = false;
 var health = 100;
 var dying = false;
 var taking_damage = false;
 var direction = 0;
-var state = State.Idle
+var state = State.IDLE
+var combo = 0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Iframes
@@ -54,14 +55,14 @@ func handle_actions() -> void:
 	if (Input.is_action_just_pressed("attack")):
 		attack()	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		setState(State.Jump)
+		setState(State.JUMP)
 		velocity.y = JUMP_VELOCITY
 	
 func update_animation() -> void:
-	if(state == State.Death):
+	if(state == State.DEATH):
 		next_animation = "Death";
 		
-	elif(state == State.Damage):
+	elif(state == State.DAMAGE):
 		next_animation = "Damage";
 	
 	#if(animated_sprite.animation_finished):
@@ -92,11 +93,9 @@ func playAnimation() -> void:
 	
 	pass
 	
-func Death() -> void:
-	is_dead = true;
-	next_animation = "Death";
-	animation_player.play("Death");
-	await animation_player.animation_finished;
+func death() -> void:
+	setState(State.DEATH)
+	update_animation()
 	
 func take_damage() -> void:
 	if not i_frames:
@@ -123,19 +122,20 @@ func takeDamage(damage: int) -> void:
 		if (health <= 0):
 			death()
 		else:
-			setState(State.Damage)
+			setState(State.DAMAGE)
 			taking_damage = true
 			timer.start()
 	
 func attack()-> void:
-	setState(State.Attack)
-	
-func death() -> void:
-	dying = true;
-	animated_sprite.play("Death");
-	GameManager.dying()
-	await  animated_sprite.animation_finished
-	dying = false
+	combo += 1
+	setState(State.ATTACK)
+		
+#func death() -> void:
+	#dying = true;
+	#animated_sprite.play("Death");
+	#GameManager.dying()
+	#await  animated_sprite.animation_finished
+	#dying = false
 	
 func _on_timer_timeout() -> void:
 	i_frames = false;
