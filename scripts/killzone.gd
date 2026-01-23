@@ -9,7 +9,7 @@ func _on_ready() -> void:
 	timer.start()
 
 func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	if body.has_method("takeDamage") && not bodys.has(body):
+	if body.has_method("take_damage") && not bodys.has(body):
 		if bodys.is_empty():
 			timer.start()
 		bodys.append(body)

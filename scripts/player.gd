@@ -1,16 +1,14 @@
 extends CharacterBody2D
 
-enum State { IDLE, WALK, RUN, ATTACK, JUMP, DAMAGE, DEATH }
+enum State { IDLE, WALK, JUMP, ATTACK, DAMAGE, DEATH }
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
-var next_animation = "Idle"
-var i_frames = false;
 var health = 100;
-var taking_damage = false;
 var direction = 0;
 var state = State.IDLE
 var combo = 0
+var vulnerable = true
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Iframes
@@ -20,11 +18,10 @@ func _physics_process(delta: float) -> void:
 	update_direction()
 	update_sprite()
 	handle_actions()
-	update_animation()
 	apply_movement(delta)
 	
 func update_direction() -> void:
-	if animated_sprite.animation != "GetDamage":
+	if state != State.DAMAGE && state != State.DEATH:
 		direction = Input.get_axis("move_left", "move_right")
 	
 func update_sprite() -> void:
@@ -35,73 +32,100 @@ func update_sprite() -> void:
 		animated_sprite.flip_h = true;	
 	
 func handle_actions() -> void:
+	if state == State.DEATH:
+		return
 	if (Input.is_action_just_pressed("attack")):
 		attack()	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		setState(State.JUMP)
+		set_state(State.JUMP)
 		velocity.y = JUMP_VELOCITY
 	
-func update_animation() -> void:
-	if(state == State.DEATH):
-		next_animation = "Death";
+#func update_animation() -> void:
+	#return
+	#if(state == State.DEATH):
+		#next_animation = "Death";
 		
-	elif(state == State.DAMAGE):
-		next_animation = "Damage";
+	#elif(state == State.DAMAGE):
+		#next_animation = "Damage";
 	
 	#if(animated_sprite.animation_finished):
 		#next_animation = animation;	
 	
 func apply_movement(delta: float) -> void:
-	
-	if (is_on_floor()):
-		if direction == 0:
-			animation_player.play("Idle");
-		else:
-			animation_player.play("Walk");
-		
-	if direction:
-		velocity.x = direction * SPEED;
+	if state == State.DEATH:
+		velocity.x = move_toward(velocity.x, 0, SPEED / 30)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED);
+		if (is_on_floor()):
+			if direction == 0:
+				set_state(State.IDLE)
+			else:
+				set_state(State.WALK)
+		
+		if direction:
+			velocity.x = direction * SPEED;
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED);
 		
 	if not is_on_floor():
 		velocity.y += get_gravity().y * delta
 		
 	move_and_slide()
 	
-func setState(value: State):
+func set_state(value: State):
+	if state == value:
+		return
+	if  state == State.DAMAGE && value != State.DEATH :
+		return
+	if  (state == State.JUMP && (value != State.DEATH && value != State.DAMAGE)) || (state == State.ATTACK && (value != State.DEATH && value != State.DAMAGE)) :
+		return
 	state = value
-	update_animation()
+	play_animation()
 	
-func playAnimation() -> void:
+func reset_state():
+	state = State.IDLE
 	
-	pass
+func play_animation() -> void:
+	if state == State.IDLE:
+		animation_player.play("Idle")
+	elif state == State.WALK:
+		animation_player.play("Walk")
+	elif state == State.JUMP:
+		animation_player.play("Jump")
+		await animation_player.animation_finished
+		reset_state()
+	elif state == State.ATTACK:
+		if combo == 0:
+			animation_player.play("FirstAttack")
+		else:
+			animation_player.play("SecondAttack")
+		await animation_player.animation_finished
+		reset_state()
+	elif state == State.DAMAGE:
+		animation_player.play("GetDamage")
+		await animation_player.animation_finished
+		reset_state()
+	elif state == State.DEATH:
+		animation_player.play("Death")
+		GameManager.dying()
 	
-func death() -> void:
-	setState(State.DEATH)
+func attack()-> void:
+	combo += 1
+	set_state(State.ATTACK)
 	
 func take_damage(damage: int) -> void:
-	if not state == State.DAMAGE:
+	if vulnerable && state != State.DEATH:
 		health -= damage;
 		if (health <= 0):
 			death()
 		else:
-			setState(State.DAMAGE)
-			taking_damage = true
+			set_state(State.DAMAGE)
+			vulnerable = false
 			timer.start()
+	print(health)
 	
-func attack()-> void:
-	combo += 1
-	setState(State.ATTACK)
+func death() -> void:
+	set_state(State.DEATH)
 	
 func _on_timer_timeout() -> void:
-	i_frames = false;
+	vulnerable = true
 	
-func player_jump(delta):
-	if Input.is_action_just_pressed("Jump"):
-		next_animation = 'Jump'
-		velocity.y = JUMP_VELOCITY
-	if not is_on_floor() and next_animation == 'Jump':
-		velocity += get_gravity() * delta
-
-	taking_damage = false;
