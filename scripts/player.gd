@@ -18,21 +18,6 @@ var combo = 0
 @onready var timer: Timer = $Iframes
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-#func _physics_process(delta: float) -> void:
-	#if(is_dead):
-		#return;
-		#
-	#var direction := Input.get_axis("move_left", "move_right")
-	#
-	#Attack()
-		 #
-	#if animation_player.current_animation == "GetDamage":
-		#direction = 0
-		#await animation_player.animation_finished
-		#next_animation = "Idle"
-		#
-	#player_jump(delta)
-
 func _physics_process(delta: float) -> void:
 	update_direction()
 	update_sprite()
@@ -88,6 +73,7 @@ func apply_movement(delta: float) -> void:
 	
 func setState(value: State):
 	state = value
+	update_animation()
 	
 func playAnimation() -> void:
 	
@@ -95,7 +81,6 @@ func playAnimation() -> void:
 	
 func death() -> void:
 	setState(State.DEATH)
-	update_animation()
 	
 func take_damage() -> void:
 	if not i_frames:
@@ -104,17 +89,6 @@ func take_damage() -> void:
 		health -= 20;
 		i_frames = true;
 		timer.start();
-	
-func Attack()-> void:
-	if Input.is_action_just_pressed("Attack"):
-		next_animation = "Attack";
-		animation_player.play("FirstAttack");
-		await animation_player.animation_finished;
-		next_animation = "Idle";
-
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	animated_sprite.play(next_animation)
-	move_and_slide()
 	
 func takeDamage(damage: int) -> void:
 	if not taking_damage:
@@ -129,13 +103,6 @@ func takeDamage(damage: int) -> void:
 func attack()-> void:
 	combo += 1
 	setState(State.ATTACK)
-		
-#func death() -> void:
-	#dying = true;
-	#animated_sprite.play("Death");
-	#GameManager.dying()
-	#await  animated_sprite.animation_finished
-	#dying = false
 	
 func _on_timer_timeout() -> void:
 	i_frames = false;
