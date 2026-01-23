@@ -5,10 +5,8 @@ enum State { IDLE, WALK, RUN, ATTACK, JUMP, DAMAGE, DEATH }
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
 var next_animation = "Idle"
-#var is_dead = false;
 var i_frames = false;
 var health = 100;
-var dying = false;
 var taking_damage = false;
 var direction = 0;
 var state = State.IDLE
@@ -82,16 +80,8 @@ func playAnimation() -> void:
 func death() -> void:
 	setState(State.DEATH)
 	
-func take_damage() -> void:
-	if not i_frames:
-		next_animation = "GetDamage";
-		animation_player.play("GetDamage");
-		health -= 20;
-		i_frames = true;
-		timer.start();
-	
-func takeDamage(damage: int) -> void:
-	if not taking_damage:
+func take_damage(damage: int) -> void:
+	if not state == State.DAMAGE:
 		health -= damage;
 		if (health <= 0):
 			death()
