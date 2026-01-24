@@ -11,8 +11,11 @@ func _on_ready() -> void:
 func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body.has_method("take_damage") && not bodys.has(body):
 		if bodys.is_empty():
+			bodys.append(body)
+			deal_damage()
 			timer.start()
-		bodys.append(body)
+		else:
+			bodys.append(body)
 
 func _on_body_shape_exited(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	bodys.erase(body)
@@ -20,5 +23,8 @@ func _on_body_shape_exited(_body_rid: RID, body: Node2D, _body_shape_index: int,
 		timer.stop()
  
 func _on_timer_timeout() -> void:
+	deal_damage()
+	
+func deal_damage() -> void:
 	for body in bodys:
 		body.take_damage(damage)

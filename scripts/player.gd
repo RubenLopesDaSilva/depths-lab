@@ -7,7 +7,7 @@ const JUMP_VELOCITY = -550.0
 var health = 100;
 var direction = 0;
 var state = State.IDLE
-var combo = 0
+var attack_combo = 0
 var vulnerable = true
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -39,17 +39,6 @@ func handle_actions() -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		set_state(State.JUMP)
 		velocity.y = JUMP_VELOCITY
-	
-#func update_animation() -> void:
-	#return
-	#if(state == State.DEATH):
-		#next_animation = "Death";
-		
-	#elif(state == State.DAMAGE):
-		#next_animation = "Damage";
-	
-	#if(animated_sprite.animation_finished):
-		#next_animation = animation;	
 	
 func apply_movement(delta: float) -> void:
 	if state == State.DEATH:
@@ -83,6 +72,7 @@ func set_state(value: State):
 	
 func reset_state():
 	state = State.IDLE
+	play_animation()
 	
 func play_animation() -> void:
 	if state == State.IDLE:
@@ -94,12 +84,14 @@ func play_animation() -> void:
 		await animation_player.animation_finished
 		reset_state()
 	elif state == State.ATTACK:
-		if combo == 0:
+		if attack_combo == 1:
 			animation_player.play("FirstAttack")
 		else:
 			animation_player.play("SecondAttack")
 		await animation_player.animation_finished
 		reset_state()
+		attack_combo = 0
+		print("attack finished")
 	elif state == State.DAMAGE:
 		animation_player.play("GetDamage")
 		await animation_player.animation_finished
@@ -109,7 +101,7 @@ func play_animation() -> void:
 		GameManager.dying()
 	
 func attack()-> void:
-	combo += 1
+	attack_combo += 1
 	set_state(State.ATTACK)
 	
 func take_damage(damage: int) -> void:

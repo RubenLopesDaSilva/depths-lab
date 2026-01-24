@@ -12,9 +12,7 @@ func _ready() -> void:
 func restart() -> void:
 	Engine.time_scale = 1
 	get_tree().reload_current_scene();
-	print('Restart')
 	
 func dying() -> void:
-	print("Death")
 	Engine.time_scale = 0.5
 	death_timer.start()
