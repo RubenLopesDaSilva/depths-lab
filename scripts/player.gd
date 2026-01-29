@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
-enum State { IDLE, WALK, JUMP, Fall, ATTACK, DAMAGE, DEATH }
+enum State { IDLE, WALK, JUMP, FALL, LAND, ATTACK, DAMAGE, DEATH }
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
 
 var state = State.IDLE
 var health = 100;
+var notOnFloor = false
 var direction = 0;
 var attack_combo = 0
 var vulnerable = true
@@ -41,7 +42,11 @@ func handle_actions() -> void:
 		set_state(State.JUMP)
 		velocity.y = JUMP_VELOCITY
 	if not is_on_floor():
-		set_state(State.Fall)
+		notOnFloor = true
+		set_state(State.FALL)
+	elif notOnFloor:
+		notOnFloor = false
+		set_state(State.LAND)
 	
 func apply_movement(delta: float) -> void:
 	if state == State.DEATH:
@@ -85,8 +90,10 @@ func play_animation() -> void:
 		animation_player.play("Jump")
 		await animation_player.animation_finished
 		set_state(State.IDLE, true)
-	elif state == State.Fall:
+	elif state == State.FALL:
 		animation_player.play("Fall")
+	elif state == State.LAND:
+		animation_player.play("Land")
 	elif state == State.ATTACK:
 		if attack_combo == 1:
 			animation_player.play("FirstAttack")
