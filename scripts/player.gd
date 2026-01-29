@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
-enum State { IDLE, WALK, JUMP, ATTACK, DAMAGE, DEATH }
+enum State { IDLE, WALK, JUMP, Fall, ATTACK, DAMAGE, DEATH }
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
+
+var state = State.IDLE
 var health = 100;
 var direction = 0;
-var state = State.IDLE
 var attack_combo = 0
 var vulnerable = true
 
@@ -39,6 +40,8 @@ func handle_actions() -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		set_state(State.JUMP)
 		velocity.y = JUMP_VELOCITY
+	if not is_on_floor():
+		set_state(State.Fall)
 	
 func apply_movement(delta: float) -> void:
 	if state == State.DEATH:
@@ -60,12 +63,15 @@ func apply_movement(delta: float) -> void:
 		
 	move_and_slide()
 	
-func set_state(value: State):
+func set_state(value: State) -> void:
+	#bool objection
 	if state == value:
 		return
 	if  state == State.DAMAGE && value != State.DEATH :
 		return
-	if  (state == State.JUMP && (value != State.DEATH && value != State.DAMAGE)) || (state == State.ATTACK && (value != State.DEATH && value != State.DAMAGE)) :
+	if  state == State.JUMP && (value != State.DEATH && value != State.DAMAGE) :
+		return
+	if state == State.ATTACK && (value != State.DEATH && value != State.DAMAGE) :
 		return
 	state = value
 	play_animation()
@@ -83,6 +89,8 @@ func play_animation() -> void:
 		animation_player.play("Jump")
 		await animation_player.animation_finished
 		reset_state()
+	elif state == State.Fall:
+		animation_player.play("Fall")
 	elif state == State.ATTACK:
 		if attack_combo == 1:
 			animation_player.play("FirstAttack")
@@ -99,7 +107,7 @@ func play_animation() -> void:
 	elif state == State.DEATH:
 		animation_player.play("Death")
 		GameManager.dying()
-	
+  	
 func attack()-> void:
 	attack_combo += 1
 	set_state(State.ATTACK)
