@@ -63,21 +63,17 @@ func apply_movement(delta: float) -> void:
 		
 	move_and_slide()
 	
-func set_state(value: State) -> void:
-	#bool objection
-	if state == value:
-		return
-	if  state == State.DAMAGE && value != State.DEATH :
-		return
-	if  state == State.JUMP && (value != State.DEATH && value != State.DAMAGE) :
-		return
-	if state == State.ATTACK && (value != State.DEATH && value != State.DAMAGE) :
-		return
+func set_state(value: State, objection: bool = false) -> void:
+	if(not objection):
+		if state == value:
+			return
+		if  state == State.DAMAGE && value != State.DEATH :
+			return
+		if  state == State.JUMP && (value != State.DEATH && value != State.DAMAGE) :
+			return
+		if state == State.ATTACK && (value != State.DEATH && value != State.DAMAGE) :
+			return
 	state = value
-	play_animation()
-	
-func reset_state():
-	state = State.IDLE
 	play_animation()
 	
 func play_animation() -> void:
@@ -88,7 +84,7 @@ func play_animation() -> void:
 	elif state == State.JUMP:
 		animation_player.play("Jump")
 		await animation_player.animation_finished
-		reset_state()
+		set_state(State.IDLE, true)
 	elif state == State.Fall:
 		animation_player.play("Fall")
 	elif state == State.ATTACK:
@@ -97,13 +93,13 @@ func play_animation() -> void:
 		else:
 			animation_player.play("SecondAttack")
 		await animation_player.animation_finished
-		reset_state()
+		set_state(State.IDLE, true)
 		attack_combo = 0
 		print("attack finished")
 	elif state == State.DAMAGE:
 		animation_player.play("GetDamage")
 		await animation_player.animation_finished
-		reset_state()
+		set_state(State.IDLE, true)
 	elif state == State.DEATH:
 		animation_player.play("Death")
 		GameManager.dying()
