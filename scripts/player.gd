@@ -72,6 +72,8 @@ func set_state(value: State, objection: bool = false) -> void:
 	if(not objection):
 		if state == value:
 			return
+		if state == State.LAND && (value == State.IDLE || value == State.WALK) :
+			return
 		if  state == State.DAMAGE && value != State.DEATH :
 			return
 		if  state == State.JUMP && (value != State.DEATH && value != State.DAMAGE) :
@@ -94,6 +96,8 @@ func play_animation() -> void:
 		animation_player.play("Fall")
 	elif state == State.LAND:
 		animation_player.play("Land")
+		await animation_player.animation_finished
+		set_state(State.IDLE, true)
 	elif state == State.ATTACK:
 		if attack_combo == 1:
 			animation_player.play("FirstAttack")
