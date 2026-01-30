@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 enum State { IDLE, WALK, JUMP, FALL, LAND, ATTACK, DAMAGE, DEATH }
 
-enum AttackState { NONE, FIRST, SECOND }
+enum AttackState { NONE, FIRST, SECOND, DISABLE }
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
@@ -16,7 +16,7 @@ var vulnerable = true
 var animationFlag = 0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var timer: Timer = $Iframes
+@onready var vulnerableTimer: Timer = $Iframes
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _physics_process(delta: float) -> void:
@@ -71,7 +71,7 @@ func apply_movement(delta: float) -> void:
 		
 	move_and_slide()
 	
-func set_state(value: State, objection: bool = false) -> void:
+func set_state(value: State, objection: bool = false, play: bool = true) -> void:
 	if(not objection):
 		if state == value:
 			return
@@ -84,46 +84,84 @@ func set_state(value: State, objection: bool = false) -> void:
 		if state == State.ATTACK && (value != State.DEATH && value != State.DAMAGE) :
 			return
 	state = value
+	if	play:
+		play_animation()
+	
+func  set_attack_state(value: AttackState) -> void:
+	if state != State.ATTACK:
+		return
+	if value == attack_state:
+		return
+	attack_state = value
 	play_animation()
 	
 func play_animation() -> void:
 	if state == State.IDLE:
-		animation_player.play("Idle")
+		play_idle()
 	elif state == State.WALK:
-		animation_player.play("Walk")
+		play_walk()
 	elif state == State.JUMP:
-		animation_player.play("Jump")
-		if await animation_finished_correctly():
-			set_state(State.IDLE, true)
+		play_jump()
 	elif state == State.FALL:
-		animation_player.play("Fall")
+		play_fall()
 	elif state == State.LAND:
-		animation_player.play("Land")
-		if await animation_finished_correctly():
-			set_state(State.IDLE, true)
+		play_land()
 	elif state == State.ATTACK:
+		play_attack()
+	elif state == State.DAMAGE:
+		play_damage()
+	elif state == State.DEATH:
+		play_death()
+	
+func play_idle() -> void:
+	animation_player.play("Idle")
+	
+func play_walk() -> void:
+	animation_player.play("Walk")
+	
+func play_jump() -> void:
+	animation_player.play("Jump")
+	if await animation_finished_correctly():
+		set_state(State.IDLE, true)
+	
+func play_fall() -> void:
+	animation_player.play("Fall")
+	
+func play_land() -> void:
+	animation_player.play("Land")
+	if await animation_finished_correctly():
+		set_state(State.IDLE, true)
+	
+func play_attack() -> void:
+	if attack_state == AttackState.FIRST:
+		await delay(0.5)
 		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
-		elif attack_state == AttackState.SECOND:
-			animation_player.play("SecondAttack")
-		if	await animation_finished_correctly(): 
-			set_state(State.IDLE, true)
-		attack_state = AttackState.NONE
-	elif state == State.DAMAGE:
-		animation_player.play("GetDamage")
-		if await animation_finished_correctly():
-			set_state(State.IDLE, true)
-	elif state == State.DEATH:
-		animation_player.play("Death")
-		GameManager.dying()
-  	
-func attack()-> void:
+	elif attack_state == AttackState.SECOND:
+		animation_player.play("SecondAttack")
+	if	await animation_finished_correctly(): 
+		set_state(State.IDLE, true)
+	attack_state = AttackState.DISABLE
+	await delay(0.2)
+	attack_state = AttackState.NONE
 	
+func play_damage() -> void:
+	animation_player.play("GetDamage")
+	if await animation_finished_correctly():
+		set_state(State.IDLE, true)
+
+func play_death() -> void:
+	animation_player.play("Death")
+	GameManager.dying()	
+
+func attack()-> void:
+	if attack_state == AttackState.DISABLE:
+		return
+	set_state(State.ATTACK, false, false)
 	if attack_state == AttackState.NONE:
-		attack_state = AttackState.FIRST
+		set_attack_state(AttackState.FIRST)
 	elif attack_state == AttackState.FIRST:
-		attack_state = AttackState.SECOND
-	set_state(State.ATTACK)
+		set_attack_state( AttackState.SECOND)
 	
 func take_damage(damage: int) -> void:
 	if vulnerable && state != State.DEATH:
@@ -133,7 +171,7 @@ func take_damage(damage: int) -> void:
 		else:
 			set_state(State.DAMAGE)
 			vulnerable = false
-			timer.start()
+			vulnerableTimer.start()
 	print(health)
 	
 func death() -> void:
@@ -147,6 +185,12 @@ func animation_finished_correctly() -> bool:
 		return true
 	return false
 	
+func delay(duration: float) -> void:
+	print("\n"+str(duration)+" delay start\n")
+	await get_tree().create_timer(duration).timeout
+	print("\n"+str(duration)+" delay end\n")
+	
 func _on_timer_timeout() -> void:
 	vulnerable = true
+	
 	
