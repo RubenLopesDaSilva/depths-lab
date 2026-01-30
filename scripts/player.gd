@@ -14,6 +14,7 @@ var notOnFloor = false
 var direction = 0
 var vulnerable = true
 var animationFlag = 0
+var close = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var vulnerableTimer: Timer = $Iframes
@@ -87,7 +88,7 @@ func set_state(value: State, objection: bool = false, play: bool = true) -> void
 	if	play:
 		play_animation()
 	
-func  set_attack_state(value: AttackState) -> void:
+func set_attack_state(value: AttackState) -> void:
 	if state != State.ATTACK:
 		return
 	if value == attack_state:
@@ -135,12 +136,14 @@ func play_land() -> void:
 func play_attack() -> void:
 	if attack_state == AttackState.FIRST:
 		await delay(0.5)
+		close = true
 		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
 	elif attack_state == AttackState.SECOND:
 		animation_player.play("SecondAttack")
 	if	await animation_finished_correctly(): 
 		set_state(State.IDLE, true)
+	close = false
 	attack_state = AttackState.DISABLE
 	await delay(0.2)
 	attack_state = AttackState.NONE
@@ -156,6 +159,8 @@ func play_death() -> void:
 
 func attack()-> void:
 	if attack_state == AttackState.DISABLE:
+		return
+	if close:
 		return
 	set_state(State.ATTACK, false, false)
 	if attack_state == AttackState.NONE:
