@@ -2,15 +2,18 @@ extends CharacterBody2D
 
 enum State { IDLE, WALK, JUMP, FALL, LAND, ATTACK, DAMAGE, DEATH }
 
+enum AttackState { NONE, FIRST, SECOND }
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
 
 var state = State.IDLE
-var health = 100;
+var attack_state = AttackState.FIRST
+var health = 100
 var notOnFloor = false
-var direction = 0;
-var attack_combo = 0
+var direction = 0
 var vulnerable = true
+var animationFlag = 0
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Iframes
@@ -90,33 +93,36 @@ func play_animation() -> void:
 		animation_player.play("Walk")
 	elif state == State.JUMP:
 		animation_player.play("Jump")
-		await animation_player.animation_finished
-		set_state(State.IDLE, true)
+		if await animation_finished_correctly():
+			set_state(State.IDLE, true)
 	elif state == State.FALL:
 		animation_player.play("Fall")
 	elif state == State.LAND:
 		animation_player.play("Land")
-		await animation_player.animation_finished
-		set_state(State.IDLE, true)
+		if await animation_finished_correctly():
+			set_state(State.IDLE, true)
 	elif state == State.ATTACK:
-		if attack_combo == 1:
+		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
-		else:
+		elif attack_state == AttackState.SECOND:
 			animation_player.play("SecondAttack")
-		await animation_player.animation_finished
-		set_state(State.IDLE, true)
-		attack_combo = 0
-		print("attack finished")
+		if	await animation_finished_correctly(): 
+			set_state(State.IDLE, true)
+		attack_state = AttackState.NONE
 	elif state == State.DAMAGE:
 		animation_player.play("GetDamage")
-		await animation_player.animation_finished
-		set_state(State.IDLE, true)
+		if await animation_finished_correctly():
+			set_state(State.IDLE, true)
 	elif state == State.DEATH:
 		animation_player.play("Death")
 		GameManager.dying()
   	
 func attack()-> void:
-	attack_combo += 1
+	
+	if attack_state == AttackState.NONE:
+		attack_state = AttackState.FIRST
+	elif attack_state == AttackState.FIRST:
+		attack_state = AttackState.SECOND
 	set_state(State.ATTACK)
 	
 func take_damage(damage: int) -> void:
@@ -132,6 +138,14 @@ func take_damage(damage: int) -> void:
 	
 func death() -> void:
 	set_state(State.DEATH)
+	
+func animation_finished_correctly() -> bool:
+	animationFlag += 1
+	var flag = animationFlag
+	await animation_player.animation_finished
+	if flag == animationFlag:
+		return true
+	return false
 	
 func _on_timer_timeout() -> void:
 	vulnerable = true
