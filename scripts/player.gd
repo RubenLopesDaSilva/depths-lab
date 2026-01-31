@@ -8,7 +8,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
 
 var state = State.IDLE
-var attack_state = AttackState.FIRST
+var attack_state = AttackState.NONE
 var health = 100
 var notOnFloor = false
 var direction = 0
