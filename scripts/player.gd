@@ -135,7 +135,7 @@ func play_land() -> void:
 	
 func play_attack() -> void:
 	if attack_state == AttackState.FIRST:
-		await delay(0.5)
+		await Utils.delay(0.5)
 		close = true
 		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
@@ -145,7 +145,7 @@ func play_attack() -> void:
 		set_state(State.IDLE, true)
 	close = false
 	attack_state = AttackState.DISABLE
-	await delay(0.2)
+	await Utils.delay(0.2)
 	attack_state = AttackState.NONE
 	
 func play_damage() -> void:
@@ -190,12 +190,15 @@ func animation_finished_correctly() -> bool:
 		return true
 	return false
 	
-func delay(duration: float) -> void:
-	print("\n"+str(duration)+" delay start\n")
-	await get_tree().create_timer(duration).timeout
-	print("\n"+str(duration)+" delay end\n")
+#func delay(duration: float) -> void:
+	#print("\n"+str(duration)+" delay start\n")
+	#await get_tree().create_timer(duration).timeout
+	#print("\n"+str(duration)+" delay end\n")
 	
 func _on_timer_timeout() -> void:
 	vulnerable = true
 	
-	
+func delay(duration: float) -> void:
+	print("\n"+str(duration)+" delay start\n")
+	await get_tree().create_timer(duration).timeout
+	print("\n"+str(duration)+" delay end\n")
