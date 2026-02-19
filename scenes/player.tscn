@@ -123,7 +123,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Body/CollisionShape2D:shape:size")
+tracks/4/path = NodePath("CollisionShape2D:shape:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -135,7 +135,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Body/CollisionShape2D:position")
+tracks/5/path = NodePath("CollisionShape2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -216,7 +216,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Body/CollisionShape2D:shape:size")
+tracks/2/path = NodePath("CollisionShape2D:shape:size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -235,19 +235,19 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.17, 0.55),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(-10, -16.5), Vector2(-10.5, -16.5), Vector2(-10, -16.5)]
+"values": [Vector2(0, -16.5), Vector2(-0.5, -16.5), Vector2(0, -16.5)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Body/CollisionShape2D:position")
+tracks/4/path = NodePath("CollisionShape2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.17, 0.55),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(-10, -16.5), Vector2(-10.5, -16.5), Vector2(-10, -16.5)]
+"values": [Vector2(0, -16.5), Vector2(-0.5, -16.5), Vector2(0, -16.5)]
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
@@ -294,7 +294,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Body/CollisionShape2D:shape")
+tracks/3/path = NodePath("CollisionShape2D:shape")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -306,7 +306,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Body/CollisionShape2D:position")
+tracks/4/path = NodePath("CollisionShape2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -318,7 +318,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Body/CollisionShape2D:shape:size")
+tracks/5/path = NodePath("CollisionShape2D:shape:size")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -358,7 +358,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Body/CollisionShape2D:shape:size")
+tracks/2/path = NodePath("CollisionShape2D:shape:size")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -370,7 +370,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Body/CollisionShape2D:position")
+tracks/3/path = NodePath("CollisionShape2D:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -404,7 +404,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-10, -17)]
+"values": [Vector2(0, -17)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -433,7 +433,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Body/CollisionShape2D:shape")
+tracks/4/path = NodePath("CollisionShape2D:shape")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -445,19 +445,19 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Body/CollisionShape2D:position")
+tracks/5/path = NodePath("CollisionShape2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-10, -17)]
+"values": [Vector2(0, -17)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Body/CollisionShape2D:shape:size")
+tracks/6/path = NodePath("CollisionShape2D:shape:size")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -555,31 +555,31 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.35, 0.5, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(-10, -16), Vector2(-10, -16.5), Vector2(-10, -17.5), Vector2(-10, -16.5), Vector2(-10, -17)]
+"values": [Vector2(0, -16), Vector2(0, -16.5), Vector2(0, -17.5), Vector2(0, -16.5), Vector2(0, -17)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Body/CollisionShape2D:shape:size")
+tracks/3/path = NodePath("CollisionShape2D:shape:size")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.35, 0.5, 0.7, 0.85),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(23, 32), Vector2(23, 33), Vector2(15, 35), Vector2(16, 33), Vector2(13, 34), Vector2(16, 34)]
+"values": [Vector2(23, 32), Vector2(16, 33), Vector2(15, 35), Vector2(16, 33), Vector2(13, 34), Vector2(16, 34)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Body/CollisionShape2D:position")
+tracks/4/path = NodePath("CollisionShape2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.35, 0.5, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(-10, -16), Vector2(-10, -16.5), Vector2(-10, -17.5), Vector2(-10, -16.5), Vector2(-10, -17)]
+"values": [Vector2(0, -16), Vector2(0, -16.5), Vector2(0, -17.5), Vector2(0, -16.5), Vector2(0, -17)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqkch"]
@@ -933,15 +933,15 @@ libraries = {
 }
 autoplay = "Idle"
 
-[node name="Body" type="Node2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-position = Vector2(-10, -17)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -17)
 shape = SubResource("RectangleShape2D_3vyb7")
 debug_color = Color(2.9841065e-06, 0.6098342, 0.6415566, 0.41960785)
 
+[node name="Body" type="Node2D" parent="."]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Body"]
-position = Vector2(-10, -17)
+position = Vector2(0, -17)
 sprite_frames = SubResource("SpriteFrames_g2els")
 animation = &"Death"
 autoplay = "Idle"

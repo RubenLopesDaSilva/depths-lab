@@ -16,7 +16,8 @@ var vulnerable = true
 var animationFlag = 0
 var close = false
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var body: Node2D = $Body
+@onready var animated_sprite: AnimatedSprite2D = $Body/AnimatedSprite2D
 @onready var vulnerableTimer: Timer = $Iframes
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -32,10 +33,10 @@ func update_direction() -> void:
 	
 func update_sprite() -> void:
 	if direction > 0:
-		animated_sprite.flip_h = false;
+		body.scale.x = abs(body.scale.x)
 		
 	if direction < 0:
-		animated_sprite.flip_h = true;	
+		body.scale.x = -abs(body.scale.x)
 	
 func handle_actions() -> void:
 	if state == State.DEATH:
