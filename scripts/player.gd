@@ -12,12 +12,12 @@ var attack_state = AttackState.NONE
 var health = 100
 var notOnFloor = false
 var direction = 0
+var lastDirection = 1;
 var vulnerable = true
 var animationFlag = 0
 var close = false
 
-@onready var body: Node2D = $Body
-@onready var animated_sprite: AnimatedSprite2D = $Body/AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var vulnerableTimer: Timer = $Iframes
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -32,11 +32,13 @@ func update_direction() -> void:
 		direction = Input.get_axis("move_left", "move_right")
 	
 func update_sprite() -> void:
-	if direction > 0:
-		body.scale.x = abs(body.scale.x)
+	if direction > 0 && lastDirection < 0:
+		lastDirection = 1
+		self.scale.x = -self.scale.x
 		
-	if direction < 0:
-		body.scale.x = -abs(body.scale.x)
+	if direction < 0 && lastDirection > 0:
+		lastDirection = -1
+		self.scale.x = -self.scale.x
 	
 func handle_actions() -> void:
 	if state == State.DEATH:
@@ -191,15 +193,6 @@ func animation_finished_correctly() -> bool:
 		return true
 	return false
 	
-#func delay(duration: float) -> void:
-	#print("\n"+str(duration)+" delay start\n")
-	#await get_tree().create_timer(duration).timeout
-	#print("\n"+str(duration)+" delay end\n")
-	
 func _on_timer_timeout() -> void:
 	vulnerable = true
 	
-func delay(duration: float) -> void:
-	print("\n"+str(duration)+" delay start\n")
-	await get_tree().create_timer(duration).timeout
-	print("\n"+str(duration)+" delay end\n")
