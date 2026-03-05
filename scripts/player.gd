@@ -48,7 +48,7 @@ func handle_actions() -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		set_state(State.JUMP)
 		velocity.y = JUMP_VELOCITY
-	if not is_on_floor():
+	if not is_on_floor() && velocity.y > 0:
 		notOnFloor = true
 		set_state(State.FALL)
 	elif notOnFloor:
@@ -79,11 +79,13 @@ func set_state(value: State, objection: bool = false, play: bool = true) -> void
 	if(not objection):
 		if state == value:
 			return
-		if state == State.LAND && (value == State.IDLE || value == State.WALK) :
+		if state == State.FALL && (value == State.IDLE || value == State.WALK) :
+			return
+		if state == State.LAND && (value == State.IDLE || value == State.WALK || value == State.FALL) :
 			return
 		if  state == State.DAMAGE && value != State.DEATH :
 			return
-		if  state == State.JUMP && (value != State.DEATH && value != State.DAMAGE) :
+		if  state == State.JUMP && (value != State.DEATH && value != State.DAMAGE && value != State.FALL && value != State.LAND) :
 			return
 		if state == State.ATTACK && (value != State.DEATH && value != State.DAMAGE) :
 			return
@@ -125,8 +127,6 @@ func play_walk() -> void:
 	
 func play_jump() -> void:
 	animation_player.play("Jump")
-	if await animation_finished_correctly():
-		set_state(State.IDLE, true)
 	
 func play_fall() -> void:
 	animation_player.play("Fall")
