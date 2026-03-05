@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+GameManager="*res://scripts/game_manager.gd"
 SceneManager="*res://00_global/scene_manager/scene_manager.tscn"
 SaveManager="*res://00_global/save_manager.gd"
 
