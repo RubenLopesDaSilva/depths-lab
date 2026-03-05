@@ -13,7 +13,17 @@ config_version=5
 config/name="Depths Lab"
 run/main_scene="uid://cdtwgxyy3f0f4"
 config/features=PackedStringArray("4.5", "Forward Plus")
+run/flush_stdout_on_print=true
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneManager="*res://00_global/scene_manager/scene_manager.tscn"
+SaveManager="*res://00_global/save_manager.gd"
+
+[global_group]
+
+Player=""
 
 [input]
 

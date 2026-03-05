@@ -739,8 +739,10 @@ _data = {
 &"Walk": SubResource("Animation_qlg0r")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 3
+collision_layer = 16
+collision_mask = 3
 script = ExtResource("1_g2els")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -765,5 +767,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_dqkch")
 }
 autoplay = "Idle"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-9, -27)
 
 [connection signal="timeout" from="Iframes" to="." method="_on_timer_timeout"]
