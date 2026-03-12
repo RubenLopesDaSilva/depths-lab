@@ -1,20 +1,31 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
+enum State { Idle, Attack, Damage, Death }
 
-const SPEED = 300.0
+const SPEED = 200.0
 const JUMP_VELOCITY = -550.0
 var next_animation = "Idle"
 var is_dead = false;
 var i_frames = false;
 var health = 100;
+var direction = 0;
+var state;
+var dying;
+var taking_damage;
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Iframes
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+func _ready() -> void:
+	if get_tree().get_first_node_in_group("Player") != self :
+		self.queue_free()
+	self.call_deferred("reparent",get_tree().root)
+	pass
+
 func _physics_process(delta: float) -> void:
 	if(is_dead):
 		return;
-	var direction := Input.get_axis("move_left", "move_right")
+	direction = Input.get_axis("move_left", "move_right")
 	
 	Attack()
 		 
@@ -65,7 +76,65 @@ func Attack()-> void:
 		await animation_player.animation_finished;
 		next_animation = "Idle";
 
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	animated_sprite.play(next_animation)
+	move_and_slide()
+	
+func setAction() -> void:
+	if (Input.is_action_just_pressed("attack")):
+		attack()	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		next_animation = "Jump"
+		velocity.y = JUMP_VELOCITY
+		
+func setDirection() -> void:
+	if animated_sprite.animation == "GetDamage":
+		direction = 0
+		await animated_sprite.animation_finished
+		next_animation = "Idle"
+	else:
+		direction = Input.get_axis("move_left", "move_right")
+
+func setState(value: State):
+	state = value
+	
+func setAnimation() -> void:
+	if(state == State.Death):
+		next_animation = "Death";
+		
+	elif(state == State.Damage):
+		next_animation = "Damage";
+	
+	#if(animated_sprite.animation_finished):
+		#next_animation = animation;
+		
+func takeDamage(damage: int) -> void:
+	if not taking_damage:
+		health -= damage;
+		if (health <= 0):
+			death()
+		else:
+			setState(State.Damage)
+			taking_damage = true
+			timer.start()
+
+func playAnimation() -> void:
+	
+	pass
+
+func attack()-> void:
+	setState(State.Attack)
+
+
+func death() -> void:
+	dying = true;
+	animated_sprite.play("Death");
+	GameManager.dying()
+	await  animated_sprite.animation_finished
+	dying = false
+	
 func _on_timer_timeout() -> void:
+
 	i_frames = false;
 
 func player_jump(delta):

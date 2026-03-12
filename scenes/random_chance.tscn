@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b816kj0gaogm7"]
+
+[ext_resource type="Script" uid="uid://calmg11fsso27" path="res://scripts/random_chance.gd" id="1_pu3xn"]
+
+[node name="RandomChance" type="Node"]
+script = ExtResource("1_pu3xn")
