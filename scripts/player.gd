@@ -1,10 +1,10 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 enum State { IDLE, WALK, JUMP, FALL, LAND, ATTACK, DAMAGE, DEATH }
 
 enum AttackState { NONE, FIRST, SECOND, DISABLE }
 
-const SPEED = 300.0
+const SPEED = 200.0
 const JUMP_VELOCITY = -550.0
 	
 var state = State.IDLE
@@ -20,6 +20,12 @@ var close = false
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var vulnerableTimer: Timer = $Iframes
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+func _ready() -> void:
+	if get_tree().get_first_node_in_group("Player") != self :
+		self.queue_free()
+	self.call_deferred("reparent",get_tree().root)
+	pass
 
 func _physics_process(delta: float) -> void:
 	update_direction()

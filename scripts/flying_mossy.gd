@@ -21,5 +21,5 @@ func _process(delta):
 func takeDamage():
 	pass;
 
-func Death():
+func death():
 	pass;
