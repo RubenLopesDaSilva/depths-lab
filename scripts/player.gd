@@ -94,6 +94,8 @@ func set_state(value: State, objection: bool = false, play: bool = true) -> void
 		play_animation()
 	
 func set_attack_state(value: AttackState) -> void:
+	if value == AttackState.SECOND:
+		return
 	if state != State.ATTACK:
 		return
 	if value == attack_state:
