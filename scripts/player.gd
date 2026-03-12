@@ -6,7 +6,7 @@ enum AttackState { NONE, FIRST, SECOND, DISABLE }
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -550.0
-
+	
 var state = State.IDLE
 var attack_state = AttackState.NONE
 var health = 100
