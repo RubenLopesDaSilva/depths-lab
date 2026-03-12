@@ -91,7 +91,7 @@ func set_state(value: State, objection: bool = false, play: bool = true) -> void
 			return
 		if  state == State.DAMAGE && value != State.DEATH :
 			return
-		if  state == State.JUMP && (value != State.DEATH && value != State.DAMAGE && value != State.FALL && value != State.LAND) :
+		if  state == State.JUMP && (value != State.DEATH && value != State.DAMAGE && value != State.FALL && value != State.LAND && value != State.ATTACK) :
 			return
 		if state == State.ATTACK && (value != State.DEATH && value != State.DAMAGE) :
 			return
@@ -146,7 +146,7 @@ func play_land() -> void:
 	
 func play_attack() -> void:
 	if attack_state == AttackState.FIRST:
-		await Utils.delay(0.5)
+		#await Utils.delay(0.5)
 		close = true
 		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
