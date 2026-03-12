@@ -1,5 +1,6 @@
 extends Area2D
 var bodys : Array[Node2D] = []
+var bodys : Array[Node2D] = []
 @onready var timer: Timer = $Timer
 
 func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
@@ -14,5 +15,7 @@ func _on_body_shape_exited(_body_rid: RID, body: Node2D, _body_shape_index: int,
 		timer.stop()
  
 func _on_timer_timeout() -> void:
+	for body in bodys:
+		body.takeDamage(20)
 	for body in bodys:
 		body.takeDamage(20)
