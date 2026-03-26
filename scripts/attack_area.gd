@@ -1,4 +1,4 @@
-class_name DamageArea extends Area2D
+class_name AttackArea extends Area2D
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -8,6 +8,6 @@ func _ready() -> void:
 	pass
 	
 func _on_body_entered(body: Node2D) -> void:
-	if body.has_method("take_damage"):
+	if body is DamageArea:
 		body.take_damage()
 	pass
