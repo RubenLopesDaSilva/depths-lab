@@ -1,7 +1,8 @@
-[gd_scene load_steps=50 format=3 uid="uid://bew4d6ojw3kyv"]
+[gd_scene load_steps=52 format=3 uid="uid://bew4d6ojw3kyv"]
 
 [ext_resource type="Texture2D" uid="uid://csh5wod3txei7" path="res://assets/sprites/kansen.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dj12myodc1eds" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://dg5kj4dkl6egf" path="res://scripts/attack_area.gd" id="3_qhqgy"]
 
 [sub_resource type="Animation" id="Animation_g2els"]
 resource_name = "Death"
@@ -1062,6 +1063,8 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 3
 collision_layer = 16
@@ -1094,5 +1097,14 @@ autoplay = "Idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -16)
+
+[node name="AttackArea" type="Area2D" parent="."]
+script = ExtResource("3_qhqgy")
+metadata/_custom_type_script = "uid://dg5kj4dkl6egf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(14, -16)
+shape = SubResource("RectangleShape2D_dqkch")
+debug_color = Color(3.9948522e-06, 0.6340472, 0.43715692, 0.41960785)
 
 [connection signal="timeout" from="Iframes" to="." method="_on_timer_timeout"]
