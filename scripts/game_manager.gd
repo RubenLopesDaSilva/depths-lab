@@ -10,8 +10,9 @@ func _ready() -> void:
 	add_child(death_timer)
 	
 func restart() -> void:
-	Engine.time_scale = 1
-	get_tree().reload_current_scene();
+	Engine.time_scale = 1;
+	print("Game Manager : restart options");
+	#get_tree().reload_current_scene();
 	
 func dying() -> void:
 	Engine.time_scale = 0.5

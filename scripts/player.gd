@@ -21,6 +21,8 @@ var close = false
 @onready var vulnerableTimer: Timer = $Iframes
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@export var attack_area = AttackArea;
+
 func _ready() -> void:
 	if get_tree().get_first_node_in_group("Player") != self :
 		self.queue_free()
@@ -150,6 +152,8 @@ func play_attack() -> void:
 		close = true
 		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
+			var attack = attack_area.new();
+			get_tree().root.add_child(attack);
 	elif attack_state == AttackState.SECOND:
 		animation_player.play("SecondAttack")
 	if	await animation_finished_correctly(): 

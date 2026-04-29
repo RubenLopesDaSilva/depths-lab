@@ -69,6 +69,8 @@ position = Vector2(0, -20)
 target_position = Vector2(16, 0)
 
 [node name="Killzone" parent="." instance=ExtResource("3_hiyx0")]
+collision_layer = 33
+collision_mask = 18
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
