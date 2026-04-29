@@ -21,7 +21,7 @@ var close = false
 @onready var vulnerableTimer: Timer = $Iframes
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-@export var attack_area = AttackArea;
+@export var attack_area: PackedScene;
 
 func _ready() -> void:
 	if get_tree().get_first_node_in_group("Player") != self :
@@ -152,8 +152,9 @@ func play_attack() -> void:
 		close = true
 		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
-			var attack = attack_area.new();
-			get_tree().root.add_child(attack);
+			var attack = attack_area.instantiate();
+			attack.global_position = global_position+Vector2(20,-40);
+			get_parent().add_child(attack);
 	elif attack_state == AttackState.SECOND:
 		animation_player.play("SecondAttack")
 	if	await animation_finished_correctly(): 
