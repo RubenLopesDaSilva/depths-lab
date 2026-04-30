@@ -56,7 +56,7 @@ texture_region_size = Vector2i(48, 48)
 10:2/0 = 0
 11:2/0 = 0
 0:3/0 = 0
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-17.665447, 21.117313, -14.822731, 20.812737, -14.721207, 20.102058, -13.198322, 20.30511, -12.99527, 16.954765, -11.980015, 15.228831, -8.122044, 14.010526, -3.6549225, 12.893744, -0.3045807, 9.035773, 6.9037323, 8.832723, 12.589165, 10.051029, 15.533409, 14.416627, 19.0868, 22.944775, 24, 24, -17.970016, 24)
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11.327229, 14.515635, 0.9229622, 9.313501, 12.501907, 10.404268, 24, 24, -18.45919, 24)
 1:3/0 = 0
 2:3/0 = 0
 3:3/0 = 0
@@ -463,6 +463,7 @@ tile_set = SubResource("TileSet_3w282")
 [node name="background" type="Node2D" parent="."]
 
 [node name="Parallax2D" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D"]
 position = Vector2(530.50006, -271.99997)
@@ -470,6 +471,7 @@ scale = Vector2(5.065625, 5.6666665)
 texture = ExtResource("2_vjrih")
 
 [node name="Parallax2D2" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.3, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D2"]
 position = Vector2(515.50006, -274.50003)
@@ -477,6 +479,7 @@ scale = Vector2(4.959375, 5.6944447)
 texture = ExtResource("3_etcsy")
 
 [node name="Parallax2D3" type="Parallax2D" parent="background"]
+scroll_scale = Vector2(0.5, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="background/Parallax2D3"]
 position = Vector2(533.99994, -309)

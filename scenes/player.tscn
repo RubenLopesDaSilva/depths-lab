@@ -1062,8 +1062,9 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 3
+collision_layer = 16
 script = ExtResource("1_g2els")
 
 [node name="Iframes" type="Timer" parent="."]
@@ -1090,5 +1091,8 @@ scale = Vector2(-1, -1)
 sprite_frames = SubResource("SpriteFrames_g2els")
 animation = &"Death"
 autoplay = "Idle"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -17)
 
 [connection signal="timeout" from="Iframes" to="." method="_on_timer_timeout"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://cdtwgxyy3f0f4"]
+[gd_scene load_steps=13 format=4 uid="uid://cdtwgxyy3f0f4"]
 
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_be0du"]
+[ext_resource type="Texture2D" uid="uid://dufq0svvkr1tr" path="res://assets/sprites/lianne.png" id="2_2s6oj"]
 [ext_resource type="PackedScene" uid="uid://dl5jyvux5taat" path="res://scenes/level_transition.tscn" id="2_hne3k"]
 [ext_resource type="Script" uid="uid://dhbwjsck31vef" path="res://general/scripts/level_bounds.gd" id="3_co53u"]
 [ext_resource type="Texture2D" uid="uid://cld4s24e1uhfa" path="res://assets/sprites/layer4.png" id="4_qngdq"]
@@ -35,7 +36,7 @@ texture_region_size = Vector2i(48, 48)
 3:2/0/z_index = 1
 0:3/0 = 0
 0:3/0/z_index = 1
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12.113235, 15.273211, -0.5266628, 9.743254, 11.849903, 10.269918, 19.486511, 24, -17.90651, 24)
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(0.50762177, 11.066284, 5.5839005, 10.96476, 24, 24, -24, 24)
 1:3/0 = 0
 2:3/0 = 0
 3:3/0 = 0
@@ -63,11 +64,21 @@ texture_region_size = Vector2i(48, 48)
 2:6/0 = 0
 2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, 14.040587, 11.060547, 14.040587, 11.060547, 20.91761, 7.965885, 20.974918, 8.023193, 24, -24, 24)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pcm67"]
+texture = ExtResource("2_2s6oj")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+0:3/0 = 0
+0:4/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_lnu2h"]
 tile_size = Vector2i(48, 48)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 16
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
+sources/1 = SubResource("TileSetAtlasSource_pcm67")
 
 [node name="00" type="Node2D"]
 
@@ -81,21 +92,23 @@ tile_set = SubResource("TileSet_lnu2h")
 [node name="Mid" type="TileMapLayer" parent="."]
 z_index = 1
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD9////AAAAAAMAAAAFAP//AAAAAAMAAAALAP//AAAAAAMAAAD///f/AAABAAIAAAD///j/AAABAAIAAAD///n/AAABAAIAAAAHAP3/AAACAAIAAAAHAPz/AAABAAIAAAAHAPv/AAABAAIAAAAHAPr/AAABAAIAAAAHAPn/AAABAAIAAAAHAPj/AAABAAIAAAAHAPf/AAABAAIAAAA=")
+tile_map_data = PackedByteArray("AAD9////AAAAAAMAAAAFAP//AAAAAAMAAAALAP//AAAAAAMAAAAHAPf/AQAAAAAAAAAHAPj/AQAAAAEAAAAHAPn/AQAAAAIAAAAHAPr/AQAAAAMAAAAHAPv/AQAAAAMAAAAHAPz/AQAAAAQAAAACAPf/AQAAAAAAAAACAPj/AQAAAAEAAAACAPn/AQAAAAEAAAACAPr/AQAAAAEAAAACAPv/AQAAAAIAAAACAPz/AQAAAAMAAAACAP3/AQAAAAQAAAA=")
 tile_set = SubResource("TileSet_lnu2h")
 
 [node name="Background" type="Node2D" parent="."]
 
 [node name="Parallax2D" type="Parallax2D" parent="Background"]
 scroll_scale = Vector2(0.1, 1)
+repeat_times = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D"]
 position = Vector2(210.50005, -184)
-scale = Vector2(3.9906251, 3.2666667)
+scale = Vector2(4, 3.275)
 texture = ExtResource("4_qngdq")
 
 [node name="Parallax2D2" type="Parallax2D" parent="Background"]
 scroll_scale = Vector2(0.3, 1)
+repeat_times = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2"]
 position = Vector2(236.49995, -182.5)
@@ -104,6 +117,7 @@ texture = ExtResource("5_myt80")
 
 [node name="Parallax2D3" type="Parallax2D" parent="Background"]
 scroll_scale = Vector2(0.5, 1)
+repeat_times = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3"]
 position = Vector2(245.25, -212.25003)
@@ -112,6 +126,7 @@ texture = ExtResource("6_2s6oj")
 
 [node name="Parallax2D4" type="Parallax2D" parent="Background"]
 scroll_scale = Vector2(0.8, 1)
+repeat_times = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4"]
 position = Vector2(218, -278.50003)

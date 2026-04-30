@@ -1,0 +1,274 @@
+[gd_scene load_steps=33 format=3 uid="uid://bx4spfgu325sv"]
+
+[ext_resource type="Script" uid="uid://calmg11fsso27" path="res://scripts/random_chance.gd" id="1_dlmty"]
+[ext_resource type="Texture2D" uid="uid://ciiw25bjoibr3" path="res://assets/sprites/bossy.png" id="2_neq0i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_neq0i"]
+size = Vector2(69, 36)
+
+[sub_resource type="Animation" id="Animation_xd8r6"]
+resource_name = "appear"
+
+[sub_resource type="Animation" id="Animation_neq0i"]
+resource_name = "dropAttack"
+
+[sub_resource type="Animation" id="Animation_jncid"]
+resource_name = "sawAttack"
+
+[sub_resource type="Animation" id="Animation_qnbj4"]
+resource_name = "possesed"
+
+[sub_resource type="Animation" id="Animation_r3bxh"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_wqpjq"]
+resource_name = "randomize"
+length = 0.001
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RandomChance")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"throw_dice"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2cdgk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/CollisionShape2D:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(69, 36)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(12, 602, 69, 39)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -19)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer:speed_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_dlmty"]
+resource_name = "death"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/CollisionShape2D:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(69, 36)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.7, 1.0333333, 1.29, 1.55, 1.83, 2.11, 2.38, 2.63, 3.2, 3.8, 4.21),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(12, 602, 69, 39), Rect2(9, 220, 76, 37), Rect2(12, 602, 69, 39), Rect2(11, 26, 71, 39), Rect2(12, 602, 69, 39), Rect2(11, 26, 71, 39), Rect2(12, 602, 69, 39), Rect2(11, 26, 71, 39), Rect2(12, 602, 69, 39), Rect2(11, 26, 71, 39), Rect2(9, 412, 76, 37), Rect2(104, 416, 78, 33), Rect2(199, 421, 80, 28)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -19)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer:speed_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0999999999999996]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dlmty"]
+_data = {
+&"Idle": SubResource("Animation_r3bxh"),
+&"RESET": SubResource("Animation_2cdgk"),
+&"appear": SubResource("Animation_xd8r6"),
+&"death": SubResource("Animation_dlmty"),
+&"dropAttack": SubResource("Animation_neq0i"),
+&"possesed": SubResource("Animation_qnbj4"),
+&"randomize": SubResource("Animation_wqpjq"),
+&"sawAttack": SubResource("Animation_jncid")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qsl3t"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2avx2"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5f346"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0onds"]
+animation = &"appear"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_neq0i"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lfs1x"]
+animation = &"dropAttack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8eiau"]
+animation = &"randomize"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vn2fc"]
+animation = &"sawAttack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gqd3i"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "get_node(\"RandomChance\").luck >= 0.65"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mautr"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ho3mf"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7apjh"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qh5fr"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4dlq0"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "get_node(\"RandomChance\").luck <= 0.35"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_25au8"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nk50o"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_325t2"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jncid"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qnbj4"]
+advance_mode = 2
+advance_expression = "get_node("
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_neq0i"]
+states/End/position = Vector2(1100, 116)
+states/Idle/node = SubResource("AnimationNodeAnimation_2avx2")
+states/Idle/position = Vector2(595, 162)
+"states/Idle 2/node" = SubResource("AnimationNodeAnimation_qsl3t")
+"states/Idle 2/position" = Vector2(595, 319)
+states/RESET/node = SubResource("AnimationNodeAnimation_5f346")
+states/RESET/position = Vector2(405, 76)
+states/Start/position = Vector2(205, 76)
+states/appear/node = SubResource("AnimationNodeAnimation_0onds")
+states/appear/position = Vector2(595, 76)
+states/death/node = SubResource("AnimationNodeAnimation_neq0i")
+states/death/position = Vector2(794, 332)
+states/dropAttack/node = SubResource("AnimationNodeAnimation_lfs1x")
+states/dropAttack/position = Vector2(356, 410)
+states/randomize/node = SubResource("AnimationNodeAnimation_8eiau")
+states/randomize/position = Vector2(356, 319)
+states/sawAttack/node = SubResource("AnimationNodeAnimation_vn2fc")
+states/sawAttack/position = Vector2(590, 243)
+transitions = ["randomize", "sawAttack", SubResource("AnimationNodeStateMachineTransition_gqd3i"), "appear", "Idle", SubResource("AnimationNodeStateMachineTransition_mautr"), "Idle", "sawAttack", SubResource("AnimationNodeStateMachineTransition_ho3mf"), "sawAttack", "Idle 2", SubResource("AnimationNodeStateMachineTransition_7apjh"), "Idle 2", "randomize", SubResource("AnimationNodeStateMachineTransition_qh5fr"), "randomize", "dropAttack", SubResource("AnimationNodeStateMachineTransition_4dlq0"), "dropAttack", "Idle 2", SubResource("AnimationNodeStateMachineTransition_25au8"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_nk50o"), "RESET", "appear", SubResource("AnimationNodeStateMachineTransition_325t2"), "Idle 2", "death", SubResource("AnimationNodeStateMachineTransition_jncid"), "sawAttack", "death", SubResource("AnimationNodeStateMachineTransition_qnbj4")]
+graph_offset = Vector2(98, 206)
+
+[node name="Boss" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -19)
+shape = SubResource("RectangleShape2D_neq0i")
+
+[node name="RandomChance" type="Node" parent="."]
+script = ExtResource("1_dlmty")
+dice_faces = 20
+luck_threshold = 0.6
+metadata/_custom_type_script = "uid://calmg11fsso27"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -19)
+texture = ExtResource("2_neq0i")
+region_enabled = true
+region_rect = Rect2(12, 602, 69, 39)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dlmty")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_neq0i")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")

@@ -12,9 +12,9 @@
 texture = ExtResource("1_qvefa")
 texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.921211, -23.741352, 23.921211, -24.101068, 23.921211, 24.101068, -23.921211, 24.101068)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.921211, -23.741352, 23.921211, -24.101068, 23.921211, 24.101068, -23.921211, 24.101068)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.921211, -23.741352, 23.921211, -24.101068, 23.921211, 24.101068, -23.921211, 24.101068)
 3:0/0 = 0
