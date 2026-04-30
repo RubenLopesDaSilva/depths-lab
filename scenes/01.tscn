@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bf1ati87dqexd"]
+[gd_scene load_steps=15 format=4 uid="uid://bf1ati87dqexd"]
 
 [ext_resource type="Texture2D" uid="uid://cld4s24e1uhfa" path="res://assets/sprites/layer4.png" id="1_6cx57"]
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_qvefa"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cj5kjv6tydi51" path="res://assets/sprites/layer1.png" id="4_mql6g"]
 [ext_resource type="PackedScene" uid="uid://cnnplvist7l8j" path="res://scenes/flying_mossy.tscn" id="8_mi0np"]
 [ext_resource type="PackedScene" uid="uid://ed55dwci8sid" path="res://scenes/mossy.tscn" id="9_520st"]
+[ext_resource type="PackedScene" uid="uid://sx30ii0fptph" path="res://mossy.tscn" id="10_520st"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixcy0"]
 texture = ExtResource("1_qvefa")
@@ -168,3 +169,6 @@ scale = Vector2(2, 2)
 [node name="Mossy" parent="." instance=ExtResource("9_520st")]
 position = Vector2(159, -3)
 scale = Vector2(2, 2)
+
+[node name="Mossy2" parent="." instance=ExtResource("10_520st")]
+position = Vector2(422, -292)
