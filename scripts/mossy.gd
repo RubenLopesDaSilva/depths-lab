@@ -9,6 +9,7 @@ var direction = 1;
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func _process(delta):
+	#velocity.y += get_gravity().y * delta
 	if ray_cast_right.is_colliding():
 		direction = -1;
 		animated_sprite_2d.flip_h = true;

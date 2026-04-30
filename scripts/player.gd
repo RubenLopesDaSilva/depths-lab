@@ -153,7 +153,10 @@ func play_attack() -> void:
 		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
 			var attack = attack_area.instantiate();
-			attack.global_position = global_position+Vector2(20,-40);
+			attack.start(self);
+			#attack.global_position = global_position+Vector2(lastDirection * 40,-50);
+			#if lastDirection == -1:
+				#attack.scale.x = attack.scale.x * -1;
 			get_parent().add_child(attack);
 	elif attack_state == AttackState.SECOND:
 		animation_player.play("SecondAttack")
