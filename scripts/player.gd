@@ -4,6 +4,7 @@ enum State { IDLE, WALK, JUMP, FALL, LAND, ATTACK, DAMAGE, DEATH }
 
 enum AttackState { NONE, FIRST, SECOND, DISABLE }
 
+const FORCE = 20.0
 const SPEED = 200.0
 const JUMP_VELOCITY = -550.0
 	
@@ -74,9 +75,10 @@ func apply_movement(delta: float) -> void:
 				set_state(State.WALK)
 		
 		if direction:
-			velocity.x = direction * SPEED;
+			#velocity.x = direction * SPEED;
+			velocity.x = move_toward(velocity.x, SPEED * direction, FORCE);
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED);
+			velocity.x = move_toward(velocity.x, 0, FORCE);
 		
 	if not is_on_floor():
 		velocity.y += get_gravity().y * delta
