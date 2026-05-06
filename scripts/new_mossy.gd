@@ -4,6 +4,8 @@ const FORCE = 6;
 const SPEED = 60;
 var health = 5;
 
+var live = 100;
+
 var lastDirection = 1;
 var direction = 1;
 
@@ -58,8 +60,10 @@ func apply_movement(delta: float) -> void:
 		
 	move_and_slide()
 
-func takeDamage():
-	pass;
+func take_damage(damage: int) -> void:
+	live = live - damage;
+	if live <= 0 :
+		death();
 
-func death():
-	pass;
+func death() -> void:
+	queue_free();

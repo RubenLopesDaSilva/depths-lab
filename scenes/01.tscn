@@ -166,9 +166,5 @@ position = Vector2(793, -231)
 scale = Vector2(2, 2)
 
 [node name="NewMossy" parent="." instance=ExtResource("10_520st")]
-position = Vector2(421, -366)
-scale = Vector2(2, 2)
-
-[node name="NewMossy2" parent="." instance=ExtResource("10_520st")]
-position = Vector2(796, -8)
+position = Vector2(-108, -7)
 scale = Vector2(2, 2)
