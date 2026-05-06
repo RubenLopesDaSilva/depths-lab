@@ -73,7 +73,7 @@ position = Vector2(0, -20)
 target_position = Vector2(16, 0)
 
 [node name="RayCastBottom" type="RayCast2D" parent="."]
-position = Vector2(12, 0)
+position = Vector2(16, -18)
 target_position = Vector2(0, 20)
 
 [node name="Killzone" parent="." instance=ExtResource("3_svx0w")]

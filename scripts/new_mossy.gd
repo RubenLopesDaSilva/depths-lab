@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 	apply_movement(delta)
 
 func update_direction() -> void:
-	if ray_cast_right.is_colliding() || not ray_cast_bottom.is_colliding():
+	if ray_cast_right.is_colliding() || (is_on_floor() &&  not ray_cast_bottom.is_colliding()):
 		direction = direction * -1;
 	#if ray_cast_left.is_colliding():
 		#direction = 1;
