@@ -168,3 +168,7 @@ scale = Vector2(2, 2)
 [node name="NewMossy" parent="." instance=ExtResource("10_520st")]
 position = Vector2(-108, -7)
 scale = Vector2(2, 2)
+
+[node name="NewMossy2" parent="." instance=ExtResource("10_520st")]
+position = Vector2(401, -360)
+scale = Vector2(2, 2)

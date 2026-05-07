@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
+var state = State.WALK;
+
 const FORCE = 6;
 const SPEED = 60;
-var health = 5;
 
+var health = 5;
 var live = 100;
 
 var lastDirection = 1;
@@ -12,6 +14,9 @@ var direction = 1;
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_bottom: RayCast2D = $RayCastBottom
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+enum State { WALK, DAMAGE, DEATH }
 
 func _physics_process(delta: float) -> void:
 	update_direction()
@@ -40,6 +45,8 @@ func handle_actions() -> void:
 	return
 	
 func apply_movement(delta: float) -> void:
+	if not state == State.WALK:
+		return
 	#if state == State.DEATH:
 		#velocity.x = move_toward(velocity.x, 0, SPEED / 30)
 	#else:
@@ -61,9 +68,20 @@ func apply_movement(delta: float) -> void:
 	move_and_slide()
 
 func take_damage(damage: int) -> void:
-	live = live - damage;
-	if live <= 0 :
-		death();
+	if  state == State.WALK :
+		live = live - damage;
+		if live <= 0 :
+			state = State.DEATH
+			death();
+		else: 
+			state = State.DAMAGE
+			animation_player.play("GetDamage")
+			await animation_player.animation_finished
+			state = State.WALK
+			animation_player.play("Walk")
+		
 
 func death() -> void:
+	animation_player.play("Death")
+	await animation_player.animation_finished
 	queue_free();
