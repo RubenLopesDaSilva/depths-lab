@@ -1064,7 +1064,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 3
-collision_layer = 16
+collision_layer = 18
 script = ExtResource("1_g2els")
 
 [node name="Iframes" type="Timer" parent="."]
