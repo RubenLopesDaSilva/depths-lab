@@ -198,7 +198,6 @@ func take_damage(damage: int) -> void:
 			set_state(State.DAMAGE)
 			vulnerable = false
 			vulnerableTimer.start()
-	print(health)
 	
 func death() -> void:
 	set_state(State.DEATH)
