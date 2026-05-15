@@ -6,14 +6,13 @@ var state = State.WALK;
 
 const FORCE = 8;
 const SPEED = 80;
-var health = 3;
+var health = 60;
 
 var lastDirection = 1;
 var direction = 1;
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
-@onready var ray_cast_left: RayCast2D = $RayCastLeft
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _process(delta):
 	update_direction()
@@ -51,8 +50,20 @@ func apply_movement(delta: float) -> void:
 		
 	move_and_slide()
 
-func takeDamage():
-	pass;
+func take_damage(damage: int) -> void:
+	if  state == State.WALK :
+		health = health - damage;
+	if health <= 0 :
+		state = State.DEATH
+		death();
+	else: 
+		state = State.DAMAGE
+		animation_player.play("GetDamage")
+		await animation_player.animation_finished
+		state = State.WALK
+		animation_player.play("Fly")
 
-func death():
-	pass;
+func death() -> void:
+	animation_player.play("Death")
+	await animation_player.animation_finished
+	queue_free();
