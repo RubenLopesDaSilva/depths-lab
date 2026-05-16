@@ -45,9 +45,6 @@ func apply_movement(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, FORCE);
 		
-	#if not is_on_floor():
-		#velocity.y += get_gravity().y * delta
-		
 	move_and_slide()
 
 func take_damage(damage: int) -> void:

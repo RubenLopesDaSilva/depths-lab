@@ -75,7 +75,6 @@ func apply_movement(delta: float) -> void:
 				set_state(State.WALK)
 		
 		if direction:
-			#velocity.x = direction * SPEED;
 			velocity.x = move_toward(velocity.x, SPEED * direction, FORCE);
 		else:
 			velocity.x = move_toward(velocity.x, 0, FORCE);
@@ -150,16 +149,12 @@ func play_land() -> void:
 	
 func play_attack() -> void:
 	if attack_state == AttackState.FIRST:
-		#await Utils.delay(0.5)
 		close = true
 		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
-			var attack = attack_area.instantiate();
-			attack.start(self, 20);
-			#attack.global_position = global_position+Vector2(lastDirection * 40,-50);
-			#if lastDirection == -1:
-				#attack.scale.x = attack.scale.x * -1;
-			get_parent().add_child(attack);
+			var attackArea = attack_area.instantiate();
+			attackArea.start(self, 20);
+			get_parent().add_child(attackArea);
 	elif attack_state == AttackState.SECOND:
 		animation_player.play("SecondAttack")
 	if	await animation_finished_correctly(): 

@@ -11,8 +11,6 @@ func _ready() -> void:
 	
 func restart() -> void:
 	Engine.time_scale = 1;
-	print("Game Manager : restart options");
-	#get_tree().reload_current_scene();
 	
 func dying() -> void:
 	Engine.time_scale = 0.5
