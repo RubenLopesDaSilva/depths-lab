@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/bossy_outro.mp3-212ca78cfde3c1ac4df1a384eb027
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

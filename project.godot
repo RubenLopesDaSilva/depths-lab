@@ -22,6 +22,7 @@ GameManager="*res://scripts/game_manager.gd"
 Utils="*res://scripts/utils.gd"
 SceneManager="*res://00_global/scene_manager/scene_manager.tscn"
 SaveManager="*res://00_global/save_manager.gd"
+AudioManager="*res://00_global/music_manager/audio_manager.tscn"
 
 [global_group]
 
