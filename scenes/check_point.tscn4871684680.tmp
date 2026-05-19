@@ -40,12 +40,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7brbk"]
 size = Vector2(46, 47)
 
-[node name="CheckPoint" type="Area2D" node_paths=PackedStringArray("animated_sprite", "control", "label")]
+[node name="CheckPoint" type="Area2D" node_paths=PackedStringArray("animated_sprite", "control", "label", "progressBar")]
 collision_mask = 16
 script = ExtResource("1_klegx")
 animated_sprite = NodePath("AnimatedSprite2D")
 control = NodePath("Control")
 label = NodePath("Control/Label")
+progressBar = NodePath("")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
