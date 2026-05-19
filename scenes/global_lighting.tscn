@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bnwlqekgab233"]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D"]
+color = Color(0, 0, 0, 0.78431374)
+energy = 0.8
+blend_mode = 2

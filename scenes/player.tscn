@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bew4d6ojw3kyv"]
+[gd_scene load_steps=53 format=3 uid="uid://bew4d6ojw3kyv"]
 
 [ext_resource type="Texture2D" uid="uid://csh5wod3txei7" path="res://assets/sprites/kansen.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dj12myodc1eds" path="res://scripts/player.gd" id="1_g2els"]
@@ -1063,6 +1063,17 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_qhqgy"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dqkch"]
+gradient = SubResource("Gradient_qhqgy")
+width = 200
+height = 200
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 5
 collision_layer = 16
@@ -1096,5 +1107,9 @@ autoplay = "Idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -16)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -17)
+texture = SubResource("GradientTexture2D_dqkch")
 
 [connection signal="timeout" from="Iframes" to="." method="_on_timer_timeout"]
