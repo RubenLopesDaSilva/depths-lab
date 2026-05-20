@@ -23,6 +23,7 @@ var close: bool = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var attack_area: PackedScene;
+@export var second_attack_area: PackedScene;
 
 func _ready() -> void:
 	if get_tree().get_first_node_in_group("Player") != self :
@@ -150,7 +151,7 @@ func play_land() -> void:
 	
 func play_attack() -> void:
 	if attack_state == AttackState.FIRST:
-		# await Utils.delay(0.5)
+		await Utils.delay(0.5)
 		close = true
 		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
@@ -158,8 +159,10 @@ func play_attack() -> void:
 			attackArea.start(self, 20);
 			get_parent().add_child(attackArea);
 	elif attack_state == AttackState.SECOND:
-		print("second attack")
 		animation_player.play("SecondAttack")
+		var secondAttackArea = second_attack_area.instantiate();
+		secondAttackArea.start(self, 20);
+		get_parent().add_child(secondAttackArea);
 	if	await animation_finished_correctly(): 
 		set_state(State.IDLE, true)
 	close = false

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1fay30oqps1l"]
+
+[ext_resource type="Script" uid="uid://c2jrt2o606gl2" path="res://scripts/second_attack_area.gd" id="1_61g41"]
+[ext_resource type="Texture2D" uid="uid://b2yf24gdcr1on" path="res://assets/sprites/attack_2_dust.png" id="2_61g41"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0ren"]
+atlas = ExtResource("2_61g41")
+region = Rect2(0, 0, 60, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_31cv2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0ren")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+size = Vector2(12, 8)
+
+[node name="SecondAttackArea" type="Area2D"]
+z_index = 5
+scale = Vector2(3.5, 3.5)
+collision_mask = 36
+script = ExtResource("1_61g41")
+metadata/_custom_type_script = "uid://dg5kj4dkl6egf"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_31cv2")
+frame_progress = 1.0
+speed_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dqkch")
+debug_color = Color(0.8666667, 0, 0.12156863, 0.29411766)
