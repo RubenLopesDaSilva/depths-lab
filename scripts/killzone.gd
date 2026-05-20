@@ -1,6 +1,6 @@
 extends Area2D
 @onready var timer: Timer = $Timer
-@export var damage: int = 20
+@export var damage: int = 1
 
 var bodys : Array[Node2D] = []
 

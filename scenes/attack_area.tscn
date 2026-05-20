@@ -47,7 +47,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
-size = Vector2(12, 8)
+size = Vector2(17.142857, 12.000002)
 
 [node name="AttackArea" type="Area2D"]
 z_index = 5
@@ -63,5 +63,7 @@ frame_progress = 1.0
 speed_scale = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6.811958e-07, 0)
+scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_dqkch")
 debug_color = Color(0.8666667, 0, 0.12156863, 0.29411766)

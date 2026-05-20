@@ -4,19 +4,19 @@ enum State { IDLE, WALK, JUMP, FALL, LAND, ATTACK, DAMAGE, DEATH }
 
 enum AttackState { NONE, FIRST, SECOND, DISABLE }
 
-const FORCE = 20.0
-const SPEED = 200.0
-const JUMP_VELOCITY = -550.0
+const FORCE: int = 20.0
+const SPEED: int = 200.0
+const JUMP_VELOCITY: int = -550.0
 	
-var state = State.IDLE
-var attack_state = AttackState.NONE
-var health = 100
-var notOnFloor = false
-var direction = 0
-var lastDirection = 1;
-var vulnerable = true
-var animationFlag = 0
-var close = false
+var state: State = State.IDLE
+var attack_state: AttackState = AttackState.NONE
+var health: int = 5
+var notOnFloor: bool = false
+var direction: int = 0
+var lastDirection: int = 1;
+var vulnerable: bool = true
+var animationFlag: int = 0
+var close: bool = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var vulnerableTimer: Timer = $Iframes
@@ -187,6 +187,7 @@ func attack()-> void:
 func take_damage(damage: int) -> void:
 	if vulnerable && state != State.DEATH:
 		health -= damage;
+		HealthBar.set_health(health/5.0*100);
 		if (health <= 0):
 			death()
 		else:
