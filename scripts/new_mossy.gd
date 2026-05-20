@@ -53,10 +53,11 @@ func apply_movement(delta: float) -> void:
 	move_and_slide()
 
 func take_damage(damage: int) -> void:
+	if state == State.DEATH:
+		return
 	if  state == State.WALK :
 		health = health - damage;
 		if health <= 0 :
-			state = State.DEATH
 			death();
 		else: 
 			state = State.DAMAGE
@@ -67,6 +68,7 @@ func take_damage(damage: int) -> void:
 		
 
 func death() -> void:
+	state = State.DEATH
 	animation_player.play("Death")
 	await animation_player.animation_finished
 	queue_free();

@@ -28,7 +28,6 @@ func _ready() -> void:
 	if get_tree().get_first_node_in_group("Player") != self :
 		self.queue_free()
 	self.call_deferred("reparent",get_tree().root)
-	pass
 
 func _physics_process(delta: float) -> void:
 	update_direction()
@@ -98,18 +97,20 @@ func set_state(value: State, objection: bool = false, play: bool = true) -> void
 			return
 		if state == State.ATTACK && (value != State.DEATH && value != State.DAMAGE) :
 			return
+	if state == State.DEATH : 
+		return
 	state = value
 	if	play:
 		play_animation()
 	
 func set_attack_state(value: AttackState) -> void:
-	if value == AttackState.SECOND:
-		return
+	#if value == AttackState.SECOND:
+		#return
 	if state != State.ATTACK:
 		return
 	if value == attack_state:
 		return
-	attack_state = value
+	attack_state = value;
 	play_animation()
 	
 func play_animation() -> void:
@@ -149,6 +150,7 @@ func play_land() -> void:
 	
 func play_attack() -> void:
 	if attack_state == AttackState.FIRST:
+		# await Utils.delay(0.5)
 		close = true
 		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
@@ -156,6 +158,7 @@ func play_attack() -> void:
 			attackArea.start(self, 20);
 			get_parent().add_child(attackArea);
 	elif attack_state == AttackState.SECOND:
+		print("second attack")
 		animation_player.play("SecondAttack")
 	if	await animation_finished_correctly(): 
 		set_state(State.IDLE, true)
