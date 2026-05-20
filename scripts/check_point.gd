@@ -8,12 +8,16 @@ extends Area2D
 
 var is_inside: bool = false;
 var available: bool = false;
+var active: bool = false;
 
 var save_text: String = "Appuyer W pour sauvegarder";
 var saved_text: String = "Sauvegarde effectuée";
 
 func _ready() -> void:
 	label.text = save_text;
+	if active:
+		animated_sprite.play("active");
+	
 	
 func _on_body_entered(body: Node2D) -> void:
 	label.text = save_text;
@@ -34,4 +38,11 @@ func _process(delta: float) -> void:
 func save() -> void:
 	available = false;
 	label.text = saved_text;
+	if not active:
+		active = true;
+		_activate();
 	print("save");
+
+func _activate() -> void:
+	print("activate");
+	animated_sprite.play("active");
