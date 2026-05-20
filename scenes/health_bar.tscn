@@ -331,15 +331,13 @@ animation_player = NodePath("Control/Node2D/AnimationPlayer")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
+anchors_preset = 0
+offset_right = 40.0
 offset_bottom = 40.0
-grow_horizontal = 0
 
 [node name="Node2D" type="Node2D" parent="Control"]
-position = Vector2(-60, 20)
+position = Vector2(181, 60)
+scale = Vector2(2.5, 2.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/Node2D"]
 sprite_frames = SubResource("SpriteFrames_iwqyq")

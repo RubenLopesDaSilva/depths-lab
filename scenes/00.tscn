@@ -139,3 +139,4 @@ position = Vector2(-205, -1)
 
 [node name="CheckPoint" parent="." instance=ExtResource("9_2s6oj")]
 position = Vector2(96, -47)
+id = "gr"
