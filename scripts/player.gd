@@ -151,7 +151,7 @@ func play_land() -> void:
 	
 func play_attack() -> void:
 	if attack_state == AttackState.FIRST:
-		await Utils.delay(0.5)
+		await Utils.delay(0.2)
 		close = true
 		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
