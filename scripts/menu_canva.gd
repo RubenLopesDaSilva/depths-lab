@@ -17,5 +17,17 @@ func _show() -> void:
 	control.show();
 	
 func _close() -> void:
-	get_tree().paused = false;
 	control.hide();
+	get_tree().paused = false;
+
+
+func _on_play_btn_pressed() -> void:
+	_close();
+
+
+func _on_restart_btn_pressed() -> void:
+	print("\nRestart\n");
+
+
+func _on_exit_btn_pressed() -> void:
+	get_tree().quit();

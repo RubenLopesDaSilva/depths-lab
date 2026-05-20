@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cag7b1oxxluiw"]
+[gd_scene load_steps=3 format=3 uid="uid://bsp2wp2wqih05"]
 
 [ext_resource type="PackedScene" uid="uid://bnwlqekgab233" path="res://scenes/global_lighting.tscn" id="1_q0alj"]
 [ext_resource type="Script" uid="uid://dr7vp0apc1ngm" path="res://scripts/menu_canva.gd" id="1_r0ij4"]
@@ -49,3 +49,7 @@ text = "Restart"
 offset_right = 80.0
 offset_bottom = 40.0
 text = "Play"
+
+[connection signal="pressed" from="Interface/CenterContainer/Node2D/ExitBtn" to="." method="_on_exit_btn_pressed"]
+[connection signal="pressed" from="Interface/CenterContainer/Node2D/RestartBtn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="Interface/CenterContainer/Node2D/PlayBtn" to="." method="_on_play_btn_pressed"]
