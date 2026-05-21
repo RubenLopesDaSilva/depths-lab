@@ -7,6 +7,7 @@ signal max_changed(new_max: int)
 signal current_changed(new_current: int)
 var idle_finished_count = 0;
 
+@onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 
 @export var max_amount := 10 : set = set_max_amount
 @export var current_amount := 0 : set = set_current_amount
@@ -50,6 +51,8 @@ func replenish() -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == 'Idle':
-		idle_finished_count += 1
-		print("Idle animation finished: ", idle_finished_count, " times")
+	if anim_name == 'Idle' && idle_finished_count <= 3:
+		if(idle_finished_count < 3):
+			animation_player.play(anim_name);
+			idle_finished_count += 1
+			print("Idle animation finished: ", idle_finished_count, " times")

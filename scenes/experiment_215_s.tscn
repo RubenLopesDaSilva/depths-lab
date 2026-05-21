@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bx4spfgu325sv"]
+[gd_scene load_steps=35 format=3 uid="uid://bx4spfgu325sv"]
 
 [ext_resource type="Script" uid="uid://by8jv5jkco26r" path="res://System/GameRessources/game_ressources.gd" id="1_3niea"]
 [ext_resource type="Script" uid="uid://c6jw2ua5lfil" path="res://scripts/animation_trigger.gd" id="2_vdlij"]
@@ -6,11 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://ciiw25bjoibr3" path="res://assets/sprites/bossy.png" id="4_xglmh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_neq0i"]
-size = Vector2(69, 36)
+size = Vector2(70, 35)
 
 [sub_resource type="Animation" id="Animation_r3bxh"]
 resource_name = "Idle"
-length = 1.6
+length = 1.65
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -35,56 +35,19 @@ tracks/1/keys = {
 "update": 1,
 "values": [Rect2(11, 26, 71, 39), Rect2(105, 28, 76, 37), Rect2(203, 26, 71, 39), Rect2(300, 26, 69, 39), Rect2(395, 26, 71, 39), Rect2(489, 28, 76, 37), Rect2(587, 26, 71, 39), Rect2(684, 26, 69, 39), Rect2(11, 26, 71, 39)]
 }
-
-[sub_resource type="Animation" id="Animation_2cdgk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Area2D/CollisionShape2D:shape:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(69, 36)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(1, -19)]
-}
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:region_rect")
+tracks/2/path = NodePath("HealthRessources")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1.65),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Rect2(12, 602, 69, 39)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationPlayer:speed_scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
+"values": [{
+"args": [&"Idle"],
+"method": &"_on_animation_player_animation_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_xd8r6"]
@@ -111,8 +74,20 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -224), Vector2(0, -62), Vector2(0, -14), Vector2(0, -16), Vector2(0, -18)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.65),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Vector2(0, -29), Vector2(0, -25), Vector2(0, -14), Vector2(0, -16), Vector2(0, -18)]
+"values": [0.5, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_dlmty"]
@@ -161,10 +136,10 @@ tracks/3/path = NodePath("AnimationPlayer:speed_scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.0999999999999996]
+"values": [1.0999999999999996, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_qnbj4"]
@@ -189,10 +164,22 @@ tracks/1/path = NodePath("Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(0, -18), Vector2(0, -16), Vector2(0, -14), Vector2(0, -29), Vector2(0, -25), Vector2(0, -30)]
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.62, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -18), Vector2(0, -16), Vector2(0, -14), Vector2(0, -29.599995), Vector2(0, -105)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.82),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, -19), Vector2(1, -104)]
 }
 
 [sub_resource type="Animation" id="Animation_wqpjq"]
@@ -241,10 +228,74 @@ tracks/1/keys = {
 "values": [Rect2(9, 220, 76, 37), Rect2(109, 219, 68, 38), Rect2(209, 220, 60, 37), Rect2(319, 211, 50, 46), Rect2(421, 202, 45, 55), Rect2(516, 202, 47, 55), Rect2(603, 200, 54, 57), Rect2(693, 205, 63, 52), Rect2(12, 310, 73, 43), Rect2(101, 314, 81, 39), Rect2(194, 316, 84, 37), Rect2(292, 315, 78, 38), Rect2(9, 220, 76, 37)]
 }
 
+[sub_resource type="Animation" id="Animation_3niea"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(11, 26, 71, 39)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -19)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer:speed_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D:shape:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(70, 35)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -18)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dlmty"]
 _data = {
 &"Idle": SubResource("Animation_r3bxh"),
-&"RESET": SubResource("Animation_2cdgk"),
+&"RESET": SubResource("Animation_3niea"),
 &"appear": SubResource("Animation_xd8r6"),
 &"death": SubResource("Animation_dlmty"),
 &"possesed": SubResource("Animation_qnbj4"),
@@ -258,7 +309,7 @@ animation = &"Idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2avx2"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5f346"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vdlij"]
 animation = &"RESET"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0onds"]
@@ -288,47 +339,53 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ho3mf"]
 switch_mode = 2
 advance_mode = 2
-advance_expression = "get_node(\"HealthRessources).idle_finished_count >= 3"
+advance_expression = "get_node(\"HealthRessources\").idle_finished_count >= 3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7apjh"]
 switch_mode = 2
 advance_mode = 2
-advance_expression = "get_node(\"HealthRessources).idle_finished_count >= 3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qh5fr"]
 switch_mode = 2
 advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nk50o"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_325t2"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jncid"]
-advance_mode = 2
-advance_expression = "get_node(\"HealthRessources\").current_amount < 1"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qnbj4"]
-advance_mode = 2
-advance_expression = "get_node(\"HealthRessources\").current_amount < 1"
+advance_expression = "get_node(\"HealthRessources\").idle_finished_count >= 3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vdlij"]
 switch_mode = 2
 advance_mode = 2
+advance_expression = "get_node(\"RandomChance\").luck <= 0.64"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_od5ja"]
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3niea"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qnbj4"]
+advance_mode = 2
+advance_expression = "get_node(\"HealthRessources\").current_amount < 1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jncid"]
+advance_mode = 2
+advance_expression = "get_node(\"HealthRessources\").current_amount < 1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xglmh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_spe22"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_neq0i"]
-states/End/position = Vector2(1100, 116)
+states/End/position = Vector2(1036, 319)
 states/Idle/node = SubResource("AnimationNodeAnimation_2avx2")
 states/Idle/position = Vector2(595, 162)
 "states/Idle 2/node" = SubResource("AnimationNodeAnimation_qsl3t")
 "states/Idle 2/position" = Vector2(595, 319)
-states/RESET/node = SubResource("AnimationNodeAnimation_5f346")
-states/RESET/position = Vector2(405, 76)
+states/RESET/node = SubResource("AnimationNodeAnimation_vdlij")
+states/RESET/position = Vector2(381, 76)
 states/Start/position = Vector2(205, 76)
 states/appear/node = SubResource("AnimationNodeAnimation_0onds")
 states/appear/position = Vector2(595, 76)
@@ -340,23 +397,26 @@ states/randomize/node = SubResource("AnimationNodeAnimation_8eiau")
 states/randomize/position = Vector2(356, 319)
 states/sawAttack/node = SubResource("AnimationNodeAnimation_vn2fc")
 states/sawAttack/position = Vector2(590, 243)
-transitions = ["randomize", "sawAttack", SubResource("AnimationNodeStateMachineTransition_gqd3i"), "appear", "Idle", SubResource("AnimationNodeStateMachineTransition_mautr"), "Idle", "sawAttack", SubResource("AnimationNodeStateMachineTransition_ho3mf"), "sawAttack", "Idle 2", SubResource("AnimationNodeStateMachineTransition_7apjh"), "Idle 2", "randomize", SubResource("AnimationNodeStateMachineTransition_qh5fr"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_nk50o"), "RESET", "appear", SubResource("AnimationNodeStateMachineTransition_325t2"), "Idle 2", "death", SubResource("AnimationNodeStateMachineTransition_jncid"), "sawAttack", "death", SubResource("AnimationNodeStateMachineTransition_qnbj4"), "randomize", "possesed", SubResource("AnimationNodeStateMachineTransition_vdlij"), "possesed", "Idle 2", SubResource("AnimationNodeStateMachineTransition_od5ja")]
-graph_offset = Vector2(-69, 23)
+transitions = ["randomize", "sawAttack", SubResource("AnimationNodeStateMachineTransition_gqd3i"), "appear", "Idle", SubResource("AnimationNodeStateMachineTransition_mautr"), "Idle", "sawAttack", SubResource("AnimationNodeStateMachineTransition_ho3mf"), "sawAttack", "Idle 2", SubResource("AnimationNodeStateMachineTransition_7apjh"), "Idle 2", "randomize", SubResource("AnimationNodeStateMachineTransition_qh5fr"), "randomize", "possesed", SubResource("AnimationNodeStateMachineTransition_vdlij"), "possesed", "Idle 2", SubResource("AnimationNodeStateMachineTransition_od5ja"), "death", "End", SubResource("AnimationNodeStateMachineTransition_3niea"), "sawAttack", "death", SubResource("AnimationNodeStateMachineTransition_qnbj4"), "Idle 2", "death", SubResource("AnimationNodeStateMachineTransition_jncid"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_xglmh"), "RESET", "appear", SubResource("AnimationNodeStateMachineTransition_spe22")]
+graph_offset = Vector2(-51, 124)
 
 [node name="Experiment_215_S" type="Node2D"]
 
 [node name="HealthRessources" type="Node" parent="."]
 script = ExtResource("1_3niea")
 max_amount = 500
+current_amount = 500
 
-[node name="AnimationTrigger" type="Node" parent="HealthRessources"]
+[node name="AnimationTrigger" type="Node" parent="HealthRessources" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("2_vdlij")
+animation_player = NodePath("../../AnimationPlayer")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-1, 1)
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1, -19)
+position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_neq0i")
 
 [node name="RandomChance" type="Node" parent="."]
@@ -366,10 +426,10 @@ luck_threshold = 0.6
 metadata/_custom_type_script = "uid://calmg11fsso27"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -19)
+position = Vector2(0, -19)
 texture = ExtResource("4_xglmh")
 region_enabled = true
-region_rect = Rect2(12, 602, 69, 39)
+region_rect = Rect2(11, 26, 71, 39)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
