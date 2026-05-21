@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @export var animation_player: AnimationPlayer;
+@export var collectable_label: Label;
 
 var life: int = 100;
 
@@ -23,3 +24,6 @@ func set_health(percentage: float) -> void:
 		animation_player.play("critical");
 	else:
 		animation_player.play("empty");
+
+func set_collectable(value: int) -> void:
+	collectable_label.text = str(value);

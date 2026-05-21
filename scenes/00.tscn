@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cdtwgxyy3f0f4"]
+[gd_scene load_steps=13 format=4 uid="uid://cdtwgxyy3f0f4"]
 
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_be0du"]
 [ext_resource type="PackedScene" uid="uid://dl5jyvux5taat" path="res://scenes/level_transition.tscn" id="2_hne3k"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cj5kjv6tydi51" path="res://assets/sprites/layer1.png" id="7_pcm67"]
 [ext_resource type="PackedScene" uid="uid://dw463oyxg1ab" path="res://general/player_spawn/player_spawn.tscn" id="8_myt80"]
 [ext_resource type="PackedScene" uid="uid://ce48yqmwtbyf3" path="res://scenes/check_point.tscn" id="9_2s6oj"]
+[ext_resource type="PackedScene" uid="uid://yqj0p4kea3uk" path="res://scenes/collectable.tscn" id="10_pcm67"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_be0du")
@@ -140,3 +141,18 @@ position = Vector2(-205, -1)
 [node name="CheckPoint" parent="." instance=ExtResource("9_2s6oj")]
 position = Vector2(96, -47)
 id = "gr"
+
+[node name="Collectable" parent="." instance=ExtResource("10_pcm67")]
+position = Vector2(191, -26)
+type = 1
+
+[node name="Collectable2" parent="." instance=ExtResource("10_pcm67")]
+position = Vector2(280, -112)
+type = 2
+
+[node name="Collectable3" parent="." instance=ExtResource("10_pcm67")]
+position = Vector2(474, -43)
+
+[node name="Collectable4" parent="." instance=ExtResource("10_pcm67")]
+position = Vector2(562, -77)
+type = 3

@@ -1,54 +1,55 @@
-[gd_scene load_steps=24 format=3 uid="uid://cedbfranfa04a"]
+[gd_scene load_steps=30 format=3 uid="uid://cedbfranfa04a"]
 
-[ext_resource type="Texture2D" uid="uid://cfhbmeohepisj" path="res://assets/sprites/life_bar.png" id="1_1bvlm"]
-[ext_resource type="Script" uid="uid://pl5yk3erdp76" path="res://scripts/health_bar.gd" id="1_y3kqx"]
+[ext_resource type="Script" uid="uid://pl5yk3erdp76" path="res://scripts/states_bar.gd" id="1_f4ikk"]
+[ext_resource type="Texture2D" uid="uid://cfhbmeohepisj" path="res://assets/sprites/life_bar.png" id="2_hql5a"]
+[ext_resource type="Texture2D" uid="uid://cyrq1tg3d6i4f" path="res://assets/sprites/collectable.png" id="3_hql5a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5xgdr"]
-atlas = ExtResource("1_1bvlm")
+atlas = ExtResource("2_hql5a")
 region = Rect2(0, 197, 145, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1bvlm"]
-atlas = ExtResource("1_1bvlm")
+atlas = ExtResource("2_hql5a")
 region = Rect2(0, 5, 145, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3kqx"]
-atlas = ExtResource("1_1bvlm")
+atlas = ExtResource("2_hql5a")
 region = Rect2(0, 53, 145, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6opq1"]
-atlas = ExtResource("1_1bvlm")
+atlas = ExtResource("2_hql5a")
 region = Rect2(0, 101, 145, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tujlf"]
-atlas = ExtResource("1_1bvlm")
+atlas = ExtResource("2_hql5a")
 region = Rect2(0, 149, 145, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5oo0i"]
-atlas = ExtResource("1_1bvlm")
+atlas = ExtResource("2_hql5a")
 region = Rect2(0, 197, 145, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0kw87"]
-atlas = ExtResource("1_1bvlm")
+atlas = ExtResource("2_hql5a")
 region = Rect2(0, 245, 145, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oeie6"]
-atlas = ExtResource("1_1bvlm")
+atlas = ExtResource("2_hql5a")
 region = Rect2(0, 149, 145, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x53g4"]
-atlas = ExtResource("1_1bvlm")
+atlas = ExtResource("2_hql5a")
 region = Rect2(0, 245, 145, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s32md"]
-atlas = ExtResource("1_1bvlm")
+atlas = ExtResource("2_hql5a")
 region = Rect2(0, 5, 145, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yg0xg"]
-atlas = ExtResource("1_1bvlm")
+atlas = ExtResource("2_hql5a")
 region = Rect2(0, 53, 145, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oo1ju"]
-atlas = ExtResource("1_1bvlm")
+atlas = ExtResource("2_hql5a")
 region = Rect2(0, 101, 145, 22)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iwqyq"]
@@ -130,7 +131,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Node2D/AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Control/Node2D/LifeBar:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -142,7 +143,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/Node2D/AnimatedSprite2D:position")
+tracks/1/path = NodePath("Control/Node2D/LifeBar:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -157,7 +158,7 @@ resource_name = "critical"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Node2D/AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Control/Node2D/LifeBar:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -169,7 +170,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/Node2D/AnimatedSprite2D:position")
+tracks/1/path = NodePath("Control/Node2D/LifeBar:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -184,7 +185,7 @@ resource_name = "depleted"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Node2D/AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Control/Node2D/LifeBar:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -196,7 +197,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/Node2D/AnimatedSprite2D:position")
+tracks/1/path = NodePath("Control/Node2D/LifeBar:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -211,7 +212,7 @@ resource_name = "empty"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Node2D/AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Control/Node2D/LifeBar:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -223,7 +224,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/Node2D/AnimatedSprite2D:position")
+tracks/1/path = NodePath("Control/Node2D/LifeBar:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -238,7 +239,7 @@ resource_name = "full"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Node2D/AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Control/Node2D/LifeBar:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -250,7 +251,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/Node2D/AnimatedSprite2D:position")
+tracks/1/path = NodePath("Control/Node2D/LifeBar:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -265,7 +266,7 @@ resource_name = "great"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Node2D/AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Control/Node2D/LifeBar:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -277,7 +278,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/Node2D/AnimatedSprite2D:position")
+tracks/1/path = NodePath("Control/Node2D/LifeBar:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -292,7 +293,7 @@ resource_name = "half"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Node2D/AnimatedSprite2D:animation")
+tracks/0/path = NodePath("Control/Node2D/LifeBar:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -304,7 +305,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control/Node2D/AnimatedSprite2D:position")
+tracks/1/path = NodePath("Control/Node2D/LifeBar:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -325,9 +326,46 @@ _data = {
 &"half": SubResource("Animation_mqois")
 }
 
-[node name="HealthBar" type="CanvasLayer" node_paths=PackedStringArray("animation_player")]
-script = ExtResource("1_y3kqx")
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcdku"]
+atlas = ExtResource("3_hql5a")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sngo"]
+atlas = ExtResource("3_hql5a")
+region = Rect2(48, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yiod"]
+atlas = ExtResource("3_hql5a")
+region = Rect2(96, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41y7u"]
+atlas = ExtResource("3_hql5a")
+region = Rect2(144, 144, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a6tnw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcdku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sngo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yiod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41y7u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StatesBar" type="CanvasLayer" node_paths=PackedStringArray("animation_player", "collectable_label")]
+script = ExtResource("1_f4ikk")
 animation_player = NodePath("Control/Node2D/AnimationPlayer")
+collectable_label = NodePath("Control/Node2D/Label")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -339,7 +377,7 @@ offset_bottom = 40.0
 position = Vector2(181, 60)
 scale = Vector2(2.5, 2.5)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/Node2D"]
+[node name="LifeBar" type="AnimatedSprite2D" parent="Control/Node2D"]
 sprite_frames = SubResource("SpriteFrames_iwqyq")
 autoplay = "default"
 
@@ -349,3 +387,23 @@ libraries = {
 &"": SubResource("AnimationLibrary_txdam")
 }
 autoplay = "full"
+
+[node name="Collectables" type="AnimatedSprite2D" parent="Control/Node2D"]
+position = Vector2(60.800003, 47.6)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_a6tnw")
+autoplay = "default"
+frame_progress = 0.07915321
+
+[node name="Label" type="Label" parent="Control/Node2D"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -39.6
+offset_top = 28.0
+offset_right = 41.200005
+offset_bottom = 65.2
+grow_vertical = 0
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1

@@ -19,6 +19,7 @@ var animationFlag: int = 0
 var close: bool = false
 var running: bool = false;
 var multiplicator: float = 1;
+var collectables : int = 0;
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var vulnerableTimer: Timer = $Iframes
@@ -213,7 +214,7 @@ func attack()-> void:
 func take_damage(damage: int) -> void:
 	if vulnerable && state != State.DEATH:
 		health -= damage;
-		HealthBar.set_health(health/5.0*100);
+		StatesBar.set_health(health/5.0*100);
 		if (health <= 0):
 			death()
 		else:
@@ -231,6 +232,10 @@ func animation_finished_correctly() -> bool:
 	if flag == animationFlag:
 		return true
 	return false
+	
+func get_collectable(value: int) -> void:
+	collectables += value;
+	StatesBar.set_collectable(collectables);
 	
 func _on_timer_timeout() -> void:
 	vulnerable = true
