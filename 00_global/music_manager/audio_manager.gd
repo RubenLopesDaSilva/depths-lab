@@ -1,6 +1,8 @@
 extends Node
 
-enum State { LEVEL , BOSS, CHASE, DEATH }
+enum MusicState { LEVEL , BOSS, CHASE, DEATH }
+
+enum PartState { NONE, INTRO, LOOP, OUTRO }
 
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 
@@ -17,7 +19,9 @@ enum State { LEVEL , BOSS, CHASE, DEATH }
 @export var music_entity_chase_loop : AudioStream;
 @export var music_entity_chase_outro : AudioStream;
 
-var state : State = State.LEVEL;
+var musicState : MusicState = MusicState.LEVEL;
+var partState: PartState = PartState.INTRO;
+
 var flag : int = 0;
 
 func _ready() -> void:
@@ -27,46 +31,70 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func change_state(value: State, objection: bool = false) -> void:
-	if(not objection):
-		if state == value:
+func change_state(value: MusicState, objection: bool = false) -> void:
+	if not objection :
+		if musicState == value:
 			return
-	state = value;
-	flag = 0;
+	if musicState == MusicState.DEATH :
+		return;
+	musicState = value;
+	partState = PartState.INTRO;
 	handle_state();
 	
 func handle_state() -> void:	
-	if state == State.LEVEL:
+	var changed : bool = true;
+	if musicState == MusicState.LEVEL:
 		music_player.stream = music_level_00;
-	if state == State.BOSS:
-		if flag == 0:
+	if musicState == MusicState.BOSS:
+		if partState == PartState.INTRO:
 			music_player.stream = music_bossy_intro;
-		elif flag == 1:
+		elif partState == PartState.LOOP:
 			music_player.stream = music_bossy_loop;
-		elif flag == 2:
+		elif partState == PartState.OUTRO:
 			music_player.stream = music_bossy_outro
 		else:
-			change_state(State.LEVEL);
-	if state == State.CHASE:
-		if flag == 0:
+			changed = false;
+			change_state(MusicState.LEVEL);
+	if musicState == MusicState.CHASE:
+		if partState == PartState.INTRO:
 			music_player.stream = music_entity_chase_intro;
-		elif flag == 1:
+		elif partState == PartState.LOOP:
 			music_player.stream = music_entity_chase_loop;
-		elif flag == 2:
+		elif partState == PartState.OUTRO:
 			music_player.stream = music_entity_chase_outro;
 		else:
-			change_state(State.LEVEL);
-	if state == State.DEATH:
-		if flag == 0:
+			changed = false;
+			change_state(MusicState.LEVEL);
+	if musicState == MusicState.DEATH:
+		if partState == PartState.INTRO:
 			music_player.stream = music_death_intro;
-		elif flag == 1 :
+		elif partState == PartState.LOOP:
 			music_player.stream = music_death_loop
 		else:
-			change_state(State.LEVEL);
-	music_player.play();
-	flag += 1;
-	await music_player.finished;
-	finish(state)
-	
-func finish(state: State) -> void:
-	pass
+			changed = false;
+			change_state(MusicState.LEVEL);
+			
+	match partState:
+		PartState.INTRO:
+			partState = PartState.LOOP;
+		PartState.LOOP:
+			partState = PartState.OUTRO;
+		PartState.OUTRO:
+			partState = PartState.NONE;
+		
+	if changed:
+		flag += 1;
+		music_player.play();
+		var last_flage = flag;
+		await music_player.finished;
+		if last_flage == flag:
+			handle_state();
+	else:
+		handle_state();
+		
+func quite(value: MusicState) -> void:
+	if musicState == value:
+		partState = PartState.OUTRO;
+		flag += 1;
+		music_player.stop();
+		handle_state()

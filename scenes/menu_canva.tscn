@@ -33,23 +33,31 @@ grow_vertical = 2
 [node name="Node2D" type="Node2D" parent="Interface/CenterContainer"]
 position = Vector2(80, 0)
 
-[node name="ExitBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
-offset_top = 160.0
-offset_right = 80.0
-offset_bottom = 200.0
-text = "Exit"
-
-[node name="RestartBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
-offset_top = 80.0
-offset_right = 80.0
-offset_bottom = 120.0
-text = "Restart"
-
 [node name="PlayBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
 offset_right = 80.0
 offset_bottom = 40.0
 text = "Play"
 
-[connection signal="pressed" from="Interface/CenterContainer/Node2D/ExitBtn" to="." method="_on_exit_btn_pressed"]
-[connection signal="pressed" from="Interface/CenterContainer/Node2D/RestartBtn" to="." method="_on_restart_btn_pressed"]
+[node name="ReloadBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
+offset_top = 80.0
+offset_right = 80.0
+offset_bottom = 120.0
+text = "Reload
+"
+
+[node name="RestartBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
+offset_top = 160.0
+offset_right = 80.0
+offset_bottom = 200.0
+text = "Restart"
+
+[node name="ExitBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
+offset_top = 240.0
+offset_right = 80.0
+offset_bottom = 280.0
+text = "Exit"
+
 [connection signal="pressed" from="Interface/CenterContainer/Node2D/PlayBtn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="Interface/CenterContainer/Node2D/ReloadBtn" to="." method="_on_reload_btn_pressed"]
+[connection signal="pressed" from="Interface/CenterContainer/Node2D/RestartBtn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="Interface/CenterContainer/Node2D/ExitBtn" to="." method="_on_exit_btn_pressed"]

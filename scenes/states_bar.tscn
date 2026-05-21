@@ -363,6 +363,7 @@ animations = [{
 }]
 
 [node name="StatesBar" type="CanvasLayer" node_paths=PackedStringArray("animation_player", "collectable_label")]
+process_mode = 3
 script = ExtResource("1_f4ikk")
 animation_player = NodePath("Control/Node2D/AnimationPlayer")
 collectable_label = NodePath("Control/Node2D/Label")

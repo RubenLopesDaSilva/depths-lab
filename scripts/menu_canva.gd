@@ -2,6 +2,10 @@ extends CanvasLayer
 
 @export var control: Control;
 
+# a enlever juste pour le test
+var boss = false;
+var chase = false;
+
 func _ready() -> void:
 	control.hide();
 
@@ -20,14 +24,24 @@ func _close() -> void:
 	control.hide();
 	get_tree().paused = false;
 
-
 func _on_play_btn_pressed() -> void:
 	_close();
 
+func _on_reload_btn_pressed() -> void:
+	if boss:
+		AudioManager.quite(AudioManager.MusicState.BOSS);
+		boss = false;
+	else:
+		AudioManager.change_state(AudioManager.MusicState.BOSS);
+		boss = true;
 
 func _on_restart_btn_pressed() -> void:
-	print("\nRestart\n");
-
+	if chase:
+		AudioManager.quite(AudioManager.MusicState.CHASE);
+		chase = false;
+	else:
+		AudioManager.change_state(AudioManager.MusicState.CHASE);
+		chase = true;
 
 func _on_exit_btn_pressed() -> void:
 	get_tree().quit();
