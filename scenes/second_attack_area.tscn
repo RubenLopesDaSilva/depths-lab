@@ -1,23 +1,23 @@
 [gd_scene load_steps=10 format=3 uid="uid://c1fay30oqps1l"]
 
 [ext_resource type="Script" uid="uid://c2jrt2o606gl2" path="res://scripts/second_attack_area.gd" id="1_61g41"]
-[ext_resource type="Texture2D" uid="uid://b2yf24gdcr1on" path="res://assets/sprites/attack_2_dust.png" id="2_61g41"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g0ren"]
-atlas = ExtResource("2_61g41")
-region = Rect2(0, 0, 60, 48)
+[ext_resource type="Texture2D" uid="uid://nqr1dab8gs52" path="res://assets/sprites/attack_2_dust.png" id="2_61g41"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_61g41"]
 atlas = ExtResource("2_61g41")
-region = Rect2(60, 0, 60, 48)
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0ren"]
+atlas = ExtResource("2_61g41")
+region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33288"]
 atlas = ExtResource("2_61g41")
-region = Rect2(104, 0, 52, 48)
+region = Rect2(96, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xwgx0"]
 atlas = ExtResource("2_61g41")
-region = Rect2(156, 0, 52, 48)
+region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mjaa2"]
 atlas = ExtResource("2_61g41")
@@ -27,10 +27,10 @@ region = Rect2(192, 0, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g0ren")
+"texture": SubResource("AtlasTexture_61g41")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_61g41")
+"texture": SubResource("AtlasTexture_g0ren")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_33288")
@@ -47,7 +47,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
-size = Vector2(12, 8)
+size = Vector2(13.1428585, 28.57143)
 
 [node name="SecondAttackArea" type="Area2D"]
 z_index = 5
@@ -63,5 +63,7 @@ frame_progress = 1.0
 speed_scale = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5714289, 1.7142835)
+scale = Vector2(0.99999964, 0.99999964)
 shape = SubResource("RectangleShape2D_dqkch")
 debug_color = Color(0.8666667, 0, 0.12156863, 0.29411766)
