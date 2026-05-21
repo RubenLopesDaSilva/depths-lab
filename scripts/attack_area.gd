@@ -15,7 +15,6 @@ func _ready() -> void:
 	monitoring = true;
 	animated_sprite_2d_2.play("default");
 	animated_sprite_2d_2.animation_finished.connect(queue_free);
-	pass
 	
 func start(player: Player, dmg: int) -> void:
 	started = true;

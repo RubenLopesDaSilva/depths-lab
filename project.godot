@@ -27,6 +27,11 @@ GlobalLighting="*res://scenes/global_lighting.tscn"
 HealthBar="*res://scenes/health_bar.tscn"
 MenuCanva="*res://scenes/menu_canva.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+
 [global_group]
 
 Player=""

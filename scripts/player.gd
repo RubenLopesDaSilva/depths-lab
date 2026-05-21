@@ -17,6 +17,7 @@ var lastDirection: int = 1;
 var vulnerable: bool = true
 var animationFlag: int = 0
 var close: bool = false
+var running: bool = false;
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var vulnerableTimer: Timer = $Iframes
@@ -157,11 +158,13 @@ func play_attack() -> void:
 			animation_player.play("FirstAttack")
 			var attackArea = attack_area.instantiate();
 			attackArea.start(self, 20);
+			#await Utils.delay(0.2);
 			get_parent().add_child(attackArea);
 	elif attack_state == AttackState.SECOND:
 		animation_player.play("SecondAttack")
 		var secondAttackArea = second_attack_area.instantiate();
 		secondAttackArea.start(self, 20);
+		await Utils.delay(0.5);
 		get_parent().add_child(secondAttackArea);
 	if	await animation_finished_correctly(): 
 		set_state(State.IDLE, true)
