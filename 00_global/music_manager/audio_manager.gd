@@ -22,16 +22,14 @@ enum PartState { NONE, INTRO, LOOP, OUTRO }
 var musicState : MusicState = MusicState.LEVEL;
 var partState: PartState = PartState.INTRO;
 
-var flag : int = 0;
+var process_flag : int = 0;
+var music_flag : int = 0;
 
 func _ready() -> void:
 	music_player.stream = music_level_00;
 	music_player.play();
 
-func _process(delta: float) -> void:
-	pass
-
-func change_state(value: MusicState, objection: bool = false) -> void:
+func change_state(value: MusicState, objection: bool = false) -> Variant:
 	if not objection :
 		if musicState == value:
 			return
@@ -39,7 +37,10 @@ func change_state(value: MusicState, objection: bool = false) -> void:
 		return;
 	musicState = value;
 	partState = PartState.INTRO;
+	music_flag += 1;
+	process_flag = 0;
 	handle_state();
+	return music_flag;
 	
 func handle_state() -> void:	
 	var changed : bool = true;
@@ -83,18 +84,18 @@ func handle_state() -> void:
 			partState = PartState.NONE;
 		
 	if changed:
-		flag += 1;
 		music_player.play();
-		var last_flage = flag;
+		var last_process = process_flag;
+		var last_music = music_flag;
 		await music_player.finished;
-		if last_flage == flag:
+		if last_process == process_flag && last_music == music_flag:
 			handle_state();
 	else:
 		handle_state();
 		
-func quite(value: MusicState) -> void:
-	if musicState == value:
+func quite(flag: int) -> void:
+	if flag == music_flag && (partState == PartState.INTRO || partState == PartState.LOOP):
 		partState = PartState.OUTRO;
-		flag += 1;
+		process_flag += 1;
 		music_player.stop();
 		handle_state()

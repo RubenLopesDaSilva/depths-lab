@@ -4,7 +4,9 @@ extends CanvasLayer
 
 # a enlever juste pour le test
 var boss = false;
+var boss_id = null;
 var chase = false;
+var chase_id = null;
 
 func _ready() -> void:
 	control.hide();
@@ -29,18 +31,22 @@ func _on_play_btn_pressed() -> void:
 
 func _on_reload_btn_pressed() -> void:
 	if boss:
-		AudioManager.quite(AudioManager.MusicState.BOSS);
+		AudioManager.quite(boss_id);
 		boss = false;
 	else:
-		AudioManager.change_state(AudioManager.MusicState.BOSS);
+		var id = AudioManager.change_state(AudioManager.MusicState.BOSS);
+		if id is int:
+			boss_id = id;
 		boss = true;
 
 func _on_restart_btn_pressed() -> void:
 	if chase:
-		AudioManager.quite(AudioManager.MusicState.CHASE);
+		AudioManager.quite(chase_id);
 		chase = false;
 	else:
-		AudioManager.change_state(AudioManager.MusicState.CHASE);
+		var id = AudioManager.change_state(AudioManager.MusicState.CHASE);
+		if id is int:
+			chase_id = id;
 		chase = true;
 
 func _on_exit_btn_pressed() -> void:
