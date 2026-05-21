@@ -88,9 +88,14 @@ func apply_movement(delta: float) -> void:
 				set_state(State.WALK)
 		
 		if direction:
-			var to_multiplicator = 2 if running else 1;
-			multiplicator = move_toward(multiplicator, to_multiplicator, 0.006);
-			#print("\nmultiplicator :" + str(multiplicator));
+			#var to_multiplicator = 2 if running else 1;
+			#multiplicator = move_toward(multiplicator, to_multiplicator, 0.006);
+			##print("\nmultiplicator :" + str(multiplicator));
+			#velocity.x = move_toward(velocity.x, multiplicator * SPEED * direction, FORCE);
+			if running :
+				multiplicator = 2;
+			else : 
+				multiplicator = move_toward(multiplicator, 1, 0.005);
 			velocity.x = move_toward(velocity.x, multiplicator * SPEED * direction, FORCE);
 		else:
 			velocity.x = move_toward(velocity.x, 0, FORCE);

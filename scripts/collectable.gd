@@ -19,6 +19,7 @@ func _ready() -> void:
 			sprite.play("yellow");
 		elif type == Type.PURPLE:
 			value = 50;
+			sprite.scale *= 2;
 			sprite.play("purple");
 
 func _on_body_entered(body: Node2D) -> void:

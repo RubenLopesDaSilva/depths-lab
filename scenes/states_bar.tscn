@@ -389,7 +389,7 @@ libraries = {
 autoplay = "full"
 
 [node name="Collectables" type="AnimatedSprite2D" parent="Control/Node2D"]
-position = Vector2(60.800003, 47.6)
+position = Vector2(34.400005, 48.399998)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_a6tnw")
 autoplay = "default"
@@ -399,10 +399,10 @@ frame_progress = 0.07915321
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -39.6
-offset_top = 28.0
-offset_right = 41.200005
-offset_bottom = 65.2
+offset_left = -53.6
+offset_top = 27.2
+offset_right = 11.599998
+offset_bottom = 64.399994
 grow_vertical = 0
 text = "0"
 horizontal_alignment = 2

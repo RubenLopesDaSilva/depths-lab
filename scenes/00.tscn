@@ -143,16 +143,8 @@ position = Vector2(96, -47)
 id = "gr"
 
 [node name="Collectable" parent="." instance=ExtResource("10_pcm67")]
-position = Vector2(191, -26)
-type = 1
+position = Vector2(409, -41)
 
 [node name="Collectable2" parent="." instance=ExtResource("10_pcm67")]
-position = Vector2(280, -112)
-type = 2
-
-[node name="Collectable3" parent="." instance=ExtResource("10_pcm67")]
-position = Vector2(474, -43)
-
-[node name="Collectable4" parent="." instance=ExtResource("10_pcm67")]
-position = Vector2(562, -77)
-type = 3
+position = Vector2(552, -135)
+type = 1

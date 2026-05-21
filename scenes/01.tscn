@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bf1ati87dqexd"]
+[gd_scene load_steps=15 format=4 uid="uid://bf1ati87dqexd"]
 
 [ext_resource type="Texture2D" uid="uid://cld4s24e1uhfa" path="res://assets/sprites/layer4.png" id="1_6cx57"]
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_qvefa"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dhbwjsck31vef" path="res://general/scripts/level_bounds.gd" id="3_8dnki"]
 [ext_resource type="Texture2D" uid="uid://bd668440vdxhv" path="res://assets/sprites/layer2.png" id="3_kdc6i"]
 [ext_resource type="Texture2D" uid="uid://cj5kjv6tydi51" path="res://assets/sprites/layer1.png" id="4_mql6g"]
+[ext_resource type="PackedScene" uid="uid://yqj0p4kea3uk" path="res://scenes/collectable.tscn" id="10_6cygv"]
 [ext_resource type="PackedScene" uid="uid://dox3imdqhdbeo" path="res://scenes/new_mossy.tscn" id="10_520st"]
 [ext_resource type="PackedScene" uid="uid://dlf1t4i52784i" path="res://scenes/new_flying_mossy.tscn" id="10_f8m6n"]
 
@@ -176,3 +177,40 @@ scale = Vector2(2, 2)
 [node name="new_flying_mossy2" parent="." instance=ExtResource("10_f8m6n")]
 position = Vector2(399, -232)
 scale = Vector2(2, 2)
+
+[node name="Collectable" parent="." instance=ExtResource("10_6cygv")]
+position = Vector2(935, -70)
+type = 3
+
+[node name="Collectable2" parent="." instance=ExtResource("10_6cygv")]
+position = Vector2(456, -165)
+type = 2
+
+[node name="Collectable3" parent="." instance=ExtResource("10_6cygv")]
+position = Vector2(128, -28)
+type = 1
+
+[node name="Collectable4" parent="." instance=ExtResource("10_6cygv")]
+position = Vector2(18, -156)
+
+[node name="Collectable5" parent="." instance=ExtResource("10_6cygv")]
+position = Vector2(457, -280)
+type = 2
+
+[node name="Collectable6" parent="." instance=ExtResource("10_6cygv")]
+position = Vector2(794, -315)
+type = 1
+
+[node name="Collectable7" parent="." instance=ExtResource("10_6cygv")]
+position = Vector2(962, -450)
+type = 2
+
+[node name="Collectable8" parent="." instance=ExtResource("10_6cygv")]
+position = Vector2(-412, -43)
+
+[node name="Collectable9" parent="." instance=ExtResource("10_6cygv")]
+position = Vector2(-207, -163)
+type = 1
+
+[node name="Collectable10" parent="." instance=ExtResource("10_6cygv")]
+position = Vector2(264, -246)
