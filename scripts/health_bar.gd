@@ -10,7 +10,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
  
-func set_health(percentage: int) -> void: 
+func set_health(percentage: float) -> void: 
 	if percentage > 80:
 		animation_player.play("full");
 	elif percentage > 60:

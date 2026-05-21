@@ -4,14 +4,13 @@ enum State { IDLE, WALK, JUMP, FALL, LAND, ATTACK, DAMAGE, DEATH }
 
 enum AttackState { NONE, FIRST, SECOND, DISABLE }
 
-const FORCE: int = 20.0
-const SPEED: int = 200.0
-const JUMP_VELOCITY: int = -550.0
+const FORCE: float = 20.0
+const SPEED: float = 200.0
+const JUMP_VELOCITY: float = -550.0
 
-var multiplicator: int = 1;
 var state: State = State.IDLE
 var attack_state: AttackState = AttackState.NONE
-var health: int = 5
+var health: float = 5
 var notOnFloor: bool = false
 var direction: int = 0
 var lastDirection: int = 1;
@@ -19,6 +18,7 @@ var vulnerable: bool = true
 var animationFlag: int = 0
 var close: bool = false
 var running: bool = false;
+var multiplicator: float = 1;
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var vulnerableTimer: Timer = $Iframes
@@ -78,7 +78,7 @@ func handle_actions() -> void:
 	
 func apply_movement(delta: float) -> void:
 	if state == State.DEATH:
-		velocity.x = move_toward(velocity.x, 0, SPEED / 30)
+		velocity.x = move_toward(velocity.x, 0, SPEED / 30.0)
 	else:
 		if (is_on_floor()):
 			if direction == 0:
@@ -88,8 +88,8 @@ func apply_movement(delta: float) -> void:
 		
 		if direction:
 			var to_multiplicator = 2 if running else 1;
-			multiplicator = move_toward(multiplicator, to_multiplicator, 0.1);
-			print("\nmultiplicator :" + str(multiplicator));
+			multiplicator = move_toward(multiplicator, to_multiplicator, 0.006);
+			#print("\nmultiplicator :" + str(multiplicator));
 			velocity.x = move_toward(velocity.x, multiplicator * SPEED * direction, FORCE);
 		else:
 			velocity.x = move_toward(velocity.x, 0, FORCE);
