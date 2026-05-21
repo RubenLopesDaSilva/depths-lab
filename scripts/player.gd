@@ -7,7 +7,8 @@ enum AttackState { NONE, FIRST, SECOND, DISABLE }
 const FORCE: int = 20.0
 const SPEED: int = 200.0
 const JUMP_VELOCITY: int = -550.0
-	
+
+var multiplicator: int = 1;
 var state: State = State.IDLE
 var attack_state: AttackState = AttackState.NONE
 var health: int = 5
@@ -22,6 +23,7 @@ var running: bool = false;
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var vulnerableTimer: Timer = $Iframes
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var run_dusk_sprite: AnimatedSprite2D = $RunDuskSprite
 
 @export var attack_area: PackedScene;
 @export var second_attack_area: PackedScene;
@@ -30,6 +32,7 @@ func _ready() -> void:
 	if get_tree().get_first_node_in_group("Player") != self :
 		self.queue_free()
 	self.call_deferred("reparent",get_tree().root)
+	run_dusk_sprite.hide();
 
 func _physics_process(delta: float) -> void:
 	update_direction()
@@ -56,8 +59,16 @@ func handle_actions() -> void:
 	if (Input.is_action_just_pressed("attack")):
 		attack()	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		set_state(State.JUMP)
+		set_state(State.JUMP);
 		velocity.y = JUMP_VELOCITY
+	if state == State.WALK && Input.is_action_pressed("shift") && not running:
+		running = true;
+		run_dusk_sprite.show();
+		play_animation();
+	elif (not Input.is_action_pressed("shift") || not state == State.WALK) && running:
+		running = false;
+		run_dusk_sprite.hide();
+		play_animation();
 	if not is_on_floor() && velocity.y > 0:
 		notOnFloor = true
 		set_state(State.FALL)
@@ -76,7 +87,10 @@ func apply_movement(delta: float) -> void:
 				set_state(State.WALK)
 		
 		if direction:
-			velocity.x = move_toward(velocity.x, SPEED * direction, FORCE);
+			var to_multiplicator = 2 if running else 1;
+			multiplicator = move_toward(multiplicator, to_multiplicator, 0.1);
+			print("\nmultiplicator :" + str(multiplicator));
+			velocity.x = move_toward(velocity.x, multiplicator * SPEED * direction, FORCE);
 		else:
 			velocity.x = move_toward(velocity.x, 0, FORCE);
 		
@@ -137,7 +151,10 @@ func play_idle() -> void:
 	animation_player.play("Idle")
 	
 func play_walk() -> void:
-	animation_player.play("Walk")
+	if running:
+		animation_player.play("Run");
+	else :
+		animation_player.play("Walk");
 	
 func play_jump() -> void:
 	animation_player.play("Jump")
