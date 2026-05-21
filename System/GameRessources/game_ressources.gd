@@ -8,12 +8,14 @@ signal current_changed(new_current: int)
 var idle_finished_count = 0;
 
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
+@onready var animation_tree: AnimationTree = $"../AnimationTree"
 
 @export var max_amount := 10 : set = set_max_amount
 @export var current_amount := 0 : set = set_current_amount
 
 
 func _ready() -> void:
+	replenish();
 	max_changed.emit(max_amount)
 	current_changed.emit(current_amount)
 
@@ -56,3 +58,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			animation_player.play(anim_name);
 			idle_finished_count += 1
 			print("Idle animation finished: ", idle_finished_count, " times")
+		#if(idle_finished_count >= 3):
+			#animation_player.stop();
+			#idle_finished_count = 0;
+
+func _on_area_2d_body_entered(_body: Node2D) -> void:
+	animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE;
+	decrease(20);

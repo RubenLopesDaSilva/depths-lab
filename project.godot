@@ -25,7 +25,7 @@ SaveManager="*res://00_global/save_manager.gd"
 
 [display]
 
-window/size/mode=3
+window/size/mode=2
 
 [global_group]
 
