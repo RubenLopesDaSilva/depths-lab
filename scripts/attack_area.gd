@@ -22,7 +22,7 @@ func start(player: Player, dmg: int) -> void:
 	damage = dmg;
 	global_position = owner_player.global_position + Vector2(owner_player.lastDirection * 40,-50);
 	if owner_player.lastDirection == -1:
-		lastDirection = 1;
+		lastDirection = -1;
 		self.scale.x = self.scale.x * -1;
 	
 func _physics_process(delta: float) -> void:

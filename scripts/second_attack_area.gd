@@ -15,7 +15,6 @@ func _ready() -> void:
 	monitoring = true;
 	animated_sprite_2d_2.play("default");
 	animated_sprite_2d_2.animation_finished.connect(queue_free);
-	pass
 	
 func start(player: Player, dmg: int) -> void:
 	started = true;
@@ -23,7 +22,7 @@ func start(player: Player, dmg: int) -> void:
 	damage = dmg;
 	global_position = owner_player.global_position + Vector2(owner_player.lastDirection * 40,-50);
 	if owner_player.lastDirection == -1:
-		lastDirection = 1;
+		lastDirection = -1;
 		self.scale.x = self.scale.x * -1;
 	
 func _physics_process(delta: float) -> void:
@@ -32,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		if owner_player.lastDirection != lastDirection:
 			lastDirection = owner_player.lastDirection;
 			self.scale.x = abs(self.scale.x) * lastDirection;
-	
+			
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage") && not boddies.has(body):
 		boddies.append(body);

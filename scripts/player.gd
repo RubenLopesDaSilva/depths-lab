@@ -88,10 +88,6 @@ func apply_movement(delta: float) -> void:
 				set_state(State.WALK)
 		
 		if direction:
-			#var to_multiplicator = 2 if running else 1;
-			#multiplicator = move_toward(multiplicator, to_multiplicator, 0.006);
-			##print("\nmultiplicator :" + str(multiplicator));
-			#velocity.x = move_toward(velocity.x, multiplicator * SPEED * direction, FORCE);
 			if running :
 				multiplicator = 2;
 			else : 
@@ -126,8 +122,6 @@ func set_state(value: State, objection: bool = false, play: bool = true) -> void
 		play_animation()
 	
 func set_attack_state(value: AttackState) -> void:
-	#if value == AttackState.SECOND:
-		#return
 	if state != State.ATTACK:
 		return
 	if value == attack_state:
@@ -181,7 +175,6 @@ func play_attack() -> void:
 			animation_player.play("FirstAttack")
 			var attackArea = attack_area.instantiate();
 			attackArea.start(self, 20);
-			#await Utils.delay(0.2);
 			get_parent().add_child(attackArea);
 	elif attack_state == AttackState.SECOND:
 		animation_player.play("SecondAttack")

@@ -357,7 +357,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_41y7u")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
@@ -389,20 +389,17 @@ libraries = {
 autoplay = "full"
 
 [node name="Collectables" type="AnimatedSprite2D" parent="Control/Node2D"]
-position = Vector2(34.400005, 48.399998)
-scale = Vector2(2, 2)
+position = Vector2(1.2000005, 29.599997)
 sprite_frames = SubResource("SpriteFrames_a6tnw")
-autoplay = "default"
-frame_progress = 0.07915321
 
 [node name="Label" type="Label" parent="Control/Node2D"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -53.6
-offset_top = 27.2
-offset_right = 11.599998
-offset_bottom = 64.399994
+offset_left = -70.799995
+offset_top = 10.000002
+offset_right = -12.399998
+offset_bottom = 47.199997
 grow_vertical = 0
 text = "0"
 horizontal_alignment = 2

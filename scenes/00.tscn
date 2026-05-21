@@ -142,9 +142,10 @@ position = Vector2(-205, -1)
 position = Vector2(96, -47)
 id = "gr"
 
-[node name="Collectable" parent="." instance=ExtResource("10_pcm67")]
-position = Vector2(409, -41)
+[node name="Collectables" type="Node2D" parent="."]
 
-[node name="Collectable2" parent="." instance=ExtResource("10_pcm67")]
-position = Vector2(552, -135)
-type = 1
+[node name="Collectable" parent="Collectables" instance=ExtResource("10_pcm67")]
+position = Vector2(336, -54)
+
+[node name="Collectable2" parent="Collectables" instance=ExtResource("10_pcm67")]
+position = Vector2(481, -57)
