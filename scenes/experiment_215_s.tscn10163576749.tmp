@@ -264,7 +264,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_qnbj4"]
 resource_name = "possesed"
-length = 1.1
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -308,7 +308,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.1),
+"times": PackedFloat32Array(1.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -455,6 +455,7 @@ advance_expression = "get_node(\"RandomChance\").luck <= 0.65"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bxvic"]
 switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2t2ig"]
 advance_mode = 2
@@ -483,7 +484,7 @@ states/randomize/position = Vector2(261, 371)
 states/sawAttack/node = SubResource("AnimationNodeAnimation_lvdbt")
 states/sawAttack/position = Vector2(532, 286)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_mtiiq"), "RESET", "appear", SubResource("AnimationNodeStateMachineTransition_d5612"), "appear", "Idle", SubResource("AnimationNodeStateMachineTransition_3534c"), "Idle", "sawAttack", SubResource("AnimationNodeStateMachineTransition_8t6b0"), "sawAttack", "Idle 2", SubResource("AnimationNodeStateMachineTransition_utce4"), "Idle 2", "randomize", SubResource("AnimationNodeStateMachineTransition_yw13v"), "randomize", "possesed", SubResource("AnimationNodeStateMachineTransition_odn36"), "randomize", "sawAttack", SubResource("AnimationNodeStateMachineTransition_mtqsy"), "possesed", "Idle 2", SubResource("AnimationNodeStateMachineTransition_bxvic"), "Idle 2", "death", SubResource("AnimationNodeStateMachineTransition_2t2ig"), "sawAttack", "death", SubResource("AnimationNodeStateMachineTransition_15k1t")]
-graph_offset = Vector2(-57, 313)
+graph_offset = Vector2(-17, 147)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8t6b0"]
 graph_offset = Vector2(-239.10779, -50.796555)

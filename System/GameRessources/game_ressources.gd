@@ -63,5 +63,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			#idle_finished_count = 0;
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
-	animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE;
-	decrease(20);
+	if current_amount > 0:
+		animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE;
+		decrease(20);
