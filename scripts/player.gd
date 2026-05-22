@@ -21,7 +21,7 @@ var running: bool = false;
 var multiplicator: float = 1;
 var collectables : int = 0;
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var vulnerableTimer: Timer = $Iframes
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var run_dusk_sprite: AnimatedSprite2D = $RunDuskSprite

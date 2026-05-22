@@ -57,6 +57,7 @@ func handle_state() -> void:
 			music_player.stream = music_bossy_outro
 		elif partState == PartState.NONE:
 			change_state(MusicState.LEVEL);
+			return
 		else:
 			changed = false;
 	if musicState == MusicState.CHASE:
@@ -68,6 +69,7 @@ func handle_state() -> void:
 			music_player.stream = music_entity_chase_outro;
 		elif partState == PartState.NONE:
 			change_state(MusicState.LEVEL);
+			return
 		else:
 			changed = false;
 	if musicState == MusicState.DEATH:
@@ -77,6 +79,7 @@ func handle_state() -> void:
 			music_player.stream = music_death_loop
 		elif partState == PartState.NONE:
 			change_state(MusicState.LEVEL);
+			return
 		else:
 			changed = false;
 			
