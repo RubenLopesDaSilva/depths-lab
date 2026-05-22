@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsp2wp2wqih05"]
+[gd_scene load_steps=3 format=3 uid="uid://cag7b1oxxluiw"]
 
 [ext_resource type="PackedScene" uid="uid://bnwlqekgab233" path="res://scenes/global_lighting.tscn" id="1_q0alj"]
 [ext_resource type="Script" uid="uid://dr7vp0apc1ngm" path="res://scripts/menu_canva.gd" id="1_r0ij4"]
@@ -38,18 +38,18 @@ offset_right = 80.0
 offset_bottom = 40.0
 text = "Play"
 
-[node name="ReloadBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
+[node name="RestartBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
 offset_top = 80.0
 offset_right = 80.0
 offset_bottom = 120.0
-text = "Reload
-"
+text = "Restart"
 
-[node name="RestartBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
+[node name="ResetBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
 offset_top = 160.0
 offset_right = 80.0
 offset_bottom = 200.0
-text = "Restart"
+text = "Reset
+"
 
 [node name="ExitBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
 offset_top = 240.0
@@ -58,6 +58,6 @@ offset_bottom = 280.0
 text = "Exit"
 
 [connection signal="pressed" from="Interface/CenterContainer/Node2D/PlayBtn" to="." method="_on_play_btn_pressed"]
-[connection signal="pressed" from="Interface/CenterContainer/Node2D/ReloadBtn" to="." method="_on_reload_btn_pressed"]
 [connection signal="pressed" from="Interface/CenterContainer/Node2D/RestartBtn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="Interface/CenterContainer/Node2D/ResetBtn" to="." method="_on_reset_btn_pressed"]
 [connection signal="pressed" from="Interface/CenterContainer/Node2D/ExitBtn" to="." method="_on_exit_btn_pressed"]

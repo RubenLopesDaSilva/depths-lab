@@ -29,7 +29,7 @@ func _close() -> void:
 func _on_play_btn_pressed() -> void:
 	_close();
 
-func _on_reload_btn_pressed() -> void:
+func _on_restart_btn_pressed() -> void:
 	if boss:
 		AudioManager.quite(boss_id);
 		boss = false;
@@ -39,7 +39,7 @@ func _on_reload_btn_pressed() -> void:
 			boss_id = id;
 		boss = true;
 
-func _on_restart_btn_pressed() -> void:
+func _on_reset_btn_pressed() -> void:
 	if chase:
 		AudioManager.quite(chase_id);
 		chase = false;

@@ -4,12 +4,6 @@ extends CanvasLayer
 @export var collectable_label: Label;
 
 var life: int = 100;
-
-func _ready() -> void:
-	pass
-
-func _process(delta: float) -> void:
-	pass
  
 func set_health(percentage: float) -> void: 
 	if percentage > 80:
