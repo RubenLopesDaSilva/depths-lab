@@ -57,6 +57,15 @@ offset_right = 80.0
 offset_bottom = 280.0
 text = "Exit"
 
+[node name="Label" type="Label" parent="Interface"]
+layout_mode = 0
+offset_top = -208.0
+offset_right = 1151.0
+offset_bottom = -163.0
+theme_override_font_sizes/font_size = 32
+text = "Depths Lab"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="Interface/CenterContainer/Node2D/PlayBtn" to="." method="_on_play_btn_pressed"]
 [connection signal="pressed" from="Interface/CenterContainer/Node2D/RestartBtn" to="." method="_on_restart_btn_pressed"]
 [connection signal="pressed" from="Interface/CenterContainer/Node2D/ResetBtn" to="." method="_on_reset_btn_pressed"]
