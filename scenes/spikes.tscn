@@ -13,6 +13,7 @@ region_enabled = true
 region_rect = Rect2(96, 131, 48, 13)
 
 [node name="Killzone" parent="." instance=ExtResource("2_xbcdo")]
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 shape = SubResource("RectangleShape2D_xbcdo")

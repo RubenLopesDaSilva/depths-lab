@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Depths Lab"
-run/main_scene="uid://ba2euro8iccya"
+run/main_scene="uid://cdtwgxyy3f0f4"
 config/features=PackedStringArray("4.5", "Forward Plus")
 run/flush_stdout_on_print=true
 config/icon="res://icon.svg"
@@ -29,12 +29,9 @@ MenuCanva="*res://scenes/menu_canva.tscn"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
-
-[display]
-
-window/size/mode=2
 
 [global_group]
 
