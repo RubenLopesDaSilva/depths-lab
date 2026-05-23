@@ -8,7 +8,7 @@ func _ready() -> void:
 	if get_tree().get_first_node_in_group("Player"):
 		print("We have a player")
 		return;
-
+	
 	print("No player found");
 	
 	var player : Player = load("uid://bew4d6ojw3kyv").instantiate();
@@ -16,4 +16,3 @@ func _ready() -> void:
 	get_tree().root.add_child(player)
 	player.global_position = self.global_position;
 	
-	pass;

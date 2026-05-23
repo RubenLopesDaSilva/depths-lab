@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cdtwgxyy3f0f4"]
+[gd_scene load_steps=15 format=4 uid="uid://cdtwgxyy3f0f4"]
 
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_be0du"]
 [ext_resource type="Texture2D" uid="uid://dufq0svvkr1tr" path="res://assets/sprites/lianne.png" id="2_2s6oj"]
@@ -155,7 +155,7 @@ position = Vector2(-205, -1)
 
 [node name="CheckPoint" parent="." instance=ExtResource("9_2s6oj")]
 position = Vector2(96, -47)
-id = "gr"
+id = "CP00"
 
 [node name="Collectables" type="Node2D" parent="."]
 

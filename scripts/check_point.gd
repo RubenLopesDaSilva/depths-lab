@@ -17,6 +17,7 @@ var player : Player = null;
 
 func _ready() -> void:
 	label.text = save_text;
+	active = SaveManager.is_active_check_point(id);
 	if active:
 		animated_sprite.play("active");
 	
@@ -48,7 +49,7 @@ func save() -> void:
 		active = true;
 		_activate();
 		
-	SaveManager.set_state("");
+	SaveManager.set_state(SaveManager.GameState.NORMAL);
 	SaveManager.set_check_point(id);
 	SaveManager.set_collectable(player.collectables);
 	SaveManager.set_position(player.position);

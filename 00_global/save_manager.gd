@@ -64,9 +64,9 @@ func save_game() -> void:
 func reset () -> void :
 	state = GameState.BEGIN;
 	check_point = "";
-	x  = 0;
-	y  = 0;
-	collectable  = 0;
+	x = 0;
+	y = 0;
+	collectable = 0;
 	check_points.clear();
 	bosses.clear();
 	events.clear();
@@ -87,15 +87,29 @@ func to_json() -> Dictionary :
 	};
 
 func from_json(json : Dictionary) -> void :
+	print(json)
 	to_state(json["state"]);
 	check_point = json["check_point"];
 	x  = float(json["x"]);
 	y  = float(json["y"]);
 	collectable  = int(json["collectable"]);
-	check_points = json["check_points"];
-	bosses = json["bosses"];
-	events = json["events"];
-	buttons = json["buttons"];
+	
+	check_points.clear();
+	for value in json["check_points"] :
+		check_points.append(value);
+	
+	bosses.clear();
+	for value in  json["bosses"] :
+		bosses.append(value);
+		
+	events.clear();
+	for value in json["events"] :
+		events.append(value);
+		
+	buttons.clear();
+	for value in json["buttons"] :
+		buttons.append(value);
+		
 	if state == GameState.NONE :
 		reset();
 		load_game();
@@ -106,8 +120,7 @@ func to_state(value: String) -> void :
 			state = GameState.BEGIN;
 		"normal":
 			state = GameState.NORMAL;
-		"none":
-		 #_:
+		"none", _:
 			state = GameState.NONE;
 			
 
@@ -117,10 +130,8 @@ func from_state() -> String :
 			return "";
 		GameState.NORMAL:
 			return "normal";
-		_:
-			return "none";
-		#"normal":
-			#state = GameState.NORMAL
+		GameState.NONE, _:
+			return "none"
 
 func set_state(value: GameState) -> void :
 	state = value;
@@ -146,3 +157,6 @@ func activate_event(id: String) -> void :
 
 func activate_button(id: String) -> void :
 	buttons.append(id);
+	
+func is_active_check_point(id: String):
+	return check_points.has(id);
