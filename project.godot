@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Depths Lab"
-run/main_scene="uid://cdtwgxyy3f0f4"
+run/main_scene="uid://ccshi4j58hyb7"
 config/features=PackedStringArray("4.5", "Forward Plus")
 run/flush_stdout_on_print=true
 config/icon="res://icon.svg"
@@ -21,7 +21,7 @@ config/icon="res://icon.svg"
 GameManager="*res://scripts/game_manager.gd"
 Utils="*res://scripts/utils.gd"
 SceneManager="*res://00_global/scene_manager/scene_manager.tscn"
-SaveManager="*res://00_global/save_manager.gd"
+SaveManager="*res://00_global/save_manager/save_manager.gd"
 AudioManager="*res://00_global/music_manager/audio_manager.tscn"
 GlobalLighting="*res://scenes/global_lighting.tscn"
 StatesBar="*res://scenes/states_bar.tscn"
