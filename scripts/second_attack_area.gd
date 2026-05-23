@@ -1,6 +1,8 @@
 class_name SecondAttackArea extends Area2D
 
 @onready var animated_sprite_2d_2: AnimatedSprite2D = $AnimatedSprite2D2;
+@export var sound_player : AudioStreamPlayer;
+
 
 var owner_player: Player;
 var started: bool = false;
@@ -14,6 +16,7 @@ func _ready() -> void:
 	monitorable = false;
 	monitoring = true;
 	animated_sprite_2d_2.play("default");
+	sound_player.play();
 	animated_sprite_2d_2.animation_finished.connect(queue_free);
 	
 func start(player: Player, dmg: int) -> void:

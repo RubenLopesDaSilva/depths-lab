@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dlf1t4i52784i"]
+[gd_scene load_steps=23 format=3 uid="uid://dlf1t4i52784i"]
 
 [ext_resource type="Script" uid="uid://cdui6pprqwmpc" path="res://scripts/new_flying_mossy.gd" id="1_husjv"]
 [ext_resource type="Texture2D" uid="uid://dwrbci0r38r7b" path="res://assets/sprites/flying_mossy (2).png" id="2_fal1y"]
 [ext_resource type="PackedScene" uid="uid://bvneyxmv0e6x0" path="res://scenes/killzone.tscn" id="3_fal1y"]
+[ext_resource type="AudioStream" uid="uid://cjencc1aq5vos" path="res://assets/sfx/flying_mossy_sound.mp3" id="4_1vaix"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5tl1"]
 size = Vector2(21.875, 22.5)
@@ -315,10 +316,11 @@ _data = {
 &"RESET": SubResource("Animation_1vaix")
 }
 
-[node name="new_flying_mossy" type="CharacterBody2D"]
+[node name="new_flying_mossy" type="CharacterBody2D" node_paths=PackedStringArray("sound_player")]
 z_index = 3
 collision_layer = 4
 script = ExtResource("1_husjv")
+sound_player = NodePath("SoundPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -349,3 +351,7 @@ shape = SubResource("RectangleShape2D_m5tl1")
 libraries = {
 &"": SubResource("AnimationLibrary_m5tl1")
 }
+
+[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_1vaix")
+attenuation = 2.0

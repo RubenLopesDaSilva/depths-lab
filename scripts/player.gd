@@ -28,6 +28,8 @@ var collectables : int = 0;
 
 @export var attack_area: PackedScene;
 @export var second_attack_area: PackedScene;
+@export var walk_sound_player : AudioStreamPlayer;
+@export var run_sound_player : AudioStreamPlayer;
 
 func _ready() -> void:
 	if get_tree().get_first_node_in_group("Player") != self :
@@ -102,6 +104,7 @@ func apply_movement(delta: float) -> void:
 	move_and_slide()
 	
 func set_state(value: State, objection: bool = false, play: bool = true) -> void:
+	
 	if(not objection):
 		if state == value:
 			return
@@ -115,9 +118,16 @@ func set_state(value: State, objection: bool = false, play: bool = true) -> void
 			return
 		if state == State.ATTACK && (value != State.DEATH && value != State.DAMAGE) :
 			return
+			
 	if state == State.DEATH : 
 		return
+		
 	state = value
+	
+	if state != State.WALK :
+		walk_sound_player.stop();
+		run_sound_player.stop();
+	
 	if	play:
 		play_animation()
 	
@@ -153,9 +163,13 @@ func play_idle() -> void:
 func play_walk() -> void:
 	if running:
 		animation_player.play("Run");
+		walk_sound_player.stop();
+		run_sound_player.play();
 	else :
 		animation_player.play("Walk");
-	
+		walk_sound_player.play();
+		run_sound_player.stop();
+		
 func play_jump() -> void:
 	animation_player.play("Jump")
 	

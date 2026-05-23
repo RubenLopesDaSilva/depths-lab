@@ -1,10 +1,12 @@
-[gd_scene load_steps=63 format=3 uid="uid://bew4d6ojw3kyv"]
+[gd_scene load_steps=65 format=3 uid="uid://bew4d6ojw3kyv"]
 
 [ext_resource type="Texture2D" uid="uid://csh5wod3txei7" path="res://assets/sprites/kansen.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dj12myodc1eds" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://bm74fw2p8ydun" path="res://scenes/attack_area.tscn" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://c1fay30oqps1l" path="res://scenes/second_attack_area.tscn" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://c5hfwtdvhlq6f" path="res://assets/sprites/run_dust.png" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://bxu41xxdf7xgj" path="res://assets/sfx/walk_sound.mp3" id="6_fjrip"]
+[ext_resource type="AudioStream" uid="uid://d30tfc3gykau7" path="res://assets/sfx/run_sound.mp3" id="7_smehm"]
 
 [sub_resource type="Animation" id="Animation_g2els"]
 resource_name = "Death"
@@ -1226,12 +1228,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("walk_sound_player", "run_sound_player") groups=["Player"]]
 z_index = 5
 collision_layer = 16
 script = ExtResource("1_g2els")
 attack_area = ExtResource("2_qhqgy")
 second_attack_area = ExtResource("3_dqkch")
+walk_sound_player = NodePath("WalkSoundPlayer")
+run_sound_player = NodePath("RunSoundPlayer")
 
 [node name="Iframes" type="Timer" parent="."]
 wait_time = 1.5
@@ -1270,5 +1274,15 @@ position = Vector2(-19, -4)
 sprite_frames = SubResource("SpriteFrames_giy8y")
 autoplay = "default"
 frame_progress = 0.15602517
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+position = Vector2(0, -17)
+current = true
+
+[node name="WalkSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_fjrip")
+
+[node name="RunSoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_smehm")
 
 [connection signal="timeout" from="Iframes" to="." method="_on_timer_timeout"]

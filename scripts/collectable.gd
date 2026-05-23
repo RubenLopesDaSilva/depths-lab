@@ -4,6 +4,7 @@ enum Type { GREEN, BLUE, YELLOW, PURPLE }
 
 @export var type : Type = Type.GREEN;
 @export var sprite : AnimatedSprite2D;
+@export var sound_player : AudioStreamPlayer;
 
 var value : int  = 0;
 
@@ -25,5 +26,8 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		body.get_collectable(value);
+		sound_player.play()
+		sprite.hide();
+		await sound_player.finished;
 		queue_free();
 		

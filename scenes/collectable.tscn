@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://yqj0p4kea3uk"]
+[gd_scene load_steps=23 format=3 uid="uid://yqj0p4kea3uk"]
 
 [ext_resource type="Script" uid="uid://d4mwkmtkb6tb6" path="res://scripts/collectable.gd" id="1_llfh3"]
 [ext_resource type="Texture2D" uid="uid://cyrq1tg3d6i4f" path="res://assets/sprites/collectable.png" id="1_ti8a4"]
+[ext_resource type="AudioStream" uid="uid://cpb4i2nbwo5d2" path="res://assets/sfx/collectable_sound.mp3" id="3_dnya4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r08pg"]
 atlas = ExtResource("1_ti8a4")
@@ -153,10 +154,11 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_llfh3"]
 radius = 7.0
 
-[node name="Collectable" type="Area2D" node_paths=PackedStringArray("sprite")]
+[node name="Collectable" type="Area2D" node_paths=PackedStringArray("sprite", "sound_player")]
 collision_mask = 16
 script = ExtResource("1_llfh3")
 sprite = NodePath("AnimatedSprite2D")
+sound_player = NodePath("SoundPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 4
@@ -166,5 +168,8 @@ frame_progress = 0.1033391
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_llfh3")
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dnya4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

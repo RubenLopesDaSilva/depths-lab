@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://dox3imdqhdbeo"]
+[gd_scene load_steps=25 format=3 uid="uid://dox3imdqhdbeo"]
 
 [ext_resource type="Script" uid="uid://c0j6w1w2j4k46" path="res://scripts/new_mossy.gd" id="1_fnhtv"]
 [ext_resource type="Texture2D" uid="uid://b5hgyi4x6p1pj" path="res://assets/sprites/mossy.png" id="2_0pcla"]
 [ext_resource type="PackedScene" uid="uid://bvneyxmv0e6x0" path="res://scenes/killzone.tscn" id="3_svx0w"]
+[ext_resource type="AudioStream" uid="uid://jngo4q2q7nmn" path="res://assets/sfx/mossy_sound.mp3" id="4_0pcla"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fnhtv"]
 atlas = ExtResource("2_0pcla")
@@ -305,10 +306,11 @@ _data = {
 &"Walk": SubResource("Animation_svx0w")
 }
 
-[node name="NewMossy" type="CharacterBody2D"]
+[node name="NewMossy" type="CharacterBody2D" node_paths=PackedStringArray("sound_player")]
 z_index = 3
 collision_layer = 4
 script = ExtResource("1_fnhtv")
+sound_player = NodePath("SoundPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -24)
@@ -343,3 +345,8 @@ shape = SubResource("RectangleShape2D_y5yyw")
 libraries = {
 &"": SubResource("AnimationLibrary_7fit3")
 }
+
+[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -20)
+stream = ExtResource("4_0pcla")
+attenuation = 2.0
