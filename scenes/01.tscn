@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bd668440vdxhv" path="res://assets/sprites/layer2.png" id="3_kdc6i"]
 [ext_resource type="Texture2D" uid="uid://cj5kjv6tydi51" path="res://assets/sprites/layer1.png" id="4_mql6g"]
 [ext_resource type="PackedScene" uid="uid://yqj0p4kea3uk" path="res://scenes/collectable.tscn" id="10_6cygv"]
-[ext_resource type="PackedScene" uid="uid://dox3imdqhdbeo" path="res://scenes/new_mossy.tscn" id="10_520st"]
-[ext_resource type="PackedScene" uid="uid://dlf1t4i52784i" path="res://scenes/new_flying_mossy.tscn" id="10_f8m6n"]
+[ext_resource type="PackedScene" uid="uid://dox3imdqhdbeo" path="res://scenes/mossy.tscn" id="10_520st"]
+[ext_resource type="PackedScene" uid="uid://dlf1t4i52784i" path="res://scenes/flying_mossy.tscn" id="10_f8m6n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixcy0"]
 texture = ExtResource("1_qvefa")

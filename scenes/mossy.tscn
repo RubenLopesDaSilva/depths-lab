@@ -1,60 +1,60 @@
 [gd_scene load_steps=25 format=3 uid="uid://dox3imdqhdbeo"]
 
-[ext_resource type="Script" uid="uid://c0j6w1w2j4k46" path="res://scripts/new_mossy.gd" id="1_fnhtv"]
-[ext_resource type="Texture2D" uid="uid://b5hgyi4x6p1pj" path="res://assets/sprites/mossy.png" id="2_0pcla"]
-[ext_resource type="PackedScene" uid="uid://bvneyxmv0e6x0" path="res://scenes/killzone.tscn" id="3_svx0w"]
-[ext_resource type="AudioStream" uid="uid://jngo4q2q7nmn" path="res://assets/sfx/mossy_sound.mp3" id="4_0pcla"]
+[ext_resource type="Script" uid="uid://c0j6w1w2j4k46" path="res://scripts/mossy.gd" id="1_4elio"]
+[ext_resource type="Texture2D" uid="uid://b5hgyi4x6p1pj" path="res://assets/sprites/mossy.png" id="1_jwljl"]
+[ext_resource type="PackedScene" uid="uid://bvneyxmv0e6x0" path="res://scenes/killzone.tscn" id="3_hiyx0"]
+[ext_resource type="AudioStream" uid="uid://jngo4q2q7nmn" path="res://assets/sfx/mossy_sound.mp3" id="4_w7yka"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fnhtv"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(9, 55, 34, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0pcla"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(57, 55, 34, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_svx0w"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(105, 54, 34, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y5yyw"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(153, 54, 34, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7fit3"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(200, 52, 38, 43)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r8rdx"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(9, 103, 34, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cjx0e"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(57, 103, 34, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mfj37"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(105, 103, 34, 41)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6yx7a"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hiyx0"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4elio"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(96, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w7yka"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fo31a"]
-atlas = ExtResource("2_0pcla")
+atlas = ExtResource("1_jwljl")
 region = Rect2(192, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7fit3"]
@@ -306,10 +306,10 @@ _data = {
 &"Walk": SubResource("Animation_svx0w")
 }
 
-[node name="NewMossy" type="CharacterBody2D" node_paths=PackedStringArray("sound_player")]
+[node name="Mossy" type="CharacterBody2D" node_paths=PackedStringArray("sound_player")]
 z_index = 3
 collision_layer = 4
-script = ExtResource("1_fnhtv")
+script = ExtResource("1_4elio")
 sound_player = NodePath("SoundPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -331,7 +331,7 @@ target_position = Vector2(16, 0)
 position = Vector2(16, -18)
 target_position = Vector2(0, 20)
 
-[node name="Killzone" parent="." instance=ExtResource("3_svx0w")]
+[node name="Killzone" parent="." instance=ExtResource("3_hiyx0")]
 collision_layer = 33
 collision_mask = 18
 input_pickable = false
@@ -348,5 +348,5 @@ libraries = {
 
 [node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, -20)
-stream = ExtResource("4_0pcla")
+stream = ExtResource("4_w7yka")
 attenuation = 2.0

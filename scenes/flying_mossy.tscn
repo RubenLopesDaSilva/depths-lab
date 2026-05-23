@@ -1,55 +1,55 @@
 [gd_scene load_steps=23 format=3 uid="uid://dlf1t4i52784i"]
 
-[ext_resource type="Script" uid="uid://cdui6pprqwmpc" path="res://scripts/new_flying_mossy.gd" id="1_husjv"]
-[ext_resource type="Texture2D" uid="uid://dwrbci0r38r7b" path="res://assets/sprites/flying_mossy.png" id="2_fal1y"]
-[ext_resource type="PackedScene" uid="uid://bvneyxmv0e6x0" path="res://scenes/killzone.tscn" id="3_fal1y"]
-[ext_resource type="AudioStream" uid="uid://cjencc1aq5vos" path="res://assets/sfx/flying_mossy_sound.mp3" id="4_1vaix"]
+[ext_resource type="Texture2D" uid="uid://dwrbci0r38r7b" path="res://assets/sprites/flying_mossy.png" id="1_8n3bk"]
+[ext_resource type="Script" uid="uid://cdui6pprqwmpc" path="res://scripts/flying_mossy.gd" id="1_xg6em"]
+[ext_resource type="PackedScene" uid="uid://bvneyxmv0e6x0" path="res://scenes/killzone.tscn" id="2_ocxyw"]
+[ext_resource type="AudioStream" uid="uid://cjencc1aq5vos" path="res://assets/sfx/flying_mossy_sound.mp3" id="4_gtq7q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5tl1"]
 size = Vector2(21.875, 22.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7un4"]
-atlas = ExtResource("2_fal1y")
+atlas = ExtResource("1_8n3bk")
 region = Rect2(0, 106, 48, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m5tl1"]
-atlas = ExtResource("2_fal1y")
+atlas = ExtResource("1_8n3bk")
 region = Rect2(48, 106, 48, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owo0w"]
-atlas = ExtResource("2_fal1y")
+atlas = ExtResource("1_8n3bk")
 region = Rect2(96, 104, 48, 34)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhxt1"]
-atlas = ExtResource("2_fal1y")
+atlas = ExtResource("1_8n3bk")
 region = Rect2(144, 98, 48, 44)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_husjv"]
-atlas = ExtResource("2_fal1y")
+atlas = ExtResource("1_8n3bk")
 region = Rect2(0, 10, 48, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1vaix"]
-atlas = ExtResource("2_fal1y")
+atlas = ExtResource("1_8n3bk")
 region = Rect2(48, 10, 48, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fal1y"]
-atlas = ExtResource("2_fal1y")
+atlas = ExtResource("1_8n3bk")
 region = Rect2(96, 10, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ay7cl"]
-atlas = ExtResource("2_fal1y")
+atlas = ExtResource("1_8n3bk")
 region = Rect2(144, 10, 48, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0sxun"]
-atlas = ExtResource("2_fal1y")
+atlas = ExtResource("1_8n3bk")
 region = Rect2(0, 58, 48, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8cr4r"]
-atlas = ExtResource("2_fal1y")
+atlas = ExtResource("1_8n3bk")
 region = Rect2(48, 58, 48, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3llwq"]
-atlas = ExtResource("2_fal1y")
+atlas = ExtResource("1_8n3bk")
 region = Rect2(96, 58, 48, 29)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j7un4"]
@@ -316,10 +316,10 @@ _data = {
 &"RESET": SubResource("Animation_1vaix")
 }
 
-[node name="new_flying_mossy" type="CharacterBody2D" node_paths=PackedStringArray("sound_player")]
+[node name="FlyingMossy" type="CharacterBody2D" node_paths=PackedStringArray("sound_player")]
 z_index = 3
 collision_layer = 4
-script = ExtResource("1_husjv")
+script = ExtResource("1_xg6em")
 sound_player = NodePath("SoundPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -337,7 +337,7 @@ autoplay = "Fly"
 position = Vector2(0, -27)
 target_position = Vector2(30, 0)
 
-[node name="Killzone" parent="." instance=ExtResource("3_fal1y")]
+[node name="Killzone" parent="." instance=ExtResource("2_ocxyw")]
 collision_layer = 33
 collision_mask = 18
 input_pickable = false
@@ -353,5 +353,5 @@ libraries = {
 }
 
 [node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_1vaix")
+stream = ExtResource("4_gtq7q")
 attenuation = 2.0
