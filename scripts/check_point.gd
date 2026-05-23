@@ -18,7 +18,12 @@ var player : Player = null;
 
 func _ready() -> void:
 	label.text = save_text;
-	
+	if GameManager.get_map_is_ready() :
+		
+		active = SaveManager.is_active_check_point(id);
+		if active:
+			animated_sprite.play("active");
+			
 	if not GameManager.map_ready.is_connected(_on_map_ready):
 		GameManager.map_ready.connect(_on_map_ready);
 	
@@ -39,7 +44,9 @@ func _spawn_player() -> void:
 	print("No player found");
 	
 	player = packed_player.instantiate();
-	player.scale = Vector2(SaveManager.direction*2,2);
+	var direction = SaveManager.direction;
+	player.scale = Vector2(direction*2,2);
+	player.lastDirection = direction;
 	get_tree().root.add_child(player)
 	player.global_position = SaveManager.position;
 
