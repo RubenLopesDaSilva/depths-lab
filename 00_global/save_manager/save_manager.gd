@@ -6,8 +6,8 @@ const SAVE_PATH : String = "user://game.json";
 
 var state : GameState = GameState.NONE;
 var check_point : String = "";
-var x : float = 0;
-var y : float = 0;
+var position : Vector2 = Vector2(0,0);
+var direction: int = 1;
 var collectable : int = 0;
 var check_points : Array[String] = [];
 var bosses : Array[String] = [];
@@ -64,9 +64,9 @@ func save_game() -> void:
 func reset () -> void :
 	state = GameState.BEGIN;
 	check_point = "";
-	x = 0;
-	y = 0;
+	position = Vector2(0,0);
 	collectable = 0;
+	direction = 0;
 	check_points.clear();
 	bosses.clear();
 	events.clear();
@@ -77,8 +77,9 @@ func to_json() -> Dictionary :
 	return {
 		"state" : from_state(),
 		"check_point": check_point,
-		"x": x,
-		"y": y,
+		"x": position.x,
+		"y": position.y,
+		"direction": direction,
 		"collectable": collectable,
 		"check_points" : check_points,
 		"bosses" : bosses,
@@ -90,8 +91,8 @@ func from_json(json : Dictionary) -> void :
 	print(json)
 	to_state(json["state"]);
 	check_point = json["check_point"];
-	x  = float(json["x"]);
-	y  = float(json["y"]);
+	position = Vector2(float(json["x"]), float(json["y"]));
+	direction = int(json["direction"]);
 	collectable  = int(json["collectable"]);
 	
 	check_points.clear();
@@ -139,9 +140,11 @@ func set_state(value: GameState) -> void :
 func set_check_point(id: String) -> void :
 	check_point = id;
 	
-func set_position(position: Vector2) -> void :
-	x = position.x;
-	y = position.y;
+func set_position(value: Vector2) -> void :
+	position = value;
+
+func set_direction(value: int) -> void :
+	direction = value;
 
 func set_collectable(value: int) -> void :
 	collectable = value;

@@ -11,7 +11,11 @@ func _ready() -> void:
 		GameManager.map_ready.connect(_on_map_ready);
 
 func _on_map_ready() -> void :
-	print("on map ready")
+	
+	if SaveManager.state == SaveManager.GameState.BEGIN :
+		_spawn_player();
+
+func _spawn_player() -> void:
 	if get_tree().get_first_node_in_group("Player"):
 		print("We have a player")
 		return;

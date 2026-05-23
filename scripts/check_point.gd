@@ -2,6 +2,7 @@ extends Area2D
 
 @export var id: String;
 
+@export var packed_player : PackedScene;
 @export var animated_sprite: AnimatedSprite2D;
 @export var control: Control;
 @export var label: Label;
@@ -17,22 +18,42 @@ var player : Player = null;
 
 func _ready() -> void:
 	label.text = save_text;
-	active = SaveManager.is_active_check_point(id);
-	if active:
-		animated_sprite.play("active");
 	
+	if not GameManager.map_ready.is_connected(_on_map_ready):
+		GameManager.map_ready.connect(_on_map_ready);
 	
+func _on_map_ready() -> void : 
+		active = SaveManager.is_active_check_point(id);
+		if active:
+			animated_sprite.play("active");
+			
+		if SaveManager.state == SaveManager.GameState.NORMAL && SaveManager.check_point == id:
+			_spawn_player();
+
+	
+func _spawn_player() -> void:
+	if get_tree().get_first_node_in_group("Player"):
+		print("We have a player")
+		return;
+	
+	print("No player found");
+	
+	player = packed_player.instantiate();
+	player.scale = Vector2(SaveManager.direction*2,2);
+	get_tree().root.add_child(player)
+	player.global_position = SaveManager.position;
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player :
 		label.text = save_text;
 		available = true;
 		is_inside = true;
-		player = body;
+		if player == null :
+			player = body;
 
 func _on_body_exited(body: Node2D) -> void:
-	if body is Player :
+	if body == player :
 		is_inside = false;
-		player = null;
 
 func _process(delta: float) -> void:
 	if is_inside :
@@ -52,7 +73,8 @@ func save() -> void:
 	SaveManager.set_state(SaveManager.GameState.NORMAL);
 	SaveManager.set_check_point(id);
 	SaveManager.set_collectable(player.collectables);
-	SaveManager.set_position(player.position);
+	SaveManager.set_position(player.global_position);
+	SaveManager.set_direction(player.lastDirection);
 	
 	SaveManager.save_game();
 

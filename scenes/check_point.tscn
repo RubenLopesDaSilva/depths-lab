@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ce48yqmwtbyf3"]
+[gd_scene load_steps=9 format=3 uid="uid://ce48yqmwtbyf3"]
 
 [ext_resource type="Script" uid="uid://dfipap70ec3eh" path="res://scripts/check_point.gd" id="1_klegx"]
 [ext_resource type="Texture2D" uid="uid://bfw4oon7bu7s8" path="res://assets/sprites/check_point.png" id="1_od5km"]
+[ext_resource type="PackedScene" uid="uid://bew4d6ojw3kyv" path="res://scenes/player.tscn" id="2_7brbk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dkmio"]
 atlas = ExtResource("1_od5km")
@@ -43,6 +44,7 @@ size = Vector2(46, 47)
 [node name="CheckPoint" type="Area2D" node_paths=PackedStringArray("animated_sprite", "control", "label")]
 collision_mask = 16
 script = ExtResource("1_klegx")
+packed_player = ExtResource("2_7brbk")
 animated_sprite = NodePath("AnimatedSprite2D")
 control = NodePath("Control")
 label = NodePath("Control/Label")
