@@ -1,6 +1,7 @@
 extends Node
 
 signal map_ready;
+signal restart_game;
 
 var _map_is_ready : bool = false;
 
@@ -15,6 +16,8 @@ func _ready() -> void:
 	
 func restart() -> void:
 	Engine.time_scale = 1;
+	_map_is_ready = false;
+	restart_game.emit();
 	
 func reset() -> void:
 	SaveManager.reset();
@@ -28,6 +31,8 @@ func dying() -> void:
 func emit_map_ready() -> void:
 	_map_is_ready = true;
 	map_ready.emit();
+	AudioManager.change_state(AudioManager.MusicState.LEVEL);
+	MenuCanva._show();
 
 func get_map_is_ready() -> bool :
 	return _map_is_ready;

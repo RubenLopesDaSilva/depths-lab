@@ -18,14 +18,14 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Utils="*res://scripts/utils.gd"
 SceneManager="*res://00_global/scene_manager/scene_manager.tscn"
-SaveManager="*res://00_global/save_manager/save_manager.gd"
 AudioManager="*res://00_global/music_manager/audio_manager.tscn"
-GlobalLighting="*res://scenes/global_lighting.tscn"
-StatesBar="*res://scenes/states_bar.tscn"
-MenuCanva="*res://scenes/menu_canva.tscn"
+GlobalLighting="*res://00_global/lighting_manager/global_lighting.tscn"
+StatesBar="*res://00_global/state_bar_manager/states_bar.tscn"
+MenuCanva="*res://00_global/menu_manager/menu_canva.tscn"
 GameManager="*res://00_global/game_manager/game_manager.tscn"
+Utils="*res://00_global/utils_manager/utils_manager.tscn"
+SaveManager="*res://00_global/save_manager/save_manager.tscn"
 
 [display]
 

@@ -13,16 +13,6 @@ var check_points : Array[String] = [];
 var bosses : Array[String] = [];
 var events : Array[String] = [];
 var buttons : Array[String] = [];
-	
-
-func _unhandled_key_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed():
-		if event.keycode == KEY_F7:
-			reset();
-		elif event.keycode == KEY_F6:
-			load_game();
-		elif  event.keycode == KEY_F2:
-			save_game();
 
 func load_game() -> void:
 	
@@ -60,7 +50,7 @@ func reset () -> void :
 	check_point = "";
 	position = Vector2(0,0);
 	collectable = 0;
-	direction = 0;
+	direction = 1;
 	check_points.clear();
 	bosses.clear();
 	events.clear();

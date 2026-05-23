@@ -41,10 +41,11 @@ func _spawn_player() -> void:
 		return;
 	
 	player = packed_player.instantiate();
-	var direction = SaveManager.direction;
-	player.scale = Vector2(direction*2,2);
-	player.lastDirection = direction;
+
+	player.set_player(SaveManager.collectable, SaveManager.direction, Vector2(2,2));
+	
 	get_tree().root.add_child(player)
+	
 	player.global_position = SaveManager.position;
 
 func _on_body_entered(body: Node2D) -> void:
@@ -70,6 +71,7 @@ func _process(delta: float) -> void:
 func save() -> void:
 	available = false;
 	label.text = saved_text;
+	player.set_health(5);
 	if not active:
 		active = true;
 		_activate();

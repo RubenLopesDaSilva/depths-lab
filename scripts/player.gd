@@ -36,12 +36,18 @@ func _ready() -> void:
 		self.queue_free()
 	self.call_deferred("reparent",get_tree().root)
 	run_dusk_sprite.hide();
+	set_health(5);
 
 func _physics_process(delta: float) -> void:
 	update_direction()
 	update_sprite()
 	handle_actions()
 	apply_movement(delta)
+	
+func set_player(collectables_value: int, direction_value: int, scale_value: Vector2) -> void :
+	self.scale = Vector2(direction_value*scale_value.x,scale_value.y);
+	lastDirection = direction_value;
+	set_collectables(collectables_value);
 	
 func update_direction() -> void:
 	if state != State.DAMAGE && state != State.DEATH:
@@ -225,14 +231,14 @@ func attack()-> void:
 	
 func take_damage(damage: int) -> void:
 	if vulnerable && state != State.DEATH:
-		health -= damage;
-		StatesBar.set_health(health/5.0*100);
+		set_health(health - damage);
+		
 		if (health <= 0):
-			death()
+			death();
 		else:
 			set_state(State.DAMAGE)
-			vulnerable = false
-			vulnerableTimer.start()
+			vulnerable = false;
+			vulnerableTimer.start();
 	
 func death() -> void:
 	set_state(State.DEATH)
@@ -245,10 +251,16 @@ func animation_finished_correctly() -> bool:
 		return true
 	return false
 	
-func get_collectable(value: int) -> void:
-	collectables += value;
-	StatesBar.set_collectable(collectables);
+func collect_collectables(value: int) -> void:
+	set_collectables(collectables + value);
 	
 func _on_timer_timeout() -> void:
 	vulnerable = true
 	
+func set_health(value: float) -> void :
+	health = value;
+	StatesBar.set_health(health/5.0*100);
+	
+func set_collectables(value: int) -> void :
+	collectables = value;
+	StatesBar.set_collectable(collectables);

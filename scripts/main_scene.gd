@@ -7,7 +7,17 @@ extends Node
 var scene : Node;
 
 func _ready() -> void:
+	if not GameManager.restart_game.is_connected(restart) :
+		GameManager.restart_game.connect(restart);
+	
+	start();
+	
+func start () -> void :
 	SaveManager.load_game();
+	
+	if scene:
+		scene.queue_free();
+		await scene.tree_exited;
 	
 	var packed_scene = null;
 	if SaveManager.state == SaveManager.GameState.BEGIN :
@@ -20,6 +30,12 @@ func _ready() -> void:
 	scene = packed_scene.instantiate();
 	add_child(scene);
 	call_deferred("emit_map_ready");
-	
+
+func restart() -> void :
+	var player = get_tree().get_first_node_in_group("Player");
+	if player :
+		player.queue_free();
+	start();
+
 func emit_map_ready() -> void : 
 	GameManager.emit_map_ready();

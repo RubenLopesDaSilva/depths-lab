@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://cedbfranfa04a"]
 
-[ext_resource type="Script" uid="uid://pl5yk3erdp76" path="res://scripts/states_bar.gd" id="1_f4ikk"]
+[ext_resource type="Script" uid="uid://pl5yk3erdp76" path="res://00_global/state_bar_manager/states_bar.gd" id="1_f4ikk"]
 [ext_resource type="Texture2D" uid="uid://cfhbmeohepisj" path="res://assets/sprites/life_bar.png" id="2_hql5a"]
 [ext_resource type="Texture2D" uid="uid://cyrq1tg3d6i4f" path="res://assets/sprites/collectable.png" id="3_hql5a"]
 

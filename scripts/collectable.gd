@@ -25,7 +25,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.get_collectable(value);
+		body.collect_collectables(value);
 		sound_player.play()
 		sprite.hide();
 		await sound_player.finished;

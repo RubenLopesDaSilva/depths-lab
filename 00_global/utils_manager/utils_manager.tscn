@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bofrqg7ldk4hf"]
+
+[ext_resource type="Script" uid="uid://qeo77tn6jo60" path="res://00_global/utils_manager/utils.gd" id="1_jnl3j"]
+
+[node name="UtilsManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_jnl3j")
