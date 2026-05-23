@@ -1,17 +1,18 @@
 extends Node
 
+enum GameState { NONE, BEGIN, NORMAL };
+
 const SAVE_PATH : String = "user://game.json";
 
-
-var state : String = "";
+var state : GameState = GameState.NONE;
+var check_point : String = "";
+var x : float = 0;
+var y : float = 0;
+var collectable : int = 0;
 var check_points : Array[String] = [];
 var bosses : Array[String] = [];
 var events : Array[String] = [];
 var buttons : Array[String] = [];
-var check_point : String = "";
-var x : int = 0;
-var y : int = 0;
-var collectable : int = 0;
 	
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -61,43 +62,78 @@ func save_game() -> void:
 	file.close();
 	
 func reset () -> void :
-	state = "";
-	check_points.clear();
-	bosses.clear();
-	events.clear();
-	buttons.clear();
+	state = GameState.BEGIN;
 	check_point = "";
 	x  = 0;
 	y  = 0;
 	collectable  = 0;
+	check_points.clear();
+	bosses.clear();
+	events.clear();
+	buttons.clear();
 	save_game();
 
 func to_json() -> Dictionary :
 	return {
-		"state" : state,
-		"check_points" : check_points,
-		"bosses" : bosses,
-		"events": events,
-		"buttons": buttons,
+		"state" : from_state(),
 		"check_point": check_point,
 		"x": x,
 		"y": y,
 		"collectable": collectable,
+		"check_points" : check_points,
+		"bosses" : bosses,
+		"events": events,
+		"buttons": buttons,
 	};
 
 func from_json(json : Dictionary) -> void :
-	state = json["state"];
+	to_state(json["state"]);
+	check_point = json["check_point"];
+	x  = float(json["x"]);
+	y  = float(json["y"]);
+	collectable  = int(json["collectable"]);
 	check_points = json["check_points"];
 	bosses = json["bosses"];
 	events = json["events"];
 	buttons = json["buttons"];
-	check_point = json["check_point"];
-	x  = int(json["x"]);
-	y  = int(json["y"]);
-	collectable  = int(json["collectable"]);
+	if state == GameState.NONE :
+		reset();
+		load_game();
 
-func set_state(value: String) -> void :
+func to_state(value: String) -> void :
+	match value:
+		"":
+			state = GameState.BEGIN;
+		"normal":
+			state = GameState.NORMAL;
+		"none":
+		 #_:
+			state = GameState.NONE;
+			
+
+func from_state() -> String :
+	match state:
+		GameState.BEGIN :
+			return "";
+		GameState.NORMAL:
+			return "normal";
+		_:
+			return "none";
+		#"normal":
+			#state = GameState.NORMAL
+
+func set_state(value: GameState) -> void :
 	state = value;
+
+func set_check_point(id: String) -> void :
+	check_point = id;
+	
+func set_position(position: Vector2) -> void :
+	x = position.x;
+	y = position.y;
+
+func set_collectable(value: int) -> void :
+	collectable = value;
 
 func activate_check_point(id: String) -> void :
 	check_points.append(id);

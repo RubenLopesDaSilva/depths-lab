@@ -13,6 +13,8 @@ var active: bool = false;
 var save_text: String = "Appuyer W pour sauvegarder";
 var saved_text: String = "Sauvegarde effectuée";
 
+var player : Player = null;
+
 func _ready() -> void:
 	label.text = save_text;
 	if active:
@@ -20,12 +22,16 @@ func _ready() -> void:
 	
 	
 func _on_body_entered(body: Node2D) -> void:
-	label.text = save_text;
-	available = true;
-	is_inside = true;
+	if body is Player :
+		label.text = save_text;
+		available = true;
+		is_inside = true;
+		player = body;
 
 func _on_body_exited(body: Node2D) -> void:
-	is_inside = false;
+	if body is Player :
+		is_inside = false;
+		player = null;
 
 func _process(delta: float) -> void:
 	if is_inside :
@@ -41,8 +47,14 @@ func save() -> void:
 	if not active:
 		active = true;
 		_activate();
-	print("save");
+		
+	SaveManager.set_state("");
+	SaveManager.set_check_point(id);
+	SaveManager.set_collectable(player.collectables);
+	SaveManager.set_position(player.position);
+	
+	SaveManager.save_game();
 
 func _activate() -> void:
-	print("activate");
+	SaveManager.activate_check_point(id);
 	animated_sprite.play("active");

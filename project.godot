@@ -31,7 +31,6 @@ MenuCanva="*res://scenes/menu_canva.tscn"
 
 window/size/mode=2
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_width"
 
 [global_group]
 
