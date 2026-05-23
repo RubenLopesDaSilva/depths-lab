@@ -8,6 +8,7 @@ signal load_scene_finished
 func _ready() -> void:
 	fade.visible = false;
 	await get_tree().process_frame
+	await get_tree().process_frame
 	load_scene_finished.emit()
 	pass
 
