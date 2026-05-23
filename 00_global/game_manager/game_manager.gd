@@ -16,10 +16,14 @@ func _ready() -> void:
 func restart() -> void:
 	Engine.time_scale = 1;
 	
+func reset() -> void:
+	SaveManager.reset();
+	restart();
+	
 func dying() -> void:
 	AudioManager.change_state(AudioManager.MusicState.DEATH);
 	Engine.time_scale = 0.5
-	_death_timer.start()
+	#_death_timer.start()
 	
 func emit_map_ready() -> void:
 	_map_is_ready = true;

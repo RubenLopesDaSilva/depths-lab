@@ -17,10 +17,7 @@ func _on_map_ready() -> void :
 
 func _spawn_player() -> void:
 	if get_tree().get_first_node_in_group("Player"):
-		print("We have a player")
 		return;
-	
-	print("No player found");
 	
 	player = packed_player.instantiate();
 	player.scale = Vector2(2,2);

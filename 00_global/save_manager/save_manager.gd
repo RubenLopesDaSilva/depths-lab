@@ -25,17 +25,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			save_game();
 
 func load_game() -> void:
-	print("load game");
 	
 	if not FileAccess.file_exists(SAVE_PATH) :
-		print("Pas de sauvegarde")
 		reset();
 		return;
 		
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ);
 		
 	if file == null :
-		print("Erreur de lecture : Load");
 		return;
 		
 	var content = file.get_as_text();
@@ -44,18 +41,15 @@ func load_game() -> void:
 	var data = JSON.parse_string(content);
 	
 	if data == null or not data is Dictionary :
-		print("Invalide Json");
 		return;
 	
 	from_json(data);
 
 func save_game() -> void:
-	print("save game");
 	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE);
 	
 	if file == null :
-		print("Erreur de lecture : Save");
 		return;
 		
 	file.store_string(JSON.stringify(to_json()));
@@ -88,7 +82,6 @@ func to_json() -> Dictionary :
 	};
 
 func from_json(json : Dictionary) -> void :
-	print(json)
 	to_state(json["state"]);
 	check_point = json["check_point"];
 	position = Vector2(float(json["x"]), float(json["y"]));

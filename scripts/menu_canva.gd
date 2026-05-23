@@ -30,24 +30,10 @@ func _on_play_btn_pressed() -> void:
 	_close();
 
 func _on_restart_btn_pressed() -> void:
-	if boss:
-		AudioManager.quite(boss_id);
-		boss = false;
-	else:
-		var id = AudioManager.change_state(AudioManager.MusicState.BOSS);
-		if id is int:
-			boss_id = id;
-		boss = true;
+	GameManager.restart();
 
 func _on_reset_btn_pressed() -> void:
-	if chase:
-		AudioManager.quite(chase_id);
-		chase = false;
-	else:
-		var id = AudioManager.change_state(AudioManager.MusicState.CHASE);
-		if id is int:
-			chase_id = id;
-		chase = true;
+	GameManager.reset();
 
 func _on_exit_btn_pressed() -> void:
 	get_tree().quit();

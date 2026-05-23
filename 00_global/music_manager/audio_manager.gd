@@ -110,3 +110,31 @@ func quite(flag: int) -> void:
 		process_flag += 1;
 		music_player.stop();
 		handle_state()
+		
+var boss = false;
+var boss_id : int = -1;
+var chase = false;
+var chase_id : int = -1;
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_pressed():
+		if event.keycode == KEY_F4:
+			if boss:
+				AudioManager.quite(boss_id);
+				boss = false;
+			else:
+				var id = AudioManager.change_state(AudioManager.MusicState.BOSS);
+				if id is int:
+					boss_id = id;
+				boss = true;
+				
+		elif event.keycode == KEY_F5:
+			if chase:
+				AudioManager.quite(chase_id);
+				chase = false;
+			else:
+				var id = AudioManager.change_state(AudioManager.MusicState.CHASE);
+				if id is int:
+					chase_id = id;
+				chase = true;
+			
