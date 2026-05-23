@@ -4,9 +4,9 @@ extends CanvasLayer
 
 # a enlever juste pour le test
 var boss = false;
-var boss_id = null;
+var boss_id : int = -1;
 var chase = false;
-var chase_id = null;
+var chase_id : int = -1;
 
 func _ready() -> void:
 	control.hide();
