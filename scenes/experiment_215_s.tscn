@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bx4spfgu325sv"]
+[gd_scene load_steps=42 format=3 uid="uid://bx4spfgu325sv"]
 
 [ext_resource type="Script" uid="uid://by8jv5jkco26r" path="res://System/GameRessources/game_ressources.gd" id="1_3niea"]
 [ext_resource type="Script" uid="uid://yfc65db8puci" path="res://scenes/experiment_215_s.gd" id="1_od5ja"]
@@ -13,10 +13,11 @@ size = Vector2(70, 35)
 [sub_resource type="Animation" id="Animation_r3bxh"]
 resource_name = "Idle"
 length = 1.65
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/path = NodePath("Visual/Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +29,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/path = NodePath("Visual/Sprite2D:region_rect")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -40,7 +41,7 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HealthRessources")
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -58,7 +59,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Visual/Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -70,7 +71,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/path = NodePath("Visual/Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -118,7 +119,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D:self_modulate")
+tracks/5/path = NodePath("Visual/Sprite2D:self_modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -134,7 +135,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Visual/Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -146,7 +147,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/path = NodePath("Visual/Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -174,7 +175,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Visual/Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -186,7 +187,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/path = NodePath("Visual/Sprite2D:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -214,7 +215,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/path = NodePath("Visual/Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -226,7 +227,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:region_rect")
+tracks/2/path = NodePath("Visual/Sprite2D:region_rect")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -268,7 +269,7 @@ length = 1.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Visual/Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -280,7 +281,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/path = NodePath("Visual/Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -340,7 +341,7 @@ length = 2.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/path = NodePath("Visual/Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -352,7 +353,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:region_rect")
+tracks/1/path = NodePath("Visual/Sprite2D:region_rect")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -364,7 +365,7 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Saw/Spawner")
+tracks/2/path = NodePath("Visual/Saw/Spawner")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -413,6 +414,10 @@ animation = &"death"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d5612"]
 animation = &"possesed"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8t6b0"]
+animation = &"possesed"
+play_mode = 1
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3534c"]
 animation = &"randomize"
 
@@ -431,8 +436,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8t6b0"]
 switch_mode = 2
-advance_mode = 2
-advance_expression = "get_node(\"HealthRessources\").idle_finished_count == 3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_utce4"]
 switch_mode = 2
@@ -440,8 +443,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yw13v"]
 switch_mode = 2
-advance_mode = 2
-advance_expression = "get_node(\"HealthRessources\").idle_finished_count == 3"
+advance_expression = "idle_finished_count >= 2"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_odn36"]
 switch_mode = 2
@@ -453,9 +455,6 @@ switch_mode = 2
 advance_mode = 2
 advance_expression = "get_node(\"RandomChance\").luck <= 0.65"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bxvic"]
-switch_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2t2ig"]
 advance_mode = 2
 advance_expression = "get_node(\"HealthRessources\").current_amount < 1"
@@ -463,6 +462,13 @@ advance_expression = "get_node(\"HealthRessources\").current_amount < 1"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_15k1t"]
 advance_mode = 2
 advance_expression = "get_node(\"HealthRessources\").current_amount < 1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bxvic"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_05dbq"]
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lvdbt"]
 states/End/position = Vector2(992, 395)
@@ -478,15 +484,16 @@ states/death/node = SubResource("AnimationNodeAnimation_mtiiq")
 states/death/position = Vector2(755, 395)
 states/possesed/node = SubResource("AnimationNodeAnimation_d5612")
 states/possesed/position = Vector2(389, 464)
+states/possesed_reverse/node = SubResource("AnimationNodeAnimation_8t6b0")
+states/possesed_reverse/position = Vector2(571, 464)
 states/randomize/node = SubResource("AnimationNodeAnimation_3534c")
 states/randomize/position = Vector2(261, 371)
 states/sawAttack/node = SubResource("AnimationNodeAnimation_lvdbt")
 states/sawAttack/position = Vector2(532, 286)
-transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_mtiiq"), "RESET", "appear", SubResource("AnimationNodeStateMachineTransition_d5612"), "appear", "Idle", SubResource("AnimationNodeStateMachineTransition_3534c"), "Idle", "sawAttack", SubResource("AnimationNodeStateMachineTransition_8t6b0"), "sawAttack", "Idle 2", SubResource("AnimationNodeStateMachineTransition_utce4"), "Idle 2", "randomize", SubResource("AnimationNodeStateMachineTransition_yw13v"), "randomize", "possesed", SubResource("AnimationNodeStateMachineTransition_odn36"), "randomize", "sawAttack", SubResource("AnimationNodeStateMachineTransition_mtqsy"), "possesed", "Idle 2", SubResource("AnimationNodeStateMachineTransition_bxvic"), "Idle 2", "death", SubResource("AnimationNodeStateMachineTransition_2t2ig"), "sawAttack", "death", SubResource("AnimationNodeStateMachineTransition_15k1t")]
-graph_offset = Vector2(-57, 313)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_mtiiq"), "RESET", "appear", SubResource("AnimationNodeStateMachineTransition_d5612"), "appear", "Idle", SubResource("AnimationNodeStateMachineTransition_3534c"), "Idle", "sawAttack", SubResource("AnimationNodeStateMachineTransition_8t6b0"), "sawAttack", "Idle 2", SubResource("AnimationNodeStateMachineTransition_utce4"), "Idle 2", "randomize", SubResource("AnimationNodeStateMachineTransition_yw13v"), "randomize", "possesed", SubResource("AnimationNodeStateMachineTransition_odn36"), "randomize", "sawAttack", SubResource("AnimationNodeStateMachineTransition_mtqsy"), "Idle 2", "death", SubResource("AnimationNodeStateMachineTransition_2t2ig"), "sawAttack", "death", SubResource("AnimationNodeStateMachineTransition_15k1t"), "possesed", "possesed_reverse", SubResource("AnimationNodeStateMachineTransition_bxvic"), "possesed_reverse", "Idle 2", SubResource("AnimationNodeStateMachineTransition_05dbq")]
+graph_offset = Vector2(-173, 153)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8t6b0"]
-graph_offset = Vector2(-239.10779, -50.796555)
 nodes/output/position = Vector2(1120, 40)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_vdlij")
 nodes/OneShot/position = Vector2(800, -20)
@@ -521,13 +528,6 @@ dice_faces = 20
 luck_threshold = 0.6
 metadata/_custom_type_script = "uid://calmg11fsso27"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(0, -19)
-texture = ExtResource("4_xglmh")
-region_enabled = true
-region_rect = Rect2(11, 26, 71, 39)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_dlmty")
@@ -541,11 +541,21 @@ parameters/OneShot/active = false
 parameters/OneShot/internal_active = false
 parameters/OneShot/request = 0
 
-[node name="Saw" type="Node2D" parent="."]
+[node name="Visual" type="Node2D" parent="."]
+unique_name_in_owner = true
 
-[node name="Spawner" type="Node2D" parent="Saw"]
+[node name="Saw" type="Node2D" parent="Visual"]
+
+[node name="Spawner" type="Node2D" parent="Visual/Saw"]
 script = ExtResource("5_vdlij")
 common_ancestor_name = &"Experiment_215_S"
 
+[node name="Sprite2D" type="Sprite2D" parent="Visual"]
+unique_name_in_owner = true
+position = Vector2(0, -19)
+texture = ExtResource("4_xglmh")
+region_enabled = true
+region_rect = Rect2(11, 26, 71, 39)
+
 [connection signal="body_entered" from="Area2D" to="HealthRessources" method="_on_area_2d_body_entered"]
-[connection signal="animation_finished" from="AnimationPlayer" to="HealthRessources" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

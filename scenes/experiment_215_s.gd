@@ -2,30 +2,25 @@ extends Node2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var playback = $AnimationTree.get("parameters/StateMachine/playback")
-
+var idle_finished_count = 0;
 var moving = false
 
 func move() -> void:
 	
 	if moving == true:
-		return
+		return;
 		
 	moving = true
 	
-	await move_forward(9)
+	await move_forward(4)
 	
-	$Sprite2D.flip_h = !$Sprite2D.flip_h
+	%Visual.scale.x *= -1
 	
-	$AnimationTree.active = false
+	playback.travel("possesed_reverse")
 	
+	while playback.get_current_node() != "Idle 2":
+		await get_tree().process_frame
 	
-	animation_player.play_backwards("possesed")
-	
-	await animation_player.animation_finished
-	
-	animation_player.stop()
-	playback.travel("Idle 2");
-	$AnimationTree.active = true
 	
 	moving = false
 	
@@ -37,10 +32,20 @@ func move_forward(duration):
 		var timer = 0.0
 	
 		while timer < duration:
-			if $Sprite2D.flip_h:
+			if %Visual.scale.x == -1:
 				global_position.x += speed
 			else:
 				global_position.x -= speed
 		
 			timer += get_process_delta_time()
 			await get_tree().process_frame
+			
+
+
+
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	idle_finished_count += 1
+	print("Idle animation finished: ", idle_finished_count, " times")
+	if(idle_finished_count >= 2):
+		playback.travel("sawAttack")
+		idle_finished_count = 0

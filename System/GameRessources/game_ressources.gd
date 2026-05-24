@@ -5,7 +5,7 @@ signal depleated
 signal replenished
 signal max_changed(new_max: int)
 signal current_changed(new_current: int)
-var idle_finished_count = 0;
+
 
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 @onready var animation_tree: AnimationTree = $"../AnimationTree"
@@ -51,16 +51,6 @@ func deplete() -> void:
 func replenish() -> void:
 	current_amount = max_amount
 
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == 'Idle' && idle_finished_count <= 3:
-		if(idle_finished_count < 3):
-			animation_player.play(anim_name);
-			idle_finished_count += 1
-			print("Idle animation finished: ", idle_finished_count, " times")
-		#if(idle_finished_count >= 3):
-			#animation_player.stop();
-			#idle_finished_count = 0;
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	if current_amount > 0:
