@@ -21,7 +21,15 @@ func transition_scene(new_scene: String, target_area: String,player_offset: Vect
 	
 	await fade_screen(fade_pos,Vector2.ZERO)
 	
-	get_tree().change_scene_to_file(new_scene)
+	#get_tree().change_scene_to_file(new_scene)
+	var main = get_tree().current_scene;
+	if main:
+		for child in main.get_children() :
+			child.queue_free();
+			await  child.tree_exited;
+		var scene = load(new_scene).instantiate();
+		main.add_child(scene);
+		
 	
 	await get_tree().scene_changed
 	

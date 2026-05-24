@@ -23,6 +23,6 @@ func _spawn_player() -> void:
 	
 	player.set_player(SaveManager.collectable, SaveManager.direction, Vector2(2,2));
 	
-	get_tree().root.add_child(player)
+	get_tree().current_scene.get_parent().add_child(player)
 	
 	player.global_position = self.global_position;

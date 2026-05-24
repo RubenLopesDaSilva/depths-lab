@@ -33,8 +33,10 @@ var collectables : int = 0;
 
 func _ready() -> void:
 	if get_tree().get_first_node_in_group("Player") != self :
+		print("queue free");
 		self.queue_free()
 	self.call_deferred("reparent",get_tree().root)
+	self.get_parent().print_tree();
 	run_dusk_sprite.hide();
 	set_health(5);
 
