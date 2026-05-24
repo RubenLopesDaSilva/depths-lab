@@ -36,9 +36,9 @@ func reset() -> void:
 	music_player.stop();
 	process_flag = 0;
 	music_flag = 0;
+	resetting = false;
 	music_player.stream = music_level_00;
 	music_player.play();
-	resetting = false;
 
 func change_state(value: MusicState, objection: bool = false) -> Variant:
 	if not objection :

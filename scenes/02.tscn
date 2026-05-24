@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://flhqwf7u2cku"]
+[gd_scene load_steps=19 format=4 uid="uid://flhqwf7u2cku"]
 
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_wnqic"]
 [ext_resource type="PackedScene" uid="uid://dl5jyvux5taat" path="res://scenes/level_transition.tscn" id="2_5bbvk"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://mhtd0dcrbqw1" path="res://scenes/spikes_2.tscn" id="5_3w282"]
 [ext_resource type="Script" uid="uid://dhbwjsck31vef" path="res://general/scripts/level_bounds.gd" id="7_3w282"]
 [ext_resource type="PackedScene" uid="uid://yqj0p4kea3uk" path="res://scenes/collectable.tscn" id="10_etcsy"]
+[ext_resource type="PackedScene" uid="uid://ce48yqmwtbyf3" path="res://scenes/check_point.tscn" id="11_f5puv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8qvs2"]
 texture = ExtResource("1_wnqic")
@@ -560,3 +561,7 @@ position = Vector2(311, -30)
 
 [node name="Collectable5" parent="Collectables" instance=ExtResource("10_etcsy")]
 position = Vector2(268, -33)
+
+[node name="CheckPoint" parent="." instance=ExtResource("11_f5puv")]
+position = Vector2(-49, 49)
+id = "CP02"

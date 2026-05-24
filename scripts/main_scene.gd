@@ -28,6 +28,10 @@ func start () -> void :
 		var check_point_id = SaveManager.check_point;
 		if check_point_id == "CP00":
 			packed_scene = map_00;
+		elif check_point_id == "CP01":
+			packed_scene = map_01;
+		elif check_point_id == "CP02":
+			packed_scene = map_02;
 	
 	scene = packed_scene.instantiate();
 	add_child(scene);

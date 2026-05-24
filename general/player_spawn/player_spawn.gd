@@ -16,9 +16,6 @@ func _on_map_ready() -> void :
 		_spawn_player();
 
 func _spawn_player() -> void:
-	if !is_inside_tree():
-		return
-
 	
 	if get_tree().get_first_node_in_group("Player"):
 		return;
