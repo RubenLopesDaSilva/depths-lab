@@ -11,6 +11,8 @@ var damage = 0;
 var boddies = [];
 
 func _ready() -> void:
+	if !is_instance_valid(owner_player):
+		return;
 	body_entered.connect(_on_body_entered);
 	area_entered.connect(_on_body_entered);
 	monitorable = false;
@@ -29,6 +31,10 @@ func start(player: Player, dmg: int) -> void:
 		self.scale.x = self.scale.x * -1;
 	
 func _physics_process(delta: float) -> void:
+	if !is_instance_valid(owner_player):
+		self.queue_free();
+		return;
+		
 	if started:
 		global_position = owner_player.global_position + Vector2(owner_player.lastDirection * 40,-50);
 		if owner_player.lastDirection != lastDirection:
