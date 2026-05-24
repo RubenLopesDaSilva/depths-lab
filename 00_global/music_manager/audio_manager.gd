@@ -25,15 +25,25 @@ var lastPartState: PartState = PartState.INTRO;
 
 var process_flag : int = 0;
 var music_flag : int = 0;
+var resetting : bool = false;
 
 func _ready() -> void:
 	music_player.stream = music_level_00;
 	music_player.play();
 
+func reset() -> void:
+	resetting = true;
+	music_player.stop();
+	process_flag = 0;
+	music_flag = 0;
+	music_player.stream = music_level_00;
+	music_player.play();
+	resetting = false;
+
 func change_state(value: MusicState, objection: bool = false) -> Variant:
 	if not objection :
 		if musicState == value:
-			return
+			return;
 	if musicState == MusicState.DEATH :
 		return;
 	musicState = value;
@@ -45,6 +55,9 @@ func change_state(value: MusicState, objection: bool = false) -> Variant:
 	return music_flag;
 	
 func handle_state() -> void:	
+	if resetting :
+		return;
+		
 	var changed : bool = true;
 	if musicState == MusicState.LEVEL:
 		music_player.stream = music_level_00;

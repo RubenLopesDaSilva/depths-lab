@@ -9,6 +9,8 @@ var scene : Node;
 func _ready() -> void:
 	if not GameManager.restart_game.is_connected(restart) :
 		GameManager.restart_game.connect(restart);
+	if not SceneManager.transition_requested.is_connected(change_scene):
+		SceneManager.transition_requested.connect(change_scene);
 	
 	start();
 	
@@ -36,6 +38,28 @@ func restart() -> void :
 	if player :
 		player.queue_free();
 	start();
+
+func change_scene(value: String, target: String, offset: Vector2, dir: String) -> void :
+	if scene:
+		scene.queue_free();
+		await scene.tree_exited;
+	
+	var packed_scene = null;
+	
+	if value == "Map00":
+		packed_scene = map_00;
+	elif value == "Map01":
+		packed_scene = map_01;
+	elif value == "Map02":
+		packed_scene = map_02;
+	
+	scene = packed_scene.instantiate();
+	
+	add_child(scene);
+	
+	#emit_map_ready();
+	
+	SceneManager.finish_transition(target, offset, dir);
 
 func emit_map_ready() -> void : 
 	GameManager.emit_map_ready();

@@ -16,6 +16,7 @@ func _ready() -> void:
 	
 func restart() -> void:
 	Engine.time_scale = 1;
+	AudioManager.reset();
 	_map_is_ready = false;
 	restart_game.emit();
 	
