@@ -32,12 +32,14 @@ func _on_player_entered(_n: Node2D) -> void:
 	pass
 
 func _on_new_scene_ready(target_name:String, offset: Vector2) -> void:
+	print("ready");
 	if target_name == name:
 		var player : Node = get_tree().get_first_node_in_group("Player")
 		player.global_position = global_position + offset
 	pass
 
 func _on_load_scene_finished() -> void:
+	print("finished");
 	area_2d.monitoring = false;
 	area_2d.body_entered.connect( _on_player_entered );
 	await get_tree().physics_frame;

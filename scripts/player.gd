@@ -36,7 +36,6 @@ func _ready() -> void:
 		print("queue free");
 		self.queue_free()
 	self.call_deferred("reparent",get_tree().root)
-	self.get_parent().print_tree();
 	run_dusk_sprite.hide();
 	set_health(5);
 
