@@ -244,3 +244,9 @@ position = Vector2(268, -33)
 [node name="CheckPoint" parent="." instance=ExtResource("11_f5puv")]
 position = Vector2(-49, 49)
 id = "CP02"
+
+[node name="LevelTransition2" parent="." instance=ExtResource("2_5bbvk")]
+position = Vector2(1284, 79)
+size = 3
+location = 0
+target = "Map03"

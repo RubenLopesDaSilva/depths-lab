@@ -4,7 +4,7 @@ extends Node2D
 
 enum SIDE { RIGHT, LEFT, TOP, BOTTOM}
 
-@export_range(2,12,1,'or_greater') var size : int = 2 :
+@export_range(1,12,1,'or_greater') var size : int = 2 :
 	set( value ):
 		size = value
 		apply_area_settings();

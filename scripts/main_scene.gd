@@ -3,6 +3,8 @@ extends Node
 @export var map_00 : PackedScene;
 @export var map_01 : PackedScene;
 @export var map_02 : PackedScene;
+@export var map_03 : PackedScene;
+@export var boss_00 : PackedScene;
 
 var scene : Node;
 
@@ -58,6 +60,12 @@ func change_scene(value: String, target: String, offset: Vector2, dir: String) -
 		packed_scene = map_01;
 	elif value == "Map02":
 		packed_scene = map_02;
+	elif value == "Map03" :
+		packed_scene = map_03;
+	elif value == "Boss00" :
+		packed_scene = boss_00;
+	else :
+		return;
 	
 	scene = packed_scene.instantiate();
 	
