@@ -101,7 +101,6 @@ tile_set = SubResource("TileSet_lnu2h")
 
 [node name="Parallax2D" type="Parallax2D" parent="Background"]
 scroll_scale = Vector2(0.1, 1)
-repeat_times = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D"]
 position = Vector2(210.50005, -184)

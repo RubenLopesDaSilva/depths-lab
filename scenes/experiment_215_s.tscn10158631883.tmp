@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bx4spfgu325sv"]
+[gd_scene load_steps=40 format=3 uid="uid://bx4spfgu325sv"]
 
 [ext_resource type="Script" uid="uid://by8jv5jkco26r" path="res://System/GameRessources/game_ressources.gd" id="1_3niea"]
 [ext_resource type="Script" uid="uid://yfc65db8puci" path="res://scenes/experiment_215_s.gd" id="1_od5ja"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://calmg11fsso27" path="res://scripts/random_chance.gd" id="3_od5ja"]
 [ext_resource type="Texture2D" uid="uid://ciiw25bjoibr3" path="res://assets/sprites/bossy.png" id="4_xglmh"]
 [ext_resource type="Script" uid="uid://chsljgaulxot1" path="res://scenes/spawner.gd" id="5_vdlij"]
-[ext_resource type="Script" uid="uid://bjh1p1joq6h6t" path="res://scenes/drop_spawner.gd" id="6_xglmh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_neq0i"]
 size = Vector2(70, 35)
@@ -14,11 +13,10 @@ size = Vector2(70, 35)
 [sub_resource type="Animation" id="Animation_r3bxh"]
 resource_name = "Idle"
 length = 1.65
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/Sprite2D:position")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -30,7 +28,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visual/Sprite2D:region_rect")
+tracks/1/path = NodePath("Sprite2D:region_rect")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -42,7 +40,7 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".")
+tracks/2/path = NodePath("HealthRessources")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -60,7 +58,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/Sprite2D:region_rect")
+tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -72,7 +70,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visual/Sprite2D:position")
+tracks/1/path = NodePath("Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -120,7 +118,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Visual/Sprite2D:self_modulate")
+tracks/5/path = NodePath("Sprite2D:self_modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -136,7 +134,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/Sprite2D:region_rect")
+tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -148,7 +146,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visual/Sprite2D:position")
+tracks/1/path = NodePath("Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -176,7 +174,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/Sprite2D:region_rect")
+tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -188,7 +186,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visual/Sprite2D:self_modulate")
+tracks/1/path = NodePath("Sprite2D:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -216,7 +214,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visual/Sprite2D:position")
+tracks/1/path = NodePath("Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -228,7 +226,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Visual/Sprite2D:region_rect")
+tracks/2/path = NodePath("Sprite2D:region_rect")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -266,11 +264,11 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_qnbj4"]
 resource_name = "possesed"
-length = 1.1
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/Sprite2D:region_rect")
+tracks/0/path = NodePath("Sprite2D:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -282,7 +280,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visual/Sprite2D:position")
+tracks/1/path = NodePath("Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -310,93 +308,11 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.1),
+"times": PackedFloat32Array(1.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"_on_decollage_termine"
-}]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Visual/Drops/DropSpawner")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"start_flying"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_od5ja"]
-resource_name = "possesed_reverse"
-length = 1.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/Sprite2D:region_rect")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Rect2(9, 412, 76, 37), Rect2(104, 416, 78, 33), Rect2(199, 421, 80, 28), Rect2(311, 403, 49, 58), Rect2(406, 407, 51, 51), Rect2(483, 397, 90, 61)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Visual/Sprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.62, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -18), Vector2(0, -16), Vector2(0, -14), Vector2(0, -29.599995), Vector2(0, -105)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Area2D/CollisionShape2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.82),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, -19), Vector2(1, -104)]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_on_atterrissage_termine"
-}]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Visual/Drops/DropSpawner")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"stop_flying"
+"method": &"move"
 }]
 }
 
@@ -417,20 +333,6 @@ tracks/0/keys = {
 "method": &"throw_dice"
 }]
 }
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Not"],
-"method": &"_on_animation_player_animation_finished"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_jncid"]
 resource_name = "sawAttack"
@@ -438,7 +340,7 @@ length = 2.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/Sprite2D:position")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -450,7 +352,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Visual/Sprite2D:region_rect")
+tracks/1/path = NodePath("Sprite2D:region_rect")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -462,7 +364,7 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Visual/Saw/Spawner")
+tracks/2/path = NodePath("Saw/Spawner")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -471,20 +373,6 @@ tracks/2/keys = {
 "values": [{
 "args": [],
 "method": &"create"
-}]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Not"],
-"method": &"_on_animation_player_animation_finished"
 }]
 }
 
@@ -496,7 +384,6 @@ _data = {
 &"damage": SubResource("Animation_vdlij"),
 &"death": SubResource("Animation_dlmty"),
 &"possesed": SubResource("Animation_qnbj4"),
-&"possesed_reverse": SubResource("Animation_od5ja"),
 &"randomize": SubResource("Animation_wqpjq"),
 &"sawAttack": SubResource("Animation_jncid")
 }
@@ -506,7 +393,7 @@ animation = &"damage"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vdlij"]
 filter_enabled = true
-filters = ["Sprite2D:self_modulate", "Visual/Sprite2D:self_modulate"]
+filters = ["Sprite2D:self_modulate"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vdlij"]
 animation = &"Idle"
@@ -526,10 +413,6 @@ animation = &"death"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d5612"]
 animation = &"possesed"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8t6b0"]
-animation = &"possesed_reverse"
-play_mode = 1
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3534c"]
 animation = &"randomize"
 
@@ -547,16 +430,18 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8t6b0"]
+switch_mode = 2
 advance_mode = 2
-advance_condition = &"is_idle_finished"
+advance_expression = "get_node(\"HealthRessources\").idle_finished_count == 3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_utce4"]
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yw13v"]
+switch_mode = 2
 advance_mode = 2
-advance_condition = &"is_idle_finished"
+advance_expression = "get_node(\"HealthRessources\").idle_finished_count == 3"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_odn36"]
 switch_mode = 2
@@ -568,6 +453,10 @@ switch_mode = 2
 advance_mode = 2
 advance_expression = "get_node(\"RandomChance\").luck <= 0.65"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bxvic"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2t2ig"]
 advance_mode = 2
 advance_expression = "get_node(\"HealthRessources\").current_amount < 1"
@@ -575,12 +464,6 @@ advance_expression = "get_node(\"HealthRessources\").current_amount < 1"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_15k1t"]
 advance_mode = 2
 advance_expression = "get_node(\"HealthRessources\").current_amount < 1"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bxvic"]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_05dbq"]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lvdbt"]
 states/End/position = Vector2(992, 395)
@@ -595,18 +478,16 @@ states/appear/position = Vector2(531, 100)
 states/death/node = SubResource("AnimationNodeAnimation_mtiiq")
 states/death/position = Vector2(755, 395)
 states/possesed/node = SubResource("AnimationNodeAnimation_d5612")
-states/possesed/position = Vector2(389, 465)
-states/possesed_reverse/node = SubResource("AnimationNodeAnimation_8t6b0")
-states/possesed_reverse/position = Vector2(565, 456)
+states/possesed/position = Vector2(389, 464)
 states/randomize/node = SubResource("AnimationNodeAnimation_3534c")
 states/randomize/position = Vector2(261, 371)
 states/sawAttack/node = SubResource("AnimationNodeAnimation_lvdbt")
 states/sawAttack/position = Vector2(532, 286)
-transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_mtiiq"), "RESET", "appear", SubResource("AnimationNodeStateMachineTransition_d5612"), "appear", "Idle", SubResource("AnimationNodeStateMachineTransition_3534c"), "Idle", "sawAttack", SubResource("AnimationNodeStateMachineTransition_8t6b0"), "sawAttack", "Idle 2", SubResource("AnimationNodeStateMachineTransition_utce4"), "Idle 2", "randomize", SubResource("AnimationNodeStateMachineTransition_yw13v"), "randomize", "possesed", SubResource("AnimationNodeStateMachineTransition_odn36"), "randomize", "sawAttack", SubResource("AnimationNodeStateMachineTransition_mtqsy"), "Idle 2", "death", SubResource("AnimationNodeStateMachineTransition_2t2ig"), "sawAttack", "death", SubResource("AnimationNodeStateMachineTransition_15k1t"), "possesed", "possesed_reverse", SubResource("AnimationNodeStateMachineTransition_bxvic"), "possesed_reverse", "Idle 2", SubResource("AnimationNodeStateMachineTransition_05dbq")]
-graph_offset = Vector2(-119, 63)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_mtiiq"), "RESET", "appear", SubResource("AnimationNodeStateMachineTransition_d5612"), "appear", "Idle", SubResource("AnimationNodeStateMachineTransition_3534c"), "Idle", "sawAttack", SubResource("AnimationNodeStateMachineTransition_8t6b0"), "sawAttack", "Idle 2", SubResource("AnimationNodeStateMachineTransition_utce4"), "Idle 2", "randomize", SubResource("AnimationNodeStateMachineTransition_yw13v"), "randomize", "possesed", SubResource("AnimationNodeStateMachineTransition_odn36"), "randomize", "sawAttack", SubResource("AnimationNodeStateMachineTransition_mtqsy"), "possesed", "Idle 2", SubResource("AnimationNodeStateMachineTransition_bxvic"), "Idle 2", "death", SubResource("AnimationNodeStateMachineTransition_2t2ig"), "sawAttack", "death", SubResource("AnimationNodeStateMachineTransition_15k1t")]
+graph_offset = Vector2(-17, 147)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8t6b0"]
-graph_offset = Vector2(-83.759155, -53.72838)
+graph_offset = Vector2(-239.10779, -50.796555)
 nodes/output/position = Vector2(1120, 40)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_vdlij")
 nodes/OneShot/position = Vector2(800, -20)
@@ -616,7 +497,7 @@ nodes/Damage/node = SubResource("AnimationNodeAnimation_3niea")
 nodes/Damage/position = Vector2(460, 160)
 node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"StateMachine", &"OneShot", 1, &"Damage"]
 
-[node name="Experiment_215_S" type="Node2D" groups=["Boss"]]
+[node name="Experiment_215_S" type="Node2D"]
 script = ExtResource("1_od5ja")
 
 [node name="HealthRessources" type="Node" parent="."]
@@ -641,6 +522,13 @@ dice_faces = 20
 luck_threshold = 0.6
 metadata/_custom_type_script = "uid://calmg11fsso27"
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -19)
+texture = ExtResource("4_xglmh")
+region_enabled = true
+region_rect = Rect2(11, 26, 71, 39)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_dlmty")
@@ -653,32 +541,12 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/OneShot/active = false
 parameters/OneShot/internal_active = false
 parameters/OneShot/request = 0
-parameters/StateMachine/conditions/is_idle_finished = false
 
-[node name="Visual" type="Node2D" parent="."]
-unique_name_in_owner = true
+[node name="Saw" type="Node2D" parent="."]
 
-[node name="Saw" type="Node2D" parent="Visual"]
-
-[node name="Spawner" type="Node2D" parent="Visual/Saw"]
+[node name="Spawner" type="Node2D" parent="Saw"]
 script = ExtResource("5_vdlij")
 common_ancestor_name = &"Experiment_215_S"
 
-[node name="Drops" type="Node2D" parent="Visual"]
-
-[node name="DropSpawner" type="Node2D" parent="Visual/Drops"]
-script = ExtResource("6_xglmh")
-
-[node name="DropTimer" type="Timer" parent="Visual/Drops"]
-wait_time = 0.1
-one_shot = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Visual"]
-position = Vector2(0, -19)
-texture = ExtResource("4_xglmh")
-region_enabled = true
-region_rect = Rect2(11, 26, 71, 39)
-
 [connection signal="body_entered" from="Area2D" to="HealthRessources" method="_on_area_2d_body_entered"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="timeout" from="Visual/Drops/DropTimer" to="Visual/Drops/DropSpawner" method="_on_drop_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="HealthRessources" method="_on_animation_player_animation_finished"]
