@@ -1,6 +1,7 @@
 extends Area2D
 
 const boss_scene = preload("res://scenes/experiment_215_s.tscn")
+@onready var camera_2d: Camera2D = $"../Camera2D"
 
 var temps_ecoule: float = 0.0
 
@@ -13,7 +14,7 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	
 	if body.is_in_group("Player"):
-		print("player entered")
+		camera_2d.enabled = true
 		var boss = boss_scene.instantiate()
 		
 		boss.position = Vector2(865.0,2)

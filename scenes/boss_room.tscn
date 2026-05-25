@@ -59,6 +59,7 @@ size = Vector2(1725, 825)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(192, -363)
+enabled = false
 
 [node name="Background" type="Node2D" parent="."]
 

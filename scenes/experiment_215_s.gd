@@ -10,6 +10,7 @@ var current_state = BossState.IDLE
 
 var idle_finished_count : int = 0
 var movement_timer : float = 0.0
+var died: bool = false
 const MOVEMENT_DURATION : float = 9.0
 const SPEED : float = 120.0
 
