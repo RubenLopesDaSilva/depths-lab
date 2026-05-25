@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://osir2ivdc4xa" path="res://scenes/spikes.tscn" id="4_w6u7p"]
 [ext_resource type="PackedScene" uid="uid://mhtd0dcrbqw1" path="res://scenes/spikes_2.tscn" id="5_3w282"]
 [ext_resource type="Script" uid="uid://dhbwjsck31vef" path="res://general/scripts/level_bounds.gd" id="7_3w282"]
-[ext_resource type="PackedScene" uid="uid://yqj0p4kea3uk" path="res://scenes/collectable.tscn" id="10_etcsy"]
+[ext_resource type="PackedScene" path="res://scenes/collectable.tscn" id="10_etcsy"]
 [ext_resource type="Texture2D" uid="uid://cj5kjv6tydi51" path="res://assets/sprites/layer1.png" id="11_f5puv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8qvs2"]
@@ -151,6 +151,7 @@ target = "Map01"
 target_area_name = "LevelTransition2"
 
 [node name="MovingPlatform" parent="." instance=ExtResource("3_vxvah")]
+z_index = 3
 position = Vector2(717, 28)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatform"]

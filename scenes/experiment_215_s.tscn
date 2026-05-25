@@ -606,7 +606,6 @@ transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransitio
 graph_offset = Vector2(-119, 63)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8t6b0"]
-graph_offset = Vector2(-83.759155, -53.72838)
 nodes/output/position = Vector2(1120, 40)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_vdlij")
 nodes/OneShot/position = Vector2(800, -20)
@@ -628,6 +627,7 @@ script = ExtResource("2_vdlij")
 animation_player = NodePath("../../AnimationPlayer")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 position = Vector2(-1, 1)
 collision_mask = 16
 

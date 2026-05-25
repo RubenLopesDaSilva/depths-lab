@@ -40,7 +40,7 @@ func update_sprite() -> void:
 func handle_actions() -> void:
 	return;
 	
-func apply_movement(delta: float) -> void:
+func apply_movement(_delta: float) -> void:
 	if not state == State.FLY:
 		return;
 		
@@ -59,7 +59,7 @@ func set_state(value: State) :
 	else :
 		sound_player.stop();
 	
-	state = value;	
+	state = value;
 
 func take_damage(damage: int) -> void:
 	if state == State.DEATH:

@@ -70,7 +70,7 @@ func apply_area_settings() -> void:
 	pass
 func get_offset(player: Node2D) -> Vector2:
 	var offset : Vector2 = Vector2.ZERO
-	var player_pos : Vector2 = player.global_position
+	var _player_pos : Vector2 = player.global_position
 	if location == SIDE.LEFT or location == SIDE.RIGHT:
 		
 		if location == SIDE.LEFT:

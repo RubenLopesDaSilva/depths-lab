@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://ba2euro8iccya"]
+[gd_scene load_steps=12 format=4 uid="uid://ba2euro8iccya"]
 
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_3n20u"]
-[ext_resource type="Script" path="res://scenes/boss_room.gd" id="1_g2a2m"]
+[ext_resource type="Script" uid="uid://dhgqfq3d43ojk" path="res://scenes/boss_room.gd" id="1_g2a2m"]
 [ext_resource type="PackedScene" uid="uid://dw463oyxg1ab" path="res://general/player_spawn/player_spawn.tscn" id="4_ee80j"]
 [ext_resource type="Script" uid="uid://b0f5qindf1fmt" path="res://scenes/trigger_boss.gd" id="4_g2a2m"]
 [ext_resource type="PackedScene" uid="uid://dl5jyvux5taat" path="res://scenes/level_transition.tscn" id="5_ee80j"]
+[ext_resource type="Script" uid="uid://dhbwjsck31vef" path="res://general/scripts/level_bounds.gd" id="6_bggbs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g2a2m"]
 texture = ExtResource("1_3n20u")
@@ -62,8 +63,9 @@ size = Vector2(1725, 825)
 script = ExtResource("1_g2a2m")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(192, -363)
+position = Vector2(192, -283)
 enabled = false
+zoom = Vector2(0.6, 0.6)
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -94,7 +96,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAD//wAAAAABAAAAAAD+/wAAAAABAAA
 tile_set = SubResource("TileSet_bpcqn")
 
 [node name="TriggerBoss" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 16
 script = ExtResource("4_g2a2m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerBoss"]
@@ -110,5 +112,13 @@ position = Vector2(-3810, 6)
 position = Vector2(-3837, 1)
 target = "Map03"
 target_area_name = "LevelTransition2"
+
+[node name="LevelBounds" type="Node2D" parent="."]
+z_index = 256
+position = Vector2(-3828, -865)
+script = ExtResource("6_bggbs")
+width = 5100
+height = 1200
+metadata/_custom_type_script = "uid://dhbwjsck31vef"
 
 [connection signal="body_entered" from="TriggerBoss" to="TriggerBoss" method="_on_body_entered"]

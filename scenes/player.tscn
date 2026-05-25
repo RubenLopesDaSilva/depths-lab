@@ -1250,6 +1250,7 @@ libraries = {
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -16.5)
 shape = SubResource("RectangleShape2D_3vyb7")
 debug_color = Color(2.9841065e-06, 0.6098342, 0.6415566, 0.41960785)
