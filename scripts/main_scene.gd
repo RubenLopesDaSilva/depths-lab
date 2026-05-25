@@ -31,9 +31,7 @@ func start () -> void :
 		if check_point_id == "CP00":
 			packed_scene = map_00;
 		elif check_point_id == "CP01":
-			packed_scene = map_01;
-		elif check_point_id == "CP02":
-			packed_scene = map_02;
+			packed_scene = map_03;
 		else :
 			return
 	

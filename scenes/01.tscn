@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bf1ati87dqexd"]
+[gd_scene load_steps=15 format=4 uid="uid://bf1ati87dqexd"]
 
 [ext_resource type="Texture2D" uid="uid://cld4s24e1uhfa" path="res://assets/sprites/layer4.png" id="1_6cx57"]
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_qvefa"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://yqj0p4kea3uk" path="res://scenes/collectable.tscn" id="10_6cygv"]
 [ext_resource type="PackedScene" uid="uid://dox3imdqhdbeo" path="res://scenes/mossy.tscn" id="10_520st"]
 [ext_resource type="PackedScene" uid="uid://dlf1t4i52784i" path="res://scenes/flying_mossy.tscn" id="10_f8m6n"]
-[ext_resource type="PackedScene" uid="uid://ce48yqmwtbyf3" path="res://scenes/check_point.tscn" id="11_f8m6n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixcy0"]
 texture = ExtResource("1_qvefa")
@@ -200,7 +199,3 @@ position = Vector2(503, -23)
 [node name="Collectable6" parent="Collectables" instance=ExtResource("10_6cygv")]
 position = Vector2(457, -282)
 type = 1
-
-[node name="CheckPoint" parent="." instance=ExtResource("11_f8m6n")]
-position = Vector2(719, -46)
-id = "CP01"
