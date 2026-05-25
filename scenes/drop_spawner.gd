@@ -3,7 +3,7 @@ extends Node2D
 @onready var drop_timer: Timer = $"../DropTimer"
 @export var limite_gauche: float = -720.0
 @export var limite_droite: float = 1100.0
-@export var hauteur_plafond: float = -820.0
+@export var hauteur_plafond: float = -785.0
 @onready var animation_player: AnimationPlayer = $"../../../AnimationPlayer"
 
 const drop_scene = preload("res://scenes/drop_attack.tscn")
