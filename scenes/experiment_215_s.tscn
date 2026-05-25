@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bx4spfgu325sv"]
+[gd_scene load_steps=44 format=3 uid="uid://bx4spfgu325sv"]
 
 [ext_resource type="Script" uid="uid://by8jv5jkco26r" path="res://System/GameRessources/game_ressources.gd" id="1_3niea"]
 [ext_resource type="Script" uid="uid://yfc65db8puci" path="res://scenes/experiment_215_s.gd" id="1_od5ja"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://calmg11fsso27" path="res://scripts/random_chance.gd" id="3_od5ja"]
 [ext_resource type="Texture2D" uid="uid://ciiw25bjoibr3" path="res://assets/sprites/bossy.png" id="4_xglmh"]
 [ext_resource type="Script" uid="uid://chsljgaulxot1" path="res://scenes/spawner.gd" id="5_vdlij"]
+[ext_resource type="Script" uid="uid://bjh1p1joq6h6t" path="res://scenes/drop_spawner.gd" id="6_xglmh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_neq0i"]
 size = Vector2(70, 35)
@@ -313,7 +314,7 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"move"
+"method": &"_on_decollage_termine"
 }]
 }
 
@@ -332,6 +333,20 @@ tracks/0/keys = {
 "values": [{
 "args": [],
 "method": &"throw_dice"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Not"],
+"method": &"_on_animation_player_animation_finished"
 }]
 }
 
@@ -376,6 +391,74 @@ tracks/2/keys = {
 "method": &"create"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Not"],
+"method": &"_on_animation_player_animation_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_od5ja"]
+resource_name = "possesed_reverse"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(9, 412, 76, 37), Rect2(104, 416, 78, 33), Rect2(199, 421, 80, 28), Rect2(311, 403, 49, 58), Rect2(406, 407, 51, 51), Rect2(483, 397, 90, 61)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.62, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -18), Vector2(0, -16), Vector2(0, -14), Vector2(0, -29.599995), Vector2(0, -105)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.82),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, -19), Vector2(1, -104)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_atterrissage_termine"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dlmty"]
 _data = {
@@ -385,6 +468,7 @@ _data = {
 &"damage": SubResource("Animation_vdlij"),
 &"death": SubResource("Animation_dlmty"),
 &"possesed": SubResource("Animation_qnbj4"),
+&"possesed_reverse": SubResource("Animation_od5ja"),
 &"randomize": SubResource("Animation_wqpjq"),
 &"sawAttack": SubResource("Animation_jncid")
 }
@@ -415,7 +499,7 @@ animation = &"death"
 animation = &"possesed"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8t6b0"]
-animation = &"possesed"
+animation = &"possesed_reverse"
 play_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3534c"]
@@ -435,15 +519,16 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8t6b0"]
-switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_idle_finished"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_utce4"]
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yw13v"]
-switch_mode = 2
-advance_expression = "idle_finished_count >= 2"
+advance_mode = 2
+advance_condition = &"is_idle_finished"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_odn36"]
 switch_mode = 2
@@ -468,7 +553,6 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_05dbq"]
 switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lvdbt"]
 states/End/position = Vector2(992, 395)
@@ -483,15 +567,15 @@ states/appear/position = Vector2(531, 100)
 states/death/node = SubResource("AnimationNodeAnimation_mtiiq")
 states/death/position = Vector2(755, 395)
 states/possesed/node = SubResource("AnimationNodeAnimation_d5612")
-states/possesed/position = Vector2(389, 464)
+states/possesed/position = Vector2(389, 465)
 states/possesed_reverse/node = SubResource("AnimationNodeAnimation_8t6b0")
-states/possesed_reverse/position = Vector2(571, 464)
+states/possesed_reverse/position = Vector2(565, 456)
 states/randomize/node = SubResource("AnimationNodeAnimation_3534c")
 states/randomize/position = Vector2(261, 371)
 states/sawAttack/node = SubResource("AnimationNodeAnimation_lvdbt")
 states/sawAttack/position = Vector2(532, 286)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_mtiiq"), "RESET", "appear", SubResource("AnimationNodeStateMachineTransition_d5612"), "appear", "Idle", SubResource("AnimationNodeStateMachineTransition_3534c"), "Idle", "sawAttack", SubResource("AnimationNodeStateMachineTransition_8t6b0"), "sawAttack", "Idle 2", SubResource("AnimationNodeStateMachineTransition_utce4"), "Idle 2", "randomize", SubResource("AnimationNodeStateMachineTransition_yw13v"), "randomize", "possesed", SubResource("AnimationNodeStateMachineTransition_odn36"), "randomize", "sawAttack", SubResource("AnimationNodeStateMachineTransition_mtqsy"), "Idle 2", "death", SubResource("AnimationNodeStateMachineTransition_2t2ig"), "sawAttack", "death", SubResource("AnimationNodeStateMachineTransition_15k1t"), "possesed", "possesed_reverse", SubResource("AnimationNodeStateMachineTransition_bxvic"), "possesed_reverse", "Idle 2", SubResource("AnimationNodeStateMachineTransition_05dbq")]
-graph_offset = Vector2(-173, 153)
+graph_offset = Vector2(-89, 323)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8t6b0"]
 nodes/output/position = Vector2(1120, 40)
@@ -540,6 +624,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/OneShot/active = false
 parameters/OneShot/internal_active = false
 parameters/OneShot/request = 0
+parameters/StateMachine/conditions/is_idle_finished = false
 
 [node name="Visual" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -550,8 +635,12 @@ unique_name_in_owner = true
 script = ExtResource("5_vdlij")
 common_ancestor_name = &"Experiment_215_S"
 
+[node name="Drops" type="Node2D" parent="Visual"]
+
+[node name="DropSpawner" type="Node2D" parent="Visual/Drops"]
+script = ExtResource("6_xglmh")
+
 [node name="Sprite2D" type="Sprite2D" parent="Visual"]
-unique_name_in_owner = true
 position = Vector2(0, -19)
 texture = ExtResource("4_xglmh")
 region_enabled = true

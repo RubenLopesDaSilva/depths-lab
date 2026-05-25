@@ -10,7 +10,7 @@ const saw = preload("res://scenes/saw_attack.tscn")
 
 func create() -> void:
 	var product = saw.instantiate();
-	if %Sprite2D.flip_h == false:
+	if %Visual.scale.x == 1:
 		product.global_position.x = global_position.x - 200;
 		product.global_position.y = global_position.y;
 	else:
@@ -24,4 +24,7 @@ func create() -> void:
 	if not container:
 		container = self
 	get_tree().current_scene.add_child(product);
+	var saw_dir = Vector2.LEFT if %Visual.scale.x > 0 else Vector2.RIGHT
+	product.set_direction(saw_dir)
+
 	created.emit(product);
