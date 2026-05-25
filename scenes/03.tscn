@@ -198,6 +198,7 @@ tile_set = SubResource("TileSet_pkxtt")
 [node name="Background" type="Node2D" parent="."]
 
 [node name="MovingPlatform" parent="." instance=ExtResource("2_val74")]
+z_index = 1
 position = Vector2(352, -144)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatform"]
@@ -207,6 +208,7 @@ libraries = {
 autoplay = "Default"
 
 [node name="MovingPlatform2" parent="." instance=ExtResource("2_val74")]
+z_index = 1
 position = Vector2(197, -600)
 
 [node name="LevelBound" type="Node2D" parent="."]
@@ -216,6 +218,7 @@ width = 4000
 height = 2000
 
 [node name="MovingPlatform3" parent="." instance=ExtResource("2_val74")]
+z_index = 1
 position = Vector2(215, -934)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatform3"]
@@ -237,6 +240,7 @@ location = 0
 target = "Boss00"
 
 [node name="MovingPlatform4" parent="." instance=ExtResource("2_val74")]
+z_index = 1
 position = Vector2(485, -1053)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatform4"]
