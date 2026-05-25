@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cdtwgxyy3f0f4"]
+[gd_scene load_steps=0 format=4 uid="uid://bl6eu4sxds3ih"]
 
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_be0du"]
 [ext_resource type="Texture2D" uid="uid://dufq0svvkr1tr" path="res://assets/sprites/lianne.png" id="2_2s6oj"]
@@ -82,28 +82,70 @@ physics_layer_0/collision_mask = 16
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 sources/1 = SubResource("TileSetAtlasSource_pcm67")
 
-[node name="00" type="Node2D"]
+[node name="00" type="Node2D" unique_id=2092772297]
 
-[node name="Front" type="TileMapLayer" parent="."]
+[node name="Front" type="TileMapLayer" parent="." unique_id=753872633]
 z_index = 2
 texture_filter = 1
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD3//f/AAAAAAAAAAD3/wAAAAAAAAAAAAD3////AAAAAAAAAAD3//7/AAAAAAAAAAD3//3/AAAAAAAAAAD3//z/AAAAAAAAAAD3//v/AAAAAAAAAAD3//r/AAAAAAAAAAD3//n/AAAAAAAAAAD3//j/AAAAAAAAAAANAPb/AAAAAAAAAAAOAPb/AAAAAAAAAAAPAPb/AAAAAAAAAAAQAPb/AAAAAAAAAAD4/wAAAAABAAAAAAD5/wAAAAABAAAAAAD6/wAAAAABAAAAAAD7/wAAAAABAAAAAAD8/wAAAAABAAAAAAD9/wAAAAABAAEAAAD+/wEAAAADAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAADAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAJAAIAAAAAAAAAAAAKAAIAAAACAAAAAAALAAIAAAAAAAAAAAAMAAIAAAAAAAAAAAANAAIAAAAAAAAAAAAOAAIAAAAAAAAAAAAPAAIAAAAAAAAAAAAQAAIAAAAAAAAAAAD6/wIAAAADAAAAAAD7/wIAAAAAAAAAAAD8/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAADAAAAAAD//wIAAAAAAAAAAAAAAAIAAAACAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAHAAIAAAAAAAAAAAAQAAEAAAAAAAAAAAAPAAEAAAAAAAAAAAAOAAEAAAACAAAAAAANAAEAAAAAAAAAAAAMAAEAAAADAAAAAAALAAEAAAADAAAAAAAKAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAAIAAEAAAACAAAAAAD9/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD7/wEAAAAAAAAAAAD6/wEAAAAAAAAAAAD+/wAAAAABAAEAAAD//wAAAAABAAAAAAAAAAAAAAABAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAFAAAAAAABAAAAAAAGAAAAAAAAAAEAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAAAAAEAAAAKAAAAAAABAAAAAAALAAAAAAABAAAAAAAMAAAAAAABAAAAAAANAAAAAAABAAEAAAAOAAAAAAABAAAAAAAPAAAAAAABAAAAAAAQAAAAAAABAAEAAAD5////AAABAAUAAAD6////AAACAAUAAAD5//7/AAAAAAYAAAD6//7/AAADAAUAAAARAPz/AAAAAAAAAAARAPv/AAAAAAAAAAARAPr/AAAAAAAAAAARAPn/AAAAAAAAAAARAPj/AAAAAAAAAAARAPf/AAAAAAAAAAARAPb/AAAAAAAAAAARAAAAAAABAAAAAAARAAEAAAAAAAAAAAARAAIAAAAAAAAAAAD6//3/AAADAAUAAAD5//3/AAAAAAYAAAD5//z/AAABAAYAAAD6//z/AAACAAYAAAAMAPb/AAAAAAAAAAALAPb/AAAAAAAAAAAKAPb/AAAAAAAAAAAJAPb/AAAAAAAAAAAIAPb/AAAAAAAAAAAHAPb/AAAAAAAAAAAGAPb/AAAAAAAAAAAFAPb/AAAAAAAAAAAEAPb/AAAAAAAAAAADAPb/AAAAAAAAAAACAPb/AAAAAAAAAAABAPb/AAAAAAAAAAAAAPb/AAAAAAAAAAD///b/AAAAAAAAAAD+//b/AAAAAAAAAAD9//b/AAAAAAAAAAD8//b/AAAAAAAAAAD7//b/AAAAAAAAAAD6//b/AAAAAAAAAAD5//b/AAAAAAAAAAD4//b/AAAAAAAAAAD3//b/AAAAAAAAAAD3/wEAAAAAAAAAAAD4/wEAAAAAAAAAAAD5/wEAAAAAAAAAAAD5/wIAAAAAAAAAAAD4/wIAAAAAAAAAAAD3/wIAAAAAAAAAAAASAAAAAAABAAAAAAATAAAAAAABAAAAAAAUAAAAAAABAAAAAAD3//X/AAAAAAAAAAD4//X/AAAAAAAAAAD5//X/AAAAAAAAAAD6//X/AAAAAAAAAAD7//X/AAAAAAAAAAD8//X/AAAAAAAAAAD9//X/AAAAAAAAAAD+//X/AAAAAAAAAAD///X/AAAAAAAAAAAAAPX/AAAAAAAAAAABAPX/AAAAAAAAAAACAPX/AAAAAAAAAAADAPX/AAAAAAAAAAAEAPX/AAAAAAAAAAAFAPX/AAAAAAAAAAAGAPX/AAAAAAAAAAAHAPX/AAAAAAAAAAAIAPX/AAAAAAAAAAAJAPX/AAAAAAAAAAAKAPX/AAAAAAAAAAALAPX/AAAAAAAAAAAMAPX/AAAAAAAAAAANAPX/AAAAAAAAAAAOAPX/AAAAAAAAAAAPAPX/AAAAAAAAAAAQAPX/AAAAAAAAAAARAPX/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_lnu2h")
 
-[node name="Mid" type="TileMapLayer" parent="."]
+[node name="Mid" type="TileMapLayer" parent="." unique_id=1873466890]
 z_index = 1
 use_parent_material = true
 tile_map_data = PackedByteArray("AAD9////AAAAAAMAAAAFAP//AAAAAAMAAAALAP//AAAAAAMAAAAHAPf/AQAAAAAAAAAHAPj/AQAAAAEAAAAHAPn/AQAAAAIAAAAHAPr/AQAAAAMAAAAHAPv/AQAAAAMAAAAHAPz/AQAAAAQAAAACAPf/AQAAAAAAAAACAPj/AQAAAAEAAAACAPn/AQAAAAEAAAACAPr/AQAAAAEAAAACAPv/AQAAAAIAAAACAPz/AQAAAAMAAAACAP3/AQAAAAQAAAA=")
 tile_set = SubResource("TileSet_lnu2h")
 
-[node name="LevelTransition" parent="." instance=ExtResource("2_hne3k")]
+[node name="Background" type="Node2D" parent="." unique_id=218737989]
+
+[node name="Parallax2D" type="Parallax2D" parent="Background" unique_id=767123209]
+scroll_scale = Vector2(0.1, 1)
+repeat_size = Vector2(1120, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D" unique_id=333806473]
+position = Vector2(210.50005, -184)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("4_qngdq")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Background" unique_id=1002749018]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(1120, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2" unique_id=596321239]
+position = Vector2(233, -184)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("5_myt80")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Background" unique_id=1960287988]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(1120, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3" unique_id=991730022]
+position = Vector2(247, -184)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("6_2s6oj")
+
+[node name="Parallax2D4" type="Parallax2D" parent="Background" unique_id=2008837398]
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(1120, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4" unique_id=1466253875]
+position = Vector2(218, -184)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("7_pcm67")
+
+[node name="LevelTransition" parent="." unique_id=652769791 instance=ExtResource("2_hne3k")]
 position = Vector2(907, 1)
 scale = Vector2(1, 2)
 location = 0
 target = "Map01"
 
-[node name="LevelBounds" type="Node2D" parent="."]
+[node name="LevelBounds" type="Node2D" parent="." unique_id=77907664]
 z_index = 256
 position = Vector2(-430, -480)
 script = ExtResource("3_co53u")
@@ -111,60 +153,18 @@ width = 1280
 height = 590
 metadata/_custom_type_script = "uid://dhbwjsck31vef"
 
-[node name="PlayerSpawn" parent="." instance=ExtResource("8_myt80")]
+[node name="PlayerSpawn" parent="." unique_id=234048131 instance=ExtResource("8_myt80")]
 z_index = 8
 position = Vector2(-205, -1)
 
-[node name="CheckPoint" parent="." instance=ExtResource("9_2s6oj")]
+[node name="CheckPoint" parent="." unique_id=1020508239 instance=ExtResource("9_2s6oj")]
 position = Vector2(96, -47)
 id = "CP00"
 
-[node name="Collectables" type="Node2D" parent="."]
+[node name="Collectables" type="Node2D" parent="." unique_id=343010070]
 
-[node name="Collectable" parent="Collectables" instance=ExtResource("10_pcm67")]
+[node name="Collectable" parent="Collectables" unique_id=510773064 instance=ExtResource("10_pcm67")]
 position = Vector2(336, -54)
 
-[node name="Collectable2" parent="Collectables" instance=ExtResource("10_pcm67")]
+[node name="Collectable2" parent="Collectables" unique_id=583060537 instance=ExtResource("10_pcm67")]
 position = Vector2(481, -57)
-
-[node name="Background" type="Node2D" parent="."]
-
-[node name="Parallax2D" type="Parallax2D" parent="Background"]
-scroll_scale = Vector2(0.1, 1)
-repeat_size = Vector2(1120, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D"]
-position = Vector2(210.50005, -184)
-scale = Vector2(3.5, 3.5)
-texture = ExtResource("4_qngdq")
-
-[node name="Parallax2D2" type="Parallax2D" parent="Background"]
-scroll_scale = Vector2(0.3, 1)
-repeat_size = Vector2(1120, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2"]
-position = Vector2(233, -184)
-scale = Vector2(3.5, 3.5)
-texture = ExtResource("5_myt80")
-
-[node name="Parallax2D3" type="Parallax2D" parent="Background"]
-scroll_scale = Vector2(0.5, 1)
-repeat_size = Vector2(1120, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3"]
-position = Vector2(247, -184)
-scale = Vector2(3.5, 3.5)
-texture = ExtResource("6_2s6oj")
-
-[node name="Parallax2D4" type="Parallax2D" parent="Background"]
-scroll_scale = Vector2(0.8, 1)
-repeat_size = Vector2(1120, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4"]
-position = Vector2(218, -184)
-scale = Vector2(3.5, 3.5)
-texture = ExtResource("7_pcm67")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://flhqwf7u2cku"]
+[gd_scene load_steps=0 format=4 uid="uid://c2tmcpos30c6m"]
 
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_wnqic"]
 [ext_resource type="PackedScene" uid="uid://dl5jyvux5taat" path="res://scenes/level_transition.tscn" id="2_5bbvk"]
@@ -8,9 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://bd668440vdxhv" path="res://assets/sprites/layer2.png" id="4_f5puv"]
 [ext_resource type="PackedScene" uid="uid://osir2ivdc4xa" path="res://scenes/spikes.tscn" id="4_w6u7p"]
 [ext_resource type="PackedScene" uid="uid://mhtd0dcrbqw1" path="res://scenes/spikes_2.tscn" id="5_3w282"]
+[ext_resource type="Texture2D" uid="uid://cj5kjv6tydi51" path="res://assets/sprites/layer1.png" id="5_epatc"]
 [ext_resource type="Script" uid="uid://dhbwjsck31vef" path="res://general/scripts/level_bounds.gd" id="7_3w282"]
 [ext_resource type="PackedScene" uid="uid://yqj0p4kea3uk" path="res://scenes/collectable.tscn" id="10_etcsy"]
-[ext_resource type="Texture2D" uid="uid://cj5kjv6tydi51" path="res://assets/sprites/layer1.png" id="11_f5puv"]
+[ext_resource type="PackedScene" uid="uid://ce48yqmwtbyf3" path="res://scenes/check_point.tscn" id="11_f5puv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8qvs2"]
 texture = ExtResource("1_wnqic")
@@ -131,66 +132,106 @@ _data = {
 &"move": SubResource("Animation_xwslo")
 }
 
-[node name="02" type="Node2D"]
+[node name="02" type="Node2D" unique_id=164840100]
 
-[node name="Front" type="TileMapLayer" parent="."]
+[node name="Front" type="TileMapLayer" parent="." unique_id=582505714]
 z_index = 2
 tile_map_data = PackedByteArray("AAD8/wAAAQAAAAAAAAD8////AQACAAAAAAD8//7/AQAAAAAAAAD8//3/AQACAAAAAAD8//z/AQAAAAAAAAD8//v/AQAAAAAAAAD8//r/AQAAAAAAAAD8//n/AQABAAAAAAD7//n/AQABAAAAAAD7//r/AQAAAAAAAAD7//v/AQAAAAAAAAD7//z/AQAAAAAAAAD7/wAAAQAAAAAAAAD7////AQAAAAAAAAD7//7/AQAAAAAAAAD7//3/AQAAAAAAAAD6/wAAAQAAAAAAAAD6////AQAAAAAAAAD6//7/AQAAAAAAAAD6//3/AQAAAAAAAAD6//z/AQAAAAAAAAD6//v/AQAAAAAAAAD6//r/AQAAAAAAAAD6//n/AQABAAAAAAD6/wEAAQAAAAAAAAD6/wIAAQAAAAAAAAD6/wMAAQAAAAAAAAD7/wMAAQAAAAAAAAD8/wMAAQAAAAAAAAD9/wMAAQAAAAAAAAD+/wMAAQAAAAAAAAD//wMAAQAAAAAAAAAAAAMAAQAAAAAAAAARAAMAAQAAAAAAAAASAAMAAQAAAAAAAAATAAMAAQAAAAAAAAAUAAMAAQAAAAAAAAAVAAMAAQAAAAAAAAAVAAIAAQABAAAAAAAUAAIAAQABAAAAAAATAAIAAQABAAAAAAD8/wEAAQAAAAAAAAD7/wEAAQAAAAAAAAD8/wIAAQAAAAAAAAD9/wIAAQABAAAAAAD7/wIAAQAAAAAAAAD+/wIAAQABAAAAAAD//wIAAQABAAAAAAAAAAIAAQABAAAAAAARAAIAAQABAAAAAAASAAIAAQABAAAAAAAWAAMAAQAAAAAAAAAWAAIAAQABAAAAAAAXAAIAAQABAAAAAAAXAAMAAQAAAAAAAAAYAAMAAQAAAAAAAAAYAAIAAQABAAAAAAAZAAIAAQABAAAAAAAZAAMAAQAAAAAAAAAaAAMAAQAAAAAAAAAaAAIAAQABAAAAAAD6//X/AQAAAAAAAAD7//X/AQAAAAAAAAD7//T/AQAAAAAAAAD6//T/AQAAAAAAAAD6//P/AQAAAAAAAAD7//P/AQAAAAAAAAD7//L/AQAAAAAAAAD6//L/AQAAAAAAAAD9//r/AQABAAAAAAD+//r/AQABAAAAAAD///r/AQABAAAAAAAAAPr/AQABAAAAAAABAPr/AQABAAAAAAACAPr/AQABAAAAAAADAPr/AQABAAAAAAAEAPr/AQABAAAAAAAFAPr/AQABAAAAAAAGAPr/AQABAAAAAAAHAPr/AQABAAAAAAAIAPr/AQABAAAAAAAJAPr/AQABAAAAAAAKAPr/AQABAAAAAAALAPr/AQABAAAAAAAMAPr/AQABAAAAAAANAPr/AQABAAAAAAAOAPr/AQABAAAAAAAPAPr/AQABAAAAAAAQAPr/AQABAAAAAAD9//v/AQAAAAAAAAD+//v/AQAAAAAAAAD///v/AQAAAAAAAAAAAPv/AQAAAAAAAAABAPv/AQAAAAAAAAACAPv/AQAAAAAAAAADAPv/AQAAAAAAAAAEAPv/AQAAAAAAAAAFAPv/AQAAAAAAAAAGAPv/AQAAAAAAAAAHAPv/AQAAAAAAAAAIAPv/AQAAAAAAAAAJAPv/AQAAAAAAAAAKAPv/AQAAAAAAAAALAPv/AQAAAAAAAAAMAPv/AQAAAAAAAAANAPv/AQAAAAAAAAAOAPv/AQAAAAAAAAAPAPv/AQAAAAAAAAAQAPv/AQAAAAAAAAD6/wQAAQAAAAAAAAD7/wQAAQAAAAAAAAD8/wQAAQAAAAAAAAD9/wQAAQAAAAAAAAD+/wQAAQAAAAAAAAD//wQAAQAAAAAAAAAAAAQAAQAAAAAAAAABAAQAAQAAAAAAAAACAAQAAQAAAAAAAAADAAQAAQAAAAAAAAAEAAQAAQAAAAAAAAAFAAQAAQAAAAAAAAAGAAQAAQAAAAAAAAAHAAQAAQAAAAAAAAAIAAQAAQAAAAAAAAAJAAQAAQAAAAAAAAAKAAQAAQAAAAAAAAALAAQAAQAAAAAAAAAMAAQAAQAAAAAAAAANAAQAAQAAAAAAAAAOAAQAAQAAAAAAAAAPAAQAAQAAAAAAAAAQAAQAAQAAAAAAAAARAAQAAQAAAAAAAAASAAQAAQAAAAAAAAATAAQAAQAAAAAAAAAUAAQAAQAAAAAAAAAVAAQAAQAAAAAAAAAWAAQAAQAAAAAAAAAXAAQAAQAAAAAAAAAYAAQAAQAAAAAAAAAZAAQAAQAAAAAAAAAaAAQAAQAAAAAAAAABAAMAAQAAAAAAAAACAAMAAQAAAAAAAAADAAMAAQAAAAAAAAAEAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAGAAMAAQAAAAAAAAAHAAMAAQAAAAAAAAAIAAMAAQAAAAAA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")
 tile_set = SubResource("TileSet_vxvah")
 
-[node name="Mid" type="TileMapLayer" parent="."]
+[node name="Mid" type="TileMapLayer" parent="." unique_id=2077304457]
 z_index = 1
 tile_map_data = PackedByteArray("AAAcAO7/AQAAAAAAAAAcAO//AQAAAAAAAAAcAPD/AQAAAAAAAAAcAPH/AQAAAAAAAAAcAPL/AQAAAAAAAAAcAPP/AQAAAAAAAAAcAPT/AQAAAAAAAAAcAPX/AQAAAAAAAAAcAPb/AQAAAAAAAAAcAPf/AQAAAAAAAAAcAPj/AQAAAAAAAAAcAPn/AQAAAAAAAAAcAPr/AQAAAAAAAAAcAPv/AQAAAAAAAAAcAPz/AQAAAAAAAAAcAP3/AQAAAAAAAAAcAP7/AQAAAAAAAAAcAP//AQAAAAAAAAAcAAAAAQAAAAAAAAAcAAEAAQAAAAAAAAAcAAIAAQAAAAAAAAAcAAMAAQAAAAAAAAAcAAQAAQAAAAAAAAD5/+7/AQAAAAAAAAD5/+//AQAAAAAAAAD5//D/AQAAAAAAAAD5//H/AQAAAAAAAAD5//L/AQAAAAAAAAD5//P/AQAAAAAAAAD5//T/AQAAAAAAAAD5//X/AQAAAAAAAAD5//b/AQAAAAAAAAD5//f/AQAAAAAAAAD5//j/AQAAAAAAAAD5//n/AQAAAAAAAAD5//r/AQAAAAAAAAD5//v/AQAAAAAAAAD5//z/AQAAAAAAAAD5//3/AQAAAAAAAAD5//7/AQAAAAAAAAD5////AQAAAAAAAAD5/wAAAQAAAAAAAAD5/wEAAQAAAAAAAAD5/wIAAQAAAAAAAAD5/wMAAQAAAAAAAAD5/wQAAQAAAAAAAAD6/+7/AQAAAAAAAAD7/+7/AQAAAAAAAAD8/+7/AQAAAAAAAAD9/+7/AQAAAAAAAAD+/+7/AQAAAAAAAAD//+7/AQAAAAAAAAAAAO7/AQAAAAAAAAABAO7/AQAAAAAAAAACAO7/AQAAAAAAAAADAO7/AQAAAAAAAAAEAO7/AQAAAAAAAAAFAO7/AQAAAAAAAAAGAO7/AQAAAAAAAAAHAO7/AQAAAAAAAAAIAO7/AQAAAAAAAAAJAO7/AQAAAAAAAAAKAO7/AQAAAAAAAAALAO7/AQAAAAAAAAAMAO7/AQAAAAAAAAANAO7/AQAAAAAAAAAOAO7/AQAAAAAAAAAPAO7/AQAAAAAAAAAQAO7/AQAAAAAAAAARAO7/AQAAAAAAAAASAO7/AQAAAAAAAAATAO7/AQAAAAAAAAAUAO7/AQAAAAAAAAAVAO7/AQAAAAAAAAAWAO7/AQAAAAAAAAAXAO7/AQAAAAAAAAAYAO7/AQAAAAAAAAAZAO7/AQAAAAAAAAAaAO7/AQAAAAAAAAAbAO7/AQAAAAAAAAD5/wUAAQAAAAAAAAD6/wUAAQAAAAAAAAD7/wUAAQAAAAAAAAD8/wUAAQAAAAAAAAD9/wUAAQAAAAAAAAD+/wUAAQAAAAAAAAD//wUAAQAAAAAAAAAAAAUAAQAAAAAAAAABAAUAAQAAAAAAAAACAAUAAQAAAAAAAAADAAUAAQAAAAAAAAAEAAUAAQAAAAAAAAAFAAUAAQAAAAAAAAAGAAUAAQAAAAAAAAAHAAUAAQAAAAAAAAAIAAUAAQAAAAAAAAAJAAUAAQAAAAAAAAAKAAUAAQAAAAAAAAALAAUAAQAAAAAAAAAMAAUAAQAAAAAAAAANAAUAAQAAAAAAAAAOAAUAAQAAAAAAAAAPAAUAAQAAAAAAAAAQAAUAAQAAAAAAAAARAAUAAQAAAAAAAAASAAUAAQAAAAAAAAATAAUAAQAAAAAAAAAUAAUAAQAAAAAAAAAVAAUAAQAAAAAAAAAWAAUAAQAAAAAAAAAXAAUAAQAAAAAAAAAYAAUAAQAAAAAAAAAZAAUAAQAAAAAAAAAaAAUAAQAAAAAAAAAbAAUAAQAAAAAAAAAcAAUAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_3w282")
 
-[node name="LevelTransition" parent="." instance=ExtResource("2_5bbvk")]
+[node name="Background" type="Node2D" parent="." unique_id=1344692049]
+
+[node name="Parallax2D" type="Parallax2D" parent="Background" unique_id=982329544]
+scroll_scale = Vector2(0.1, 1)
+repeat_size = Vector2(1760, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D" unique_id=844437974]
+position = Vector2(511, -338)
+scale = Vector2(5.5, 5.5)
+texture = ExtResource("2_vjrih")
+
+[node name="Parallax2D2" type="Parallax2D" parent="Background" unique_id=194411959]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(1760, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2" unique_id=488434206]
+position = Vector2(233, -338)
+scale = Vector2(5.5, 5.5)
+texture = ExtResource("3_etcsy")
+
+[node name="Parallax2D3" type="Parallax2D" parent="Background" unique_id=611715505]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(1760, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3" unique_id=184620839]
+position = Vector2(247, -338)
+scale = Vector2(5.5, 5.5)
+texture = ExtResource("4_f5puv")
+
+[node name="Parallax2D4" type="Parallax2D" parent="Background" unique_id=1352890468]
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(1760, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4" unique_id=1601545259]
+position = Vector2(218, -338)
+scale = Vector2(5.5, 5.5)
+texture = ExtResource("5_epatc")
+
+[node name="LevelTransition" parent="." unique_id=1327096504 instance=ExtResource("2_5bbvk")]
 position = Vector2(-343, -312)
 scale = Vector2(1, 2)
 size = 4
 target = "Map01"
 target_area_name = "LevelTransition2"
 
-[node name="MovingPlatform" parent="." instance=ExtResource("3_vxvah")]
+[node name="MovingPlatform" parent="." unique_id=166601265 instance=ExtResource("3_vxvah")]
 position = Vector2(717, 28)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatform"]
-libraries = {
-&"": SubResource("AnimationLibrary_etcsy")
-}
-autoplay = "move"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatform" unique_id=486779791]
+libraries/ = SubResource("AnimationLibrary_etcsy")
+autoplay = &"move"
 
-[node name="Spikes" type="Node" parent="."]
+[node name="Spikes" type="Node" parent="." unique_id=364129119]
 
-[node name="Spikes7" parent="Spikes" instance=ExtResource("4_w6u7p")]
+[node name="Spikes7" parent="Spikes" unique_id=1859846499 instance=ExtResource("4_w6u7p")]
 position = Vector2(801, 131.00002)
 scale = Vector2(2.5, 2.5)
 
-[node name="Spikes6" parent="Spikes" instance=ExtResource("5_3w282")]
+[node name="Spikes6" parent="Spikes" unique_id=2077213992 instance=ExtResource("5_3w282")]
 position = Vector2(685, 130)
 scale = Vector2(2.3, 2.3)
 
-[node name="Spikes5" parent="Spikes" instance=ExtResource("4_w6u7p")]
+[node name="Spikes5" parent="Spikes" unique_id=664123899 instance=ExtResource("4_w6u7p")]
 position = Vector2(570, 130.00002)
 scale = Vector2(2.5, 2.5)
 
-[node name="Spikes4" parent="Spikes" instance=ExtResource("5_3w282")]
+[node name="Spikes4" parent="Spikes" unique_id=254976884 instance=ExtResource("5_3w282")]
 position = Vector2(455, 129)
 scale = Vector2(2.3, 2.3)
 
-[node name="Spikes3" parent="Spikes" instance=ExtResource("4_w6u7p")]
+[node name="Spikes3" parent="Spikes" unique_id=1900649781 instance=ExtResource("4_w6u7p")]
 position = Vector2(340, 129)
 scale = Vector2(2.5, 2.5)
 
-[node name="Spikes2" parent="Spikes" instance=ExtResource("5_3w282")]
+[node name="Spikes2" parent="Spikes" unique_id=567896212 instance=ExtResource("5_3w282")]
 position = Vector2(225, 129)
 scale = Vector2(2.3, 2.3)
 flip_h = true
 
-[node name="Spikes" parent="Spikes" instance=ExtResource("4_w6u7p")]
+[node name="Spikes" parent="Spikes" unique_id=1887332329 instance=ExtResource("4_w6u7p")]
 position = Vector2(110, 129)
 scale = Vector2(2.5, 2.5)
 
-[node name="LevelBounds" type="Node2D" parent="."]
+[node name="LevelBounds" type="Node2D" parent="." unique_id=1006290907]
 z_index = 256
 position = Vector2(-284, -796)
 script = ExtResource("7_3w282")
@@ -198,72 +239,30 @@ width = 1632
 height = 1038
 metadata/_custom_type_script = "uid://dhbwjsck31vef"
 
-[node name="Collectables" type="Node2D" parent="."]
+[node name="Collectables" type="Node2D" parent="." unique_id=550786232]
 
-[node name="Collectable" parent="Collectables" instance=ExtResource("10_etcsy")]
+[node name="Collectable" parent="Collectables" unique_id=1304621317 instance=ExtResource("10_etcsy")]
 position = Vector2(791, -333)
 type = 1
 
-[node name="Collectable2" parent="Collectables" instance=ExtResource("10_etcsy")]
+[node name="Collectable2" parent="Collectables" unique_id=1823506323 instance=ExtResource("10_etcsy")]
 position = Vector2(517, -32)
 
-[node name="Collectable3" parent="Collectables" instance=ExtResource("10_etcsy")]
+[node name="Collectable3" parent="Collectables" unique_id=800167067 instance=ExtResource("10_etcsy")]
 position = Vector2(477, -30)
 
-[node name="Collectable4" parent="Collectables" instance=ExtResource("10_etcsy")]
+[node name="Collectable4" parent="Collectables" unique_id=816625569 instance=ExtResource("10_etcsy")]
 position = Vector2(311, -30)
 
-[node name="Collectable5" parent="Collectables" instance=ExtResource("10_etcsy")]
+[node name="Collectable5" parent="Collectables" unique_id=1074328584 instance=ExtResource("10_etcsy")]
 position = Vector2(268, -33)
 
-[node name="Collectable6" parent="Collectables" instance=ExtResource("10_etcsy")]
-position = Vector2(-47, -2)
-type = 3
+[node name="CheckPoint" parent="." unique_id=2085763824 instance=ExtResource("11_f5puv")]
+position = Vector2(-49, 49)
+id = "CP02"
 
-[node name="LevelTransition2" parent="." instance=ExtResource("2_5bbvk")]
+[node name="LevelTransition2" parent="." unique_id=1979509492 instance=ExtResource("2_5bbvk")]
 position = Vector2(1406, 96)
 size = 3
 location = 0
 target = "Map03"
-
-[node name="Background" type="Node2D" parent="."]
-
-[node name="Parallax2D" type="Parallax2D" parent="Background"]
-scroll_scale = Vector2(0.1, 1)
-repeat_size = Vector2(1760, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D"]
-position = Vector2(511, -338)
-scale = Vector2(5.5, 5.5)
-texture = ExtResource("2_vjrih")
-
-[node name="Parallax2D2" type="Parallax2D" parent="Background"]
-scroll_scale = Vector2(0.3, 1)
-repeat_size = Vector2(1760, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D2"]
-position = Vector2(233, -338)
-scale = Vector2(5.5, 5.5)
-texture = ExtResource("3_etcsy")
-
-[node name="Parallax2D3" type="Parallax2D" parent="Background"]
-scroll_scale = Vector2(0.5, 1)
-repeat_size = Vector2(1760, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D3"]
-position = Vector2(247, -338)
-scale = Vector2(5.5, 5.5)
-texture = ExtResource("4_f5puv")
-
-[node name="Parallax2D4" type="Parallax2D" parent="Background"]
-scroll_scale = Vector2(0.8, 1)
-repeat_size = Vector2(1760, 0)
-repeat_times = 5
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D4"]
-position = Vector2(218, -338)
-scale = Vector2(5.5, 5.5)
-texture = ExtResource("11_f5puv")
