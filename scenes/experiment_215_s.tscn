@@ -506,7 +506,7 @@ animation = &"damage"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vdlij"]
 filter_enabled = true
-filters = ["Sprite2D:self_modulate"]
+filters = ["Sprite2D:self_modulate", "Visual/Sprite2D:self_modulate"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vdlij"]
 animation = &"Idle"
@@ -606,6 +606,7 @@ transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransitio
 graph_offset = Vector2(-119, 63)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8t6b0"]
+graph_offset = Vector2(-83.759155, -53.72838)
 nodes/output/position = Vector2(1120, 40)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_vdlij")
 nodes/OneShot/position = Vector2(800, -20)
@@ -615,7 +616,7 @@ nodes/Damage/node = SubResource("AnimationNodeAnimation_3niea")
 nodes/Damage/position = Vector2(460, 160)
 node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"StateMachine", &"OneShot", 1, &"Damage"]
 
-[node name="Experiment_215_S" type="Node2D"]
+[node name="Experiment_215_S" type="Node2D" groups=["Boss"]]
 script = ExtResource("1_od5ja")
 
 [node name="HealthRessources" type="Node" parent="."]
