@@ -151,6 +151,7 @@ target = "Map01"
 target_area_name = "LevelTransition2"
 
 [node name="MovingPlatform" parent="." instance=ExtResource("3_vxvah")]
+z_index = 2
 position = Vector2(717, 28)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatform"]
@@ -162,31 +163,38 @@ autoplay = "move"
 [node name="Spikes" type="Node" parent="."]
 
 [node name="Spikes7" parent="Spikes" instance=ExtResource("4_w6u7p")]
+z_index = 2
 position = Vector2(801, 131.00002)
 scale = Vector2(2.5, 2.5)
 
 [node name="Spikes6" parent="Spikes" instance=ExtResource("5_3w282")]
+z_index = 2
 position = Vector2(685, 130)
 scale = Vector2(2.3, 2.3)
 
 [node name="Spikes5" parent="Spikes" instance=ExtResource("4_w6u7p")]
+z_index = 2
 position = Vector2(570, 130.00002)
 scale = Vector2(2.5, 2.5)
 
 [node name="Spikes4" parent="Spikes" instance=ExtResource("5_3w282")]
+z_index = 2
 position = Vector2(455, 129)
 scale = Vector2(2.3, 2.3)
 
 [node name="Spikes3" parent="Spikes" instance=ExtResource("4_w6u7p")]
+z_index = 2
 position = Vector2(340, 129)
 scale = Vector2(2.5, 2.5)
 
 [node name="Spikes2" parent="Spikes" instance=ExtResource("5_3w282")]
+z_index = 2
 position = Vector2(225, 129)
 scale = Vector2(2.3, 2.3)
 flip_h = true
 
 [node name="Spikes" parent="Spikes" instance=ExtResource("4_w6u7p")]
+z_index = 2
 position = Vector2(110, 129)
 scale = Vector2(2.5, 2.5)
 
@@ -234,6 +242,7 @@ repeat_size = Vector2(1760, 0)
 repeat_times = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D"]
+z_index = 1
 position = Vector2(511, -338)
 scale = Vector2(5.5, 5.5)
 texture = ExtResource("2_vjrih")
