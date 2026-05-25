@@ -3,16 +3,20 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var playback = $AnimationTree.get("parameters/StateMachine/playback")
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var health_ressources: GameResource = $HealthRessources
 
+var is_dead
 var facing_direction : float = 1.0
 enum BossState { IDLE, DECOLLAGE, EN_VOL, ATTERRISSAGE }
 var current_state = BossState.IDLE
 
 var idle_finished_count : int = 0
 var movement_timer : float = 0.0
-var died: bool = false
 const MOVEMENT_DURATION : float = 9.0
 const SPEED : float = 120.0
+
+func _ready() -> void:
+	health_ressources.is_dead.connect(_on_boss_death)
 
 func _physics_process(delta: float) -> void:
 	if current_state == BossState.EN_VOL:
@@ -46,6 +50,15 @@ func _on_atterrissage_termine() -> void:
 	
 	
 	playback.travel("Idle 2")
+
+func _on_boss_death() -> void:
+	if is_dead:
+		return
+	is_dead  = true
+	if has_node("Visual/Drops/DropTimer"): $Visual/Drops/DropTimer.stop()
+	$Area2D/CollisionShape2D.set_deferred("disabled",true)
+	set_process(false)
+	set_physics_process(false)
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

@@ -5,6 +5,7 @@ signal depleated
 signal replenished
 signal max_changed(new_max: int)
 signal current_changed(new_current: int)
+signal is_dead
 
 
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
@@ -46,6 +47,7 @@ func decrease(amount: int) -> void:
 
 func deplete() -> void:
 	current_amount = 0
+	is_dead.emit()
 
 
 func replenish() -> void:
