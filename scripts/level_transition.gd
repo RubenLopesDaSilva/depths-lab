@@ -14,7 +14,6 @@ enum SIDE { RIGHT, LEFT, TOP, BOTTOM}
 		location = value
 		apply_area_settings();
 
-@export_file("*.tscn") var target_level : String = ""
 @export var target : String = ""
 @export var target_area_name : String = "LevelTransition"
 
