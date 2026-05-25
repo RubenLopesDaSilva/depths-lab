@@ -146,7 +146,6 @@ texture = ExtResource("4_mql6g")
 position = Vector2(-630, 6)
 scale = Vector2(1, 2)
 size = 3
-target_level = "uid://cdtwgxyy3f0f4"
 target = "Map00"
 
 [node name="LevelTransition2" parent="." instance=ExtResource("2_te1xh")]
@@ -154,7 +153,6 @@ position = Vector2(1212, -335)
 scale = Vector2(1, 2)
 size = 3
 location = 0
-target_level = "uid://flhqwf7u2cku"
 target = "Map02"
 
 [node name="LevelBounds" type="Node2D" parent="."]
