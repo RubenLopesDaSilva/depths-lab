@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://bm74fw2p8ydun"]
+
+[ext_resource type="Script" uid="uid://dg5kj4dkl6egf" path="res://scripts/attack_area.gd" id="1_s4otu"]
+[ext_resource type="Texture2D" uid="uid://ct66hasfqqb0x" path="res://assets/sprites/attack_1_dust.png" id="2_8cjpw"]
+[ext_resource type="AudioStream" uid="uid://n4os8yfa02v8" path="res://assets/sfx/attack_1_sound.mp3" id="3_8cjpw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4otu"]
+atlas = ExtResource("2_8cjpw")
+region = Rect2(0, 0, 17, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cjpw"]
+atlas = ExtResource("2_8cjpw")
+region = Rect2(17, 0, 17, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgi4e"]
+atlas = ExtResource("2_8cjpw")
+region = Rect2(34, 0, 17, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cw7we"]
+atlas = ExtResource("2_8cjpw")
+region = Rect2(51, 0, 17, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4drgr"]
+atlas = ExtResource("2_8cjpw")
+region = Rect2(68, 0, 17, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_31cv2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4otu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cjpw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgi4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cw7we")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4drgr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+size = Vector2(17.142857, 12.000002)
+
+[node name="AttackArea" type="Area2D" node_paths=PackedStringArray("sound_player")]
+z_index = 5
+scale = Vector2(3.5, 3.5)
+collision_mask = 36
+script = ExtResource("1_s4otu")
+sound_player = NodePath("SoundPlayer")
+metadata/_custom_type_script = "uid://dg5kj4dkl6egf"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_31cv2")
+frame = 4
+frame_progress = 1.0
+speed_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6.811958e-07, 0)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_dqkch")
+debug_color = Color(0.8666667, 0, 0.12156863, 0.29411766)
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8cjpw")

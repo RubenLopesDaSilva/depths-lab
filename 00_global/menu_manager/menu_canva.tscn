@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://cag7b1oxxluiw"]
+
+[ext_resource type="Script" uid="uid://dr7vp0apc1ngm" path="res://00_global/menu_manager/menu_canva.gd" id="1_t8mj8"]
+[ext_resource type="PackedScene" uid="uid://bnwlqekgab233" path="res://00_global/lighting_manager/global_lighting.tscn" id="2_lpklp"]
+
+[node name="MenuCanva" type="CanvasLayer" node_paths=PackedStringArray("control")]
+process_mode = 3
+script = ExtResource("1_t8mj8")
+control = NodePath("Interface")
+
+[node name="Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="DirectionalLight2D" parent="Interface" instance=ExtResource("2_lpklp")]
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="Interface"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Node2D" type="Node2D" parent="Interface/CenterContainer"]
+position = Vector2(80, 0)
+
+[node name="PlayBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
+offset_right = 80.0
+offset_bottom = 40.0
+text = "Play"
+
+[node name="RestartBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
+offset_top = 80.0
+offset_right = 80.0
+offset_bottom = 120.0
+text = "Restart"
+
+[node name="ResetBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
+offset_top = 160.0
+offset_right = 80.0
+offset_bottom = 200.0
+text = "Reset
+"
+
+[node name="ExitBtn" type="Button" parent="Interface/CenterContainer/Node2D"]
+offset_top = 240.0
+offset_right = 80.0
+offset_bottom = 280.0
+text = "Exit"
+
+[node name="Label" type="Label" parent="Interface"]
+layout_mode = 0
+offset_top = -208.0
+offset_right = 1151.0
+offset_bottom = -163.0
+theme_override_font_sizes/font_size = 32
+text = "Depths Lab"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Interface/CenterContainer/Node2D/PlayBtn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="Interface/CenterContainer/Node2D/RestartBtn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="Interface/CenterContainer/Node2D/ResetBtn" to="." method="_on_reset_btn_pressed"]
+[connection signal="pressed" from="Interface/CenterContainer/Node2D/ExitBtn" to="." method="_on_exit_btn_pressed"]

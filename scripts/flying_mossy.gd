@@ -1,25 +1,82 @@
-extends Node2D
+extends CharacterBody2D;
 
+enum State { NONE, FLY, DAMAGE, DEATH };
+
+var state = State.NONE;
+
+const FORCE = 8;
 const SPEED = 80;
-var health = 3;
+var health = 60;
 
+var lastDirection = 1;
 var direction = 1;
-@onready var ray_cast_right: RayCast2D = $RayCastRight
-@onready var ray_cast_left: RayCast2D = $RayCastLeft
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+@onready var ray_cast_right: RayCast2D = $RayCastRight;
+@onready var animation_player: AnimationPlayer = $AnimationPlayer;
+@export var sound_player : AudioStreamPlayer2D;
+
+func _ready() -> void:
+	set_state(State.FLY);
 
 func _process(delta):
+	update_direction();
+	update_sprite();
+	handle_actions();
+	apply_movement(delta);
+
+func update_direction() -> void:
 	if ray_cast_right.is_colliding():
-		direction = -1;
-		animated_sprite.flip_h = true;
-	if ray_cast_left.is_colliding():
-		direction = 1;
-		animated_sprite.flip_h = false;
+		direction = direction * -1;
 	
-	position.x += direction * SPEED * delta;
+func update_sprite() -> void:
+	if direction > 0 && lastDirection < 0:
+		lastDirection = 1;
+		self.scale.x = -self.scale.x;
+		
+	if direction < 0 && lastDirection > 0:
+		lastDirection = -1;
+		self.scale.x = -self.scale.x;
+	
+func handle_actions() -> void:
+	return;
+	
+func apply_movement(delta: float) -> void:
+	if not state == State.FLY:
+		return;
+		
+	if direction:
+		velocity.x = move_toward(velocity.x, SPEED * direction, FORCE);
+	else:
+		velocity.x = move_toward(velocity.x, 0, FORCE);
+		
+	move_and_slide();
+	
+func set_state(value: State) :
+	if value == state :
+		return;
+	if value == State.FLY:
+		sound_player.play();
+	else :
+		sound_player.stop();
+	
+	state = value;	
 
-func takeDamage():
-	pass;
+func take_damage(damage: int) -> void:
+	if state == State.DEATH:
+		return;
+	if  state == State.FLY :
+		health = health - damage;
+	if health <= 0 :
+		death();
+	else: 
+		set_state(State.DAMAGE);
+		animation_player.play("GetDamage");
+		await animation_player.animation_finished;
+		set_state(State.FLY);
+		animation_player.play("Fly");
 
-func death():
-	pass;
+func death() -> void:
+	set_state(State.DEATH);
+	animation_player.play("Death");
+	await animation_player.animation_finished;
+	queue_free();;

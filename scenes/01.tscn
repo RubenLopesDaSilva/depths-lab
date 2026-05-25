@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bf1ati87dqexd"]
+[gd_scene load_steps=15 format=4 uid="uid://bf1ati87dqexd"]
 
 [ext_resource type="Texture2D" uid="uid://cld4s24e1uhfa" path="res://assets/sprites/layer4.png" id="1_6cx57"]
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_qvefa"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://dhbwjsck31vef" path="res://general/scripts/level_bounds.gd" id="3_8dnki"]
 [ext_resource type="Texture2D" uid="uid://bd668440vdxhv" path="res://assets/sprites/layer2.png" id="3_kdc6i"]
 [ext_resource type="Texture2D" uid="uid://cj5kjv6tydi51" path="res://assets/sprites/layer1.png" id="4_mql6g"]
+[ext_resource type="PackedScene" uid="uid://yqj0p4kea3uk" path="res://scenes/collectable.tscn" id="10_6cygv"]
+[ext_resource type="PackedScene" uid="uid://dox3imdqhdbeo" path="res://scenes/mossy.tscn" id="10_520st"]
+[ext_resource type="PackedScene" uid="uid://dlf1t4i52784i" path="res://scenes/flying_mossy.tscn" id="10_f8m6n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixcy0"]
 texture = ExtResource("1_qvefa")
@@ -142,14 +145,14 @@ texture = ExtResource("4_mql6g")
 position = Vector2(-630, 6)
 scale = Vector2(1, 2)
 size = 3
-target_level = "uid://cdtwgxyy3f0f4"
+target = "Map00"
 
 [node name="LevelTransition2" parent="." instance=ExtResource("2_te1xh")]
 position = Vector2(1212, -335)
 scale = Vector2(1, 2)
 size = 3
 location = 0
-target_level = "uid://flhqwf7u2cku"
+target = "Map02"
 
 [node name="LevelBounds" type="Node2D" parent="."]
 z_index = 256
@@ -158,3 +161,41 @@ script = ExtResource("3_8dnki")
 width = 1728
 height = 750
 metadata/_custom_type_script = "uid://dhbwjsck31vef"
+
+[node name="NewMossy" parent="." instance=ExtResource("10_520st")]
+position = Vector2(-108, -7)
+scale = Vector2(2, 2)
+
+[node name="NewMossy2" parent="." instance=ExtResource("10_520st")]
+position = Vector2(401, -360)
+scale = Vector2(2, 2)
+
+[node name="new_flying_mossy" parent="." instance=ExtResource("10_f8m6n")]
+position = Vector2(199, -38)
+scale = Vector2(2, 2)
+
+[node name="new_flying_mossy2" parent="." instance=ExtResource("10_f8m6n")]
+position = Vector2(399, -232)
+scale = Vector2(2, 2)
+
+[node name="Collectables" type="Node2D" parent="."]
+
+[node name="Collectable" parent="Collectables" instance=ExtResource("10_6cygv")]
+position = Vector2(938, -72)
+type = 2
+
+[node name="Collectable2" parent="Collectables" instance=ExtResource("10_6cygv")]
+position = Vector2(408, -119)
+
+[node name="Collectable3" parent="Collectables" instance=ExtResource("10_6cygv")]
+position = Vector2(498, -122)
+
+[node name="Collectable4" parent="Collectables" instance=ExtResource("10_6cygv")]
+position = Vector2(408, -23)
+
+[node name="Collectable5" parent="Collectables" instance=ExtResource("10_6cygv")]
+position = Vector2(503, -23)
+
+[node name="Collectable6" parent="Collectables" instance=ExtResource("10_6cygv")]
+position = Vector2(457, -282)
+type = 1

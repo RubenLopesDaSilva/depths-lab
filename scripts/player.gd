@@ -4,34 +4,50 @@ enum State { IDLE, WALK, JUMP, FALL, LAND, ATTACK, DAMAGE, DEATH }
 
 enum AttackState { NONE, FIRST, SECOND, DISABLE }
 
-const SPEED = 200.0
-const JUMP_VELOCITY = -550.0
-	
-var state = State.IDLE
-var attack_state = AttackState.NONE
-var health = 100
-var notOnFloor = false
-var direction = 0
-var lastDirection = 1;
-var vulnerable = true
-var animationFlag = 0
-var close = false
+const FORCE: float = 20.0
+const SPEED: float = 200.0
+const JUMP_VELOCITY: float = -550.0
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+var state: State = State.IDLE
+var attack_state: AttackState = AttackState.NONE
+var health: float = 5
+var notOnFloor: bool = false
+var direction: int = 0
+var lastDirection: int = 1;
+var vulnerable: bool = true
+var animationFlag: int = 0
+var close: bool = false
+var running: bool = false;
+var multiplicator: float = 1;
+var collectables : int = 0;
+
+@onready var animated_sprite: AnimatedSprite2D = $PlayerSprite
 @onready var vulnerableTimer: Timer = $Iframes
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var run_dusk_sprite: AnimatedSprite2D = $RunDuskSprite
+
+@export var attack_area: PackedScene;
+@export var second_attack_area: PackedScene;
+@export var walk_sound_player : AudioStreamPlayer;
+@export var run_sound_player : AudioStreamPlayer;
 
 func _ready() -> void:
 	if get_tree().get_first_node_in_group("Player") != self :
 		self.queue_free()
 	self.call_deferred("reparent",get_tree().root)
-	pass
+	run_dusk_sprite.hide();
+	set_health(5);
 
 func _physics_process(delta: float) -> void:
 	update_direction()
 	update_sprite()
 	handle_actions()
 	apply_movement(delta)
+	
+func set_player(collectables_value: int, direction_value: int, scale_value: Vector2) -> void :
+	self.scale = Vector2(direction_value*scale_value.x,scale_value.y);
+	lastDirection = direction_value;
+	set_collectables(collectables_value);
 	
 func update_direction() -> void:
 	if state != State.DAMAGE && state != State.DEATH:
@@ -52,8 +68,16 @@ func handle_actions() -> void:
 	if (Input.is_action_just_pressed("attack")):
 		attack()	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		set_state(State.JUMP)
+		set_state(State.JUMP);
 		velocity.y = JUMP_VELOCITY
+	if state == State.WALK && Input.is_action_pressed("shift") && not running:
+		running = true;
+		run_dusk_sprite.show();
+		play_animation();
+	elif (not Input.is_action_pressed("shift") || not state == State.WALK) && running:
+		running = false;
+		run_dusk_sprite.hide();
+		play_animation();
 	if not is_on_floor() && velocity.y > 0:
 		notOnFloor = true
 		set_state(State.FALL)
@@ -63,7 +87,7 @@ func handle_actions() -> void:
 	
 func apply_movement(delta: float) -> void:
 	if state == State.DEATH:
-		velocity.x = move_toward(velocity.x, 0, SPEED / 30)
+		velocity.x = move_toward(velocity.x, 0, SPEED / 30.0)
 	else:
 		if (is_on_floor()):
 			if direction == 0:
@@ -72,9 +96,13 @@ func apply_movement(delta: float) -> void:
 				set_state(State.WALK)
 		
 		if direction:
-			velocity.x = direction * SPEED;
+			if running :
+				multiplicator = 2;
+			else : 
+				multiplicator = move_toward(multiplicator, 1, 0.005);
+			velocity.x = move_toward(velocity.x, multiplicator * SPEED * direction, FORCE);
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED);
+			velocity.x = move_toward(velocity.x, 0, FORCE);
 		
 	if not is_on_floor():
 		velocity.y += get_gravity().y * delta
@@ -82,6 +110,7 @@ func apply_movement(delta: float) -> void:
 	move_and_slide()
 	
 func set_state(value: State, objection: bool = false, play: bool = true) -> void:
+	
 	if(not objection):
 		if state == value:
 			return
@@ -91,22 +120,29 @@ func set_state(value: State, objection: bool = false, play: bool = true) -> void
 			return
 		if  state == State.DAMAGE && value != State.DEATH :
 			return
-		if  state == State.JUMP && (value != State.DEATH && value != State.DAMAGE && value != State.FALL && value != State.LAND) :
+		if  state == State.JUMP && (value != State.DEATH && value != State.DAMAGE && value != State.FALL && value != State.LAND && value != State.ATTACK) :
 			return
 		if state == State.ATTACK && (value != State.DEATH && value != State.DAMAGE) :
 			return
+			
+	if state == State.DEATH : 
+		return
+		
 	state = value
+	
+	if state != State.WALK :
+		walk_sound_player.stop();
+		run_sound_player.stop();
+	
 	if	play:
 		play_animation()
 	
 func set_attack_state(value: AttackState) -> void:
-	if value == AttackState.SECOND:
-		return
 	if state != State.ATTACK:
 		return
 	if value == attack_state:
 		return
-	attack_state = value
+	attack_state = value;
 	play_animation()
 	
 func play_animation() -> void:
@@ -131,8 +167,15 @@ func play_idle() -> void:
 	animation_player.play("Idle")
 	
 func play_walk() -> void:
-	animation_player.play("Walk")
-	
+	if running:
+		animation_player.play("Run");
+		walk_sound_player.stop();
+		run_sound_player.play();
+	else :
+		animation_player.play("Walk");
+		walk_sound_player.play();
+		run_sound_player.stop();
+		
 func play_jump() -> void:
 	animation_player.play("Jump")
 	
@@ -146,12 +189,19 @@ func play_land() -> void:
 	
 func play_attack() -> void:
 	if attack_state == AttackState.FIRST:
-		#await Utils.delay(0.5)
+		await Utils.delay(0.2)
 		close = true
 		if attack_state == AttackState.FIRST:
 			animation_player.play("FirstAttack")
+			var attackArea = attack_area.instantiate();
+			attackArea.start(self, 20);
+			get_parent().add_child(attackArea);
 	elif attack_state == AttackState.SECOND:
 		animation_player.play("SecondAttack")
+		var secondAttackArea = second_attack_area.instantiate();
+		secondAttackArea.start(self, 20);
+		await Utils.delay(0.5);
+		get_parent().add_child(secondAttackArea);
 	if	await animation_finished_correctly(): 
 		set_state(State.IDLE, true)
 	close = false
@@ -181,14 +231,14 @@ func attack()-> void:
 	
 func take_damage(damage: int) -> void:
 	if vulnerable && state != State.DEATH:
-		health -= damage;
+		set_health(health - damage);
+		
 		if (health <= 0):
-			death()
+			death();
 		else:
 			set_state(State.DAMAGE)
-			vulnerable = false
-			vulnerableTimer.start()
-	print(health)
+			vulnerable = false;
+			vulnerableTimer.start();
 	
 func death() -> void:
 	set_state(State.DEATH)
@@ -201,6 +251,16 @@ func animation_finished_correctly() -> bool:
 		return true
 	return false
 	
+func collect_collectables(value: int) -> void:
+	set_collectables(collectables + value);
+	
 func _on_timer_timeout() -> void:
 	vulnerable = true
 	
+func set_health(value: float) -> void :
+	health = value;
+	StatesBar.set_health(health/5.0*100);
+	
+func set_collectables(value: int) -> void :
+	collectables = value;
+	StatesBar.set_collectable(collectables);
