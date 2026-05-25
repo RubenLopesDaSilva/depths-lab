@@ -32,6 +32,8 @@ func start () -> void :
 			packed_scene = map_01;
 		elif check_point_id == "CP02":
 			packed_scene = map_02;
+		else :
+			return
 	
 	scene = packed_scene.instantiate();
 	add_child(scene);
