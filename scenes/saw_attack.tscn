@@ -146,9 +146,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1vics"]
 advance_mode = 2
+advance_condition = &"is_right"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_coxj8"]
 advance_mode = 2
+advance_condition = &"is_left"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k62dv"]
 states/RESET/node = SubResource("AnimationNodeAnimation_ek28p")
@@ -182,7 +184,10 @@ libraries = {
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_k62dv")
+advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_left = false
+parameters/conditions/is_right = false
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
