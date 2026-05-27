@@ -163,7 +163,6 @@ transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransitio
 
 [node name="SawAttack" type="Node2D"]
 show_behind_parent = true
-z_index = 1
 scale = Vector2(2, 2)
 script = ExtResource("1_ek28p")
 
