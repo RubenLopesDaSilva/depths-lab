@@ -11,7 +11,7 @@ var chase_id : int = -1;
 func _ready() -> void:
 	control.hide();
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
 		if control.visible:
 			_close();

@@ -7,6 +7,7 @@ signal max_changed(new_max: int)
 signal current_changed(new_current: int)
 signal is_dead
 
+const musicState = AudioManager.MusicState;
 
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 @onready var animation_tree: AnimationTree = $"../AnimationTree"
@@ -48,13 +49,20 @@ func decrease(amount: int) -> void:
 func deplete() -> void:
 	current_amount = 0
 	is_dead.emit()
-
+	
+func play_death_bosss_music() -> void:
+	AudioManager.quite(1)
 
 func replenish() -> void:
 	current_amount = max_amount
 
 
-func _on_area_2d_body_entered(_body: Node2D) -> void:
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.has_method("take_damage"):
+		body.take_damage(1)
+
+
+func _on_area_2d_area_shape_entered(_area_rid: RID, _area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if current_amount > 0:
 		animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE;
 		decrease(20);

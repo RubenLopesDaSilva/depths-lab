@@ -30,7 +30,7 @@ func start(player: Player, dmg: int) -> void:
 		lastDirection = -1;
 		self.scale.x = self.scale.x * -1;
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !is_instance_valid(owner_player):
 		self.queue_free();
 		return;
