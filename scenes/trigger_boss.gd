@@ -14,7 +14,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if temps_ecoule < 1.0:
 		return
 	
-	print("Body entered")
 	if body.is_in_group("Player"):
 		camera_2d.enabled = true
 		camera_2d.make_current()

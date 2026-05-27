@@ -1231,6 +1231,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("walk_sound_player", "run_sound_player") groups=["Player"]]
 z_index = 5
 collision_layer = 16
+collision_mask = 33
 script = ExtResource("1_g2els")
 attack_area = ExtResource("2_qhqgy")
 second_attack_area = ExtResource("3_dqkch")

@@ -55,6 +55,11 @@ func replenish() -> void:
 
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
+	if _body.has_method("take_damage"):
+		_body.take_damage(1)
+
+
+func _on_area_2d_area_shape_entered(_area_rid: RID, _area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if current_amount > 0:
 		animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE;
 		decrease(20);
