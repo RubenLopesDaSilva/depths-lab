@@ -59,6 +59,7 @@ func _on_boss_death() -> void:
 	$Area2D/CollisionShape2D.set_deferred("disabled",true)
 	set_process(false)
 	set_physics_process(false)
+	
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

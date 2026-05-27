@@ -1,7 +1,9 @@
 extends Area2D
 
 const boss_scene = preload("res://scenes/experiment_215_s.tscn")
+const musicState = AudioManager.MusicState;
 @onready var camera_2d: Camera2D = $"../Camera2D"
+@onready var boss_timer: Timer = $"../BossTimer"
 
 
 var temps_ecoule: float = 0.0
@@ -17,10 +19,16 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		camera_2d.enabled = true
 		camera_2d.make_current()
-		var boss = boss_scene.instantiate()
+		boss_timer.start(2.5)
+		AudioManager.change_state(musicState.BOSS)
 		
-		boss.position = Vector2(865.0,2)
-		boss.scale = Vector2(5,5)
-		get_tree().current_scene.call_deferred("add_child",boss)
+
+
+func _on_boss_timer_timeout() -> void:
+	var boss = boss_scene.instantiate()
 		
-		call_deferred("queue_free")
+	boss.position = Vector2(865.0,2)
+	boss.scale = Vector2(5,5)
+	get_tree().current_scene.call_deferred("add_child",boss)
+	call_deferred("queue_free")
+	
