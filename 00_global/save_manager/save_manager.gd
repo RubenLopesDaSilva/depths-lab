@@ -104,6 +104,8 @@ func to_state(value: String) -> void :
 			state = GameState.BEGIN;
 		"normal":
 			state = GameState.NORMAL;
+		"boss":
+			state = GameState.BOSS;
 		"none", _:
 			state = GameState.NONE;
 			
@@ -114,6 +116,8 @@ func from_state() -> String :
 			return "";
 		GameState.NORMAL:
 			return "normal";
+		GameState.BOSS:
+			return "boss";
 		GameState.NONE, _:
 			return "none"
 

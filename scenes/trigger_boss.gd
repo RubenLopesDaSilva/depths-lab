@@ -40,6 +40,7 @@ func _spawn_player() -> void:
 	player.global_position = SaveManager.position
 
 func save()->void:
+	camera_2d.enabled = false;
 	player.set_health(5)
 	if not active:
 		active = true
@@ -83,4 +84,5 @@ func _on_boss_timer_timeout() -> void:
 
 
 func _on_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
+	if player == body:
+		player = null

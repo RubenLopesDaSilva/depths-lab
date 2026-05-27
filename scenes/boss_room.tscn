@@ -120,4 +120,5 @@ metadata/_custom_type_script = "uid://dhbwjsck31vef"
 one_shot = true
 
 [connection signal="body_entered" from="TriggerBoss" to="TriggerBoss" method="_on_body_entered"]
+[connection signal="body_exited" from="TriggerBoss" to="TriggerBoss" method="_on_body_exited"]
 [connection signal="timeout" from="BossTimer" to="TriggerBoss" method="_on_boss_timer_timeout"]
