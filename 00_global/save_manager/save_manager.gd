@@ -148,5 +148,4 @@ func is_active_check_point(id: String):
 	return check_points.has(id);
 
 func is_active_boss(id: String):
-	if bosses.has(id) : 
-		save_game();
+	return bosses.has(id) 
