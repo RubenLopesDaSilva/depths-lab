@@ -3,7 +3,7 @@ class_name Trigger
 
 const boss_scene = preload("res://scenes/experiment_215_s.tscn")
 const musicState = AudioManager.MusicState;
-var already_started : bool
+
 @onready var camera_2d: Camera2D = $"../Camera2D"
 @onready var boss_timer: Timer = $"../BossTimer"
 @export var packed_player : PackedScene
@@ -11,6 +11,7 @@ var already_started : bool
 
 var player : Player = null
 var active : bool = false
+var is_ready : bool = false
 var temps_ecoule: float = 0.0
 const id : String = 'boss00'
 
@@ -21,11 +22,9 @@ func _ready() -> void:
 		
 	if not GameManager.map_ready.is_connected(_on_map_ready):
 		GameManager.map_ready.connect(_on_map_ready);
-		_on_map_ready()
-	_on_map_ready()
-	already_started = false
 
 func _on_map_ready() -> void:
+	is_ready = true
 	active = SaveManager.is_active_boss(id)
 	if SaveManager.state == SaveManager.GameState.BOSS && SaveManager.check_point == id:
 		_spawn_player()
@@ -59,16 +58,16 @@ func _process(delta: float) -> void:
 		temps_ecoule += delta
 
 func _on_body_entered(body: Node2D) -> void:
-	_on_map_ready()
+	if player == null:
+		player = body
 	if temps_ecoule < 1.0:
 		return
-	if already_started:
+	if SaveManager.is_active_boss(id):
 		return
 	
 	if body.is_in_group("Player"):
 		camera_2d.enabled = true
 		camera_2d.make_current()
-		already_started = true
 		boss_timer.start(2.5)
 		AudioManager.change_state(musicState.BOSS)
 		
@@ -81,3 +80,7 @@ func _on_boss_timer_timeout() -> void:
 	boss.scale = Vector2(5,5)
 	get_tree().current_scene.call_deferred("add_child",boss)
 	
+
+
+func _on_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.

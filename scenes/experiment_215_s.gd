@@ -59,12 +59,13 @@ func _on_atterrissage_termine() -> void:
 func _on_boss_death() -> void:
 	if is_dead:
 		return
+	trigger.save()
 	is_dead  = true
 	if has_node("Visual/Drops/DropTimer"): $Visual/Drops/DropTimer.stop()
 	$Area2D/CollisionShape2D.set_deferred("disabled",true)
 	set_process(false)
 	set_physics_process(false)
-	trigger.save()
+	
 	
 
 
