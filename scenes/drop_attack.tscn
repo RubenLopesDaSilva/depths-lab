@@ -320,7 +320,7 @@ states/ground/position = Vector2(541, 100)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_1hesf"), "RESET", "drop", SubResource("AnimationNodeStateMachineTransition_pg7im"), "drop", "ground", SubResource("AnimationNodeStateMachineTransition_ghtou")]
 
 [node name="DropAttack" type="Node2D"]
-z_index = -1
+z_index = 1
 script = ExtResource("1_jkv26")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

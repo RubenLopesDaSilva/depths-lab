@@ -619,6 +619,7 @@ nodes/Damage/position = Vector2(460, 160)
 node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"StateMachine", &"OneShot", 1, &"Damage"]
 
 [node name="Experiment_215_S" type="Node2D" groups=["Boss"]]
+z_index = 3
 script = ExtResource("1_od5ja")
 
 [node name="HealthRessources" type="Node" parent="."]
