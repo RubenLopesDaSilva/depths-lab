@@ -148,4 +148,4 @@ func is_active_check_point(id: String):
 	return check_points.has(id);
 
 func is_active_boss(id: String):
-	return bosses.has(id) 
+	return bosses.has(id); 
