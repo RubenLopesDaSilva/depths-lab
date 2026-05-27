@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://ba2euro8iccya"]
+[gd_scene load_steps=10 format=4 uid="uid://ba2euro8iccya"]
 
 [ext_resource type="Texture2D" uid="uid://d4lot46qkbo0b" path="res://assets/sprites/level_0.png" id="1_3n20u"]
-[ext_resource type="Script" uid="uid://dhgqfq3d43ojk" path="res://scenes/boss_room.gd" id="1_g2a2m"]
 [ext_resource type="Script" uid="uid://b0f5qindf1fmt" path="res://scenes/trigger_boss.gd" id="4_g2a2m"]
 [ext_resource type="PackedScene" uid="uid://dl5jyvux5taat" path="res://scenes/level_transition.tscn" id="5_ee80j"]
 [ext_resource type="Script" uid="uid://dhbwjsck31vef" path="res://general/scripts/level_bounds.gd" id="6_bggbs"]
@@ -59,7 +58,6 @@ sources/0 = SubResource("TileSetAtlasSource_3n20u")
 size = Vector2(1725, 825)
 
 [node name="BossRoom" type="Node2D"]
-script = ExtResource("1_g2a2m")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(192, -283)

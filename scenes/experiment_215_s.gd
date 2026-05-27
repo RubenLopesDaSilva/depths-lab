@@ -4,6 +4,8 @@ extends Node2D
 @onready var playback = $AnimationTree.get("parameters/StateMachine/playback")
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var health_ressources: GameResource = $HealthRessources
+var trigger : Trigger
+
 
 var is_dead
 var facing_direction : float = 1.0
@@ -17,6 +19,9 @@ const SPEED : float = 120.0
 
 func _ready() -> void:
 	health_ressources.is_dead.connect(_on_boss_death)
+
+func set_trigger(scene_trigger : Trigger) -> void:
+	trigger = scene_trigger
 
 func _physics_process(delta: float) -> void:
 	if current_state == BossState.EN_VOL:
@@ -59,6 +64,7 @@ func _on_boss_death() -> void:
 	$Area2D/CollisionShape2D.set_deferred("disabled",true)
 	set_process(false)
 	set_physics_process(false)
+	trigger.save()
 	
 
 

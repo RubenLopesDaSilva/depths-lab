@@ -15,7 +15,6 @@ const musicState = AudioManager.MusicState;
 @export var max_amount := 10 : set = set_max_amount
 @export var current_amount := 0 : set = set_current_amount
 
-
 func _ready() -> void:
 	replenish();
 	max_changed.emit(max_amount)
@@ -49,6 +48,7 @@ func decrease(amount: int) -> void:
 func deplete() -> void:
 	current_amount = 0
 	is_dead.emit()
+	
 	
 func play_death_bosss_music() -> void:
 	AudioManager.quite(1)
