@@ -33,7 +33,15 @@ func start () -> void :
 		elif check_point_id == "CP01":
 			packed_scene = map_03;
 		else :
-			return
+			return;
+	elif SaveManager.state == SaveManager.GameState.BOSS :
+		var check_point_id = SaveManager.check_point;
+		if check_point_id == "boss00":
+			packed_scene = boss_00;
+		else : 
+			return;
+	else :
+		return;
 	
 	scene = packed_scene.instantiate();
 	add_child(scene);
